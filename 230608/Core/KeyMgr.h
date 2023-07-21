@@ -129,7 +129,7 @@ public:
 		if (m_vInputKeys.empty())
 			return nullptr;
 
-		for (int i = 0; i < m_vInputKeys.size(); ++i)
+		for (size_t i = 0; i < m_vInputKeys.size(); ++i)
 		{
 			if (0 == lstrcmp(m_vInputKeys[i]->sKeyName, sKeyName))
 			{

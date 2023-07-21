@@ -106,6 +106,7 @@
     <Filter Include="02. Design\11. Camera">
       <UniqueIdentifier>{0e771d95-6291-4f6e-a94d-7e5e21a47852}</UniqueIdentifier>
     </Filter>
+<<<<<<< HEAD
     <Filter Include="03. Scene\MyungBin">
       <UniqueIdentifier>{15c903b0-21d3-4dcd-a234-ab01cd33302b}</UniqueIdentifier>
     </Filter>
@@ -120,6 +121,13 @@
     </Filter>
     <Filter Include="03. Scene\MyungBin\00. Define">
       <UniqueIdentifier>{2a360fb4-b400-4150-bbb5-6e94e40bd2e4}</UniqueIdentifier>
+=======
+    <Filter Include="02. Design\03. LineMgr">
+      <UniqueIdentifier>{e01584c5-9297-428a-a8e6-3afc9cdacafe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\01.Player">
+      <UniqueIdentifier>{3084c8eb-a267-4709-b9c7-87d6180247bc}</UniqueIdentifier>
+>>>>>>> origin/JunHo
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -219,6 +227,7 @@
     <ClInclude Include="Core\Camera.h">
       <Filter>02. Design\11. Camera</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="MyungBin\StageMyungBin.h">
       <Filter>03. Scene\MyungBin</Filter>
     </ClInclude>
@@ -233,6 +242,16 @@
     </ClInclude>
     <ClInclude Include="MyungBin\DefindMyungBin.h">
       <Filter>03. Scene\MyungBin\00. Define</Filter>
+=======
+    <ClInclude Include="JunHo\Line.h">
+      <Filter>02. Design\03. LineMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="JunHo\LineMgr.h">
+      <Filter>02. Design\03. LineMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="JunHo\CJPlayer.h">
+      <Filter>01. Obj\01.Player</Filter>
+>>>>>>> origin/JunHo
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -293,6 +312,7 @@
     <ClCompile Include="Core\Camera.cpp">
       <Filter>02. Design\11. Camera</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="MyungBin\StageMyungBin.cpp">
       <Filter>03. Scene\MyungBin</Filter>
     </ClCompile>
@@ -301,6 +321,16 @@
     </ClCompile>
     <ClCompile Include="MyungBin\Lobby.cpp">
       <Filter>03. Scene\MyungBin\MiniGame\00. Lobby</Filter>
+=======
+    <ClCompile Include="JunHo\LineMgr.cpp">
+      <Filter>02. Design\03. LineMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="JunHo\Line.cpp">
+      <Filter>02. Design\03. LineMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="JunHo\CJPlayer.cpp">
+      <Filter>01. Obj\01.Player</Filter>
+>>>>>>> origin/JunHo
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

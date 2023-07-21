@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="230608.h" />
+    <ClInclude Include="JunHo\CJPlayer.h" />
     <ClInclude Include="Core\AbstractFactory.h" />
     <ClInclude Include="Core\Actor.h" />
     <ClInclude Include="Core\AnimationTable.h" />
@@ -178,17 +179,23 @@
     <ClInclude Include="Core\Vector2.h" />
     <ClInclude Include="Core\Vector3.h" />
     <ClInclude Include="Define.h" />
+<<<<<<< HEAD
     <ClInclude Include="MyungBin\DefindMyungBin.h" />
     <ClInclude Include="MyungBin\FishingStart.h" />
     <ClInclude Include="MyungBin\Lobby.h" />
     <ClInclude Include="MyungBin\MiniGame.h" />
     <ClInclude Include="MyungBin\StageMyungBin.h" />
+=======
+    <ClInclude Include="JunHo\Line.h" />
+    <ClInclude Include="JunHo\LineMgr.h" />
+>>>>>>> origin/JunHo
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="230608.cpp" />
+    <ClCompile Include="JunHo\CJPlayer.cpp" />
     <ClCompile Include="Core\AnimationTable.cpp" />
     <ClCompile Include="Core\BitMap.cpp" />
     <ClCompile Include="Core\BmpMgr.cpp" />
@@ -206,9 +213,14 @@
     <ClCompile Include="Core\Tile.cpp" />
     <ClCompile Include="Core\TileMgr.cpp" />
     <ClCompile Include="Core\VecCollisionMgr.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="MyungBin\FishingStart.cpp" />
     <ClCompile Include="MyungBin\Lobby.cpp" />
     <ClCompile Include="MyungBin\StageMyungBin.cpp" />
+=======
+    <ClCompile Include="JunHo\Line.cpp" />
+    <ClCompile Include="JunHo\LineMgr.cpp" />
+>>>>>>> origin/JunHo
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
