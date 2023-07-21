@@ -156,6 +156,7 @@
     <ClInclude Include="Core\AnimationTable.h" />
     <ClInclude Include="Core\BitMap.h" />
     <ClInclude Include="Core\BmpMgr.h" />
+    <ClInclude Include="Core\Camera.h" />
     <ClInclude Include="Core\CustomMath.h" />
     <ClInclude Include="Core\IState.h" />
     <ClInclude Include="Core\ITeamAgent.h" />
@@ -186,6 +187,7 @@
     <ClCompile Include="Core\AnimationTable.cpp" />
     <ClCompile Include="Core\BitMap.cpp" />
     <ClCompile Include="Core\BmpMgr.cpp" />
+    <ClCompile Include="Core\Camera.cpp" />
     <ClCompile Include="Core\ITeamAgent.cpp" />
     <ClCompile Include="Core\KeyMgr.cpp" />
     <ClCompile Include="Core\Logo.cpp" />

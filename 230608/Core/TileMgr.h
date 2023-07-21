@@ -19,6 +19,7 @@ public:
 
 	void	Save_Tile();
 	void	Load_Tile();
+	void	Load_Tile(SCENEID eSceneID);
 public:
 	static CTileMgr* Get_Instance()
 	{
@@ -37,6 +38,12 @@ public:
 			m_pInstance = nullptr;
 		}
 	}
+
+public:
+	TILEOPTION option;
+
+public:
+	list<CObj*> Get_TileList();
 
 private:
 	static CTileMgr* m_pInstance;

@@ -41,5 +41,10 @@ private:
 
 	SCENEID					m_eCurScene;
 	SCENEID					m_ePreScene;
+
+public:
+	void					Set_CurScene(SCENEID _id) { m_eCurScene = _id; }
+	int						Get_CurScene() { return m_eCurScene; }
+	int						Get_PreScene() { return m_ePreScene; }
 };
 

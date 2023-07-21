@@ -103,6 +103,9 @@
     <Filter Include="02. Design\00. General\Interface">
       <UniqueIdentifier>{57d7eff6-962e-4dfb-b90c-631368f0cc0a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. Design\11. Camera">
+      <UniqueIdentifier>{0e771d95-6291-4f6e-a94d-7e5e21a47852}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -189,14 +192,17 @@
     <ClInclude Include="Core\CustomMath.h">
       <Filter>02. Design\00. General\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Core\ITeamAgent.h">
-      <Filter>02. Design\00. General</Filter>
-    </ClInclude>
     <ClInclude Include="Core\IState.h">
       <Filter>02. Design\00. General\Interface</Filter>
     </ClInclude>
     <ClInclude Include="Core\AnimationTable.h">
       <Filter>02. Design\10. AnimationTable</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ITeamAgent.h">
+      <Filter>02. Design\00. General\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Camera.h">
+      <Filter>02. Design\11. Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +259,9 @@
     </ClCompile>
     <ClCompile Include="Core\AnimationTable.cpp">
       <Filter>02. Design\10. AnimationTable</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Camera.cpp">
+      <Filter>02. Design\11. Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
