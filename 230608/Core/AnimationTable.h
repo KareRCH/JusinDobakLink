@@ -16,8 +16,8 @@ public:
 	int	iMotionSize = 0;
 
 	// 시트의 프레임별 사이즈
-	int	iFrameWidth = 0;
-	int iFrameHeight = 0;
+	int	iWidth = 0;
+	int iHeight = 0;
 
 	// 원점
 	int iOffsetX = 0;
@@ -46,8 +46,8 @@ public:
 		tFrame.iOffsetX = iOffsetX;
 		tFrame.iOffsetY = iOffsetY;
 
-		tFrame.iWidth = iFrameWidth;
-		tFrame.iHeight = iFrameHeight;
+		tFrame.iWidth = iWidth;
+		tFrame.iHeight = iHeight;
 	}
 
 	void Parse_Frame_Maintain(FRAME& tFrame)
@@ -66,8 +66,8 @@ public:
 		tFrame.iOffsetX = iOffsetX;
 		tFrame.iOffsetY = iOffsetY;
 
-		tFrame.iWidth = iFrameWidth;
-		tFrame.iHeight = iFrameHeight;
+		tFrame.iWidth = iWidth;
+		tFrame.iHeight = iHeight;
 	}
 };
 
@@ -120,8 +120,8 @@ private:
 		pNewData.iMotionY = iMotionY;
 		pNewData.iMotionSize = iMotionSize;
 
-		pNewData.iFrameWidth = iFrameWidth;
-		pNewData.iFrameHeight = iFrameHeight;
+		pNewData.iWidth = iFrameWidth;
+		pNewData.iHeight = iFrameHeight;
 
 		pNewData.iOffsetX = iOffsetX;
 		pNewData.iOffsetY = iOffsetY;

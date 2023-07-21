@@ -103,8 +103,44 @@ struct DeleteObj
 	}
 };
 
-// Map 동적 할당 value값 메모리 해제용 함수 객체
+// Map의 key, value값 동적할당 전체 해제
+// % 주의 각각의 값이 동적할당일 경우만 쓰세요.
 class CDeleteMap
+{
+public:
+	template<typename T>
+	void operator()(T& Pair)
+	{
+		if (Pair.first)
+		{
+			delete Pair.first;
+		}
+		if (Pair.second)
+		{
+			delete Pair.second;
+			Pair.second = nullptr;
+		}
+	}
+};
+
+// Map 동적 할당 key값 메모리 해제용 함수 객체
+// 주의 key가 동적할당일 경우만 쓰세요.
+class CDeleteMap_Key
+{
+public:
+	template<typename T>
+	void operator()(T& Pair)
+	{
+		if (Pair.first)
+		{
+			delete Pair.first;
+		}
+	}
+};
+
+// Map 동적 할당 value값 메모리 해제용 함수 객체
+// 주의 value가 동적할당일 경우만 쓰세요.
+class CDeleteMap_Value
 {
 public:
 	template<typename T>
@@ -117,6 +153,8 @@ public:
 		}
 	}
 };
+
+
 
 // 문자열 태그 비교 함수객체
 class CTag_Finder
