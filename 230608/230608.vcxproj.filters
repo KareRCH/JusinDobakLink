@@ -112,9 +112,55 @@
     <Filter Include="01. Obj\01.Player">
       <UniqueIdentifier>{3084c8eb-a267-4709-b9c7-87d6180247bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. MyungBin">
+      <UniqueIdentifier>{3ad0113f-ad43-44c4-aebf-917a50e6eee4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\MiniGameState">
+      <UniqueIdentifier>{fbdc459e-ef27-4d74-a282-16e27b133736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\MiniGameState\00. Lobby">
+      <UniqueIdentifier>{ec640b97-a267-4096-aae8-a584fe3367c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\MiniGameState\01. FishingStart">
+      <UniqueIdentifier>{08fdca4f-5396-432a-b7dd-fc4a85de2e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\Fisherman">
+      <UniqueIdentifier>{dac6d610-83a6-446f-b184-ac0b067230f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\Stage">
+      <UniqueIdentifier>{04cd2bab-10d7-4e40-be93-a3bf3dd771bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\Define">
+      <UniqueIdentifier>{e8b52d6c-e8ba-4e16-ae13-803ba90deafc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\Fisherman\State">
+      <UniqueIdentifier>{04a142c1-ea64-4083-9870-a1e88327b35f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\Fisherman\FishingBobber">
+      <UniqueIdentifier>{da99f825-932b-40b9-a865-f675a68b6b55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\Fisherman\State\00. SelectDir">
+      <UniqueIdentifier>{908d8115-4876-4f98-8fd7-146a2af03d45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\Fisherman\State\01. SelectPower">
+      <UniqueIdentifier>{e7773fdd-aeb0-4b61-8e10-692bd7d8fd64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\Fisherman\State\02. Throwing">
+      <UniqueIdentifier>{9cc41090-86d8-4eb6-badf-a4974bf59555}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\Fisherman\State\03. Hooking">
+      <UniqueIdentifier>{4a924611-a794-498b-aaea-62c4a4a2de02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\Fisherman\State\04. Catching">
+      <UniqueIdentifier>{0c8d1c32-03f8-4aeb-a635-6ba851941b5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\Fisherman\State\05. Finishing">
+      <UniqueIdentifier>{6d38fe7a-c5b0-4128-a903-f1a0467efee9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="MyungBin\a.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -219,6 +265,33 @@
     <ClInclude Include="JunHo\CJPlayer.h">
       <Filter>01. Obj\01.Player</Filter>
     </ClInclude>
+    <ClInclude Include="MyungBin\MiniGame.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\FishingStart.h">
+      <Filter>04. MyungBin\MiniGameState\01. FishingStart</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\Fisherman.h">
+      <Filter>04. MyungBin\Fisherman</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\StageMyungBin.h">
+      <Filter>04. MyungBin\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\DefindMyungBin.h">
+      <Filter>04. MyungBin\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\FishermanSelectDir.h">
+      <Filter>04. MyungBin\Fisherman\State\00. SelectDir</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\Lobby.h">
+      <Filter>04. MyungBin\MiniGameState\00. Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\FishermanSelectPower.h">
+      <Filter>04. MyungBin\Fisherman\State\01. SelectPower</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\FishermanThrowing.h">
+      <Filter>04. MyungBin\Fisherman\State\02. Throwing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -286,6 +359,27 @@
     </ClCompile>
     <ClCompile Include="JunHo\CJPlayer.cpp">
       <Filter>01. Obj\01.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\Lobby.cpp">
+      <Filter>04. MyungBin\MiniGameState\00. Lobby</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\FishingStart.cpp">
+      <Filter>04. MyungBin\MiniGameState\01. FishingStart</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\StageMyungBin.cpp">
+      <Filter>04. MyungBin\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\Fisherman.cpp">
+      <Filter>04. MyungBin\Fisherman</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\FishermanSelectDir.cpp">
+      <Filter>04. MyungBin\Fisherman\State\00. SelectDir</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\FishermanSelectPower.cpp">
+      <Filter>04. MyungBin\Fisherman\State\01. SelectPower</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\FishermanThrowing.cpp">
+      <Filter>04. MyungBin\Fisherman\State\02. Throwing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

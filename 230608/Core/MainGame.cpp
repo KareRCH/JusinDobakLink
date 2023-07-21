@@ -49,7 +49,7 @@ void CMainGame::Render()
 
 	if (m_dwTime + 1000 < GetTickCount())
 	{
-		swprintf_s(m_szFPS, L"FPS : гого %d", m_iFPS);
+		swprintf_s(m_szFPS, L"FPS : %d", m_iFPS);
 		SetWindowText(g_hWnd, m_szFPS);
 
 		m_iFPS = 0;

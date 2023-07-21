@@ -1,7 +1,7 @@
 #pragma once
 #include "MiniGame.h"
 
-class Lobby : public MiniGame
+class CLobby : public CMiniGame
 {
 public:
 	virtual void				Initialize() override;

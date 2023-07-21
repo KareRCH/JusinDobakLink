@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="MyungBin\a.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +182,15 @@
     <ClInclude Include="Define.h" />
     <ClInclude Include="JunHo\Line.h" />
     <ClInclude Include="JunHo\LineMgr.h" />
+    <ClInclude Include="MyungBin\DefindMyungBin.h" />
+    <ClInclude Include="MyungBin\Fisherman.h" />
+    <ClInclude Include="MyungBin\FishermanSelectDir.h" />
+    <ClInclude Include="MyungBin\FishermanSelectPower.h" />
+    <ClInclude Include="MyungBin\FishermanThrowing.h" />
+    <ClInclude Include="MyungBin\FishingStart.h" />
+    <ClInclude Include="MyungBin\Lobby.h" />
+    <ClInclude Include="MyungBin\MiniGame.h" />
+    <ClInclude Include="MyungBin\StageMyungBin.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -207,6 +217,13 @@
     <ClCompile Include="Core\VecCollisionMgr.cpp" />
     <ClCompile Include="JunHo\Line.cpp" />
     <ClCompile Include="JunHo\LineMgr.cpp" />
+    <ClCompile Include="MyungBin\Fisherman.cpp" />
+    <ClCompile Include="MyungBin\FishermanSelectDir.cpp" />
+    <ClCompile Include="MyungBin\FishermanSelectPower.cpp" />
+    <ClCompile Include="MyungBin\FishermanThrowing.cpp" />
+    <ClCompile Include="MyungBin\FishingStart.cpp" />
+    <ClCompile Include="MyungBin\Lobby.cpp" />
+    <ClCompile Include="MyungBin\StageMyungBin.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

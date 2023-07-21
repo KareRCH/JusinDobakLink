@@ -1,11 +1,14 @@
 #pragma once
 #include "DefindMyungBin.h"
+#include "Fisherman.h"
 
-class MiniGame 
+class CMiniGame 
 {
 public:
-	MiniGame() {};
-	virtual ~MiniGame() {};
+	CMiniGame()
+		//:m_pFisherman(nullptr)
+	{};
+	virtual ~CMiniGame() {};
 
 public:
 	virtual void					Initialize()	PURE;
@@ -13,5 +16,8 @@ public:
 	virtual void					Late_Update()	PURE;
 	virtual void					Render(HDC hDC) PURE;
 	virtual void					Release()		PURE;
+
+protected:
+	CFisherman m_cFisherman;
 
 };

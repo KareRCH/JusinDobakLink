@@ -4,26 +4,30 @@
 #include "BmpMgr.h"
 #include "KeyMgr.h"
 
-void Lobby::Initialize()
+void CLobby::Initialize()
 {
 }
 
-MyungBinStageState Lobby::Update()
+MyungBinStageState CLobby::Update()
 {
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_SPACE)) 
+	{
+		return MyungBinStageState::FISHING_START;
+	}
 	return MyungBinStageState::LOBBY;
 }
 
-void Lobby::Late_Update()
+void CLobby::Late_Update()
 {
 }
 
-void Lobby::Render(HDC hDC)
+void CLobby::Render(HDC hDC)
 {
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Logo/Logo.bmp", L"Logo");
 	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(L"Logo");
 	BitBlt(hDC, 0, 0, WINCX, WINCY, hMemDC, 0, 0, SRCCOPY);
 }
 
-void Lobby::Release()
+void CLobby::Release()
 {
 }

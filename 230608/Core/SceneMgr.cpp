@@ -27,7 +27,7 @@ void CSceneMgr::Scene_Change(SCENEID eScene)
 		switch (m_eCurScene)
 		{
 		case SCENEID::SC_WORLD1:
-			m_pScene = new StageMyungBin;
+			m_pScene = new CStageMyungBin;
 			break;
 		}
 
