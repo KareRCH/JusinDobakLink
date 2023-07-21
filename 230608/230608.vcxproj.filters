@@ -106,6 +106,12 @@
     <Filter Include="02. Design\11. Camera">
       <UniqueIdentifier>{0e771d95-6291-4f6e-a94d-7e5e21a47852}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. Design\03. LineMgr">
+      <UniqueIdentifier>{e01584c5-9297-428a-a8e6-3afc9cdacafe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\01.Player">
+      <UniqueIdentifier>{3084c8eb-a267-4709-b9c7-87d6180247bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -204,6 +210,15 @@
     <ClInclude Include="Core\Camera.h">
       <Filter>02. Design\11. Camera</Filter>
     </ClInclude>
+    <ClInclude Include="JunHo\Line.h">
+      <Filter>02. Design\03. LineMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="JunHo\LineMgr.h">
+      <Filter>02. Design\03. LineMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="JunHo\CJPlayer.h">
+      <Filter>01. Obj\01.Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -262,6 +277,15 @@
     </ClCompile>
     <ClCompile Include="Core\Camera.cpp">
       <Filter>02. Design\11. Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="JunHo\LineMgr.cpp">
+      <Filter>02. Design\03. LineMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="JunHo\Line.cpp">
+      <Filter>02. Design\03. LineMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="JunHo\CJPlayer.cpp">
+      <Filter>01. Obj\01.Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

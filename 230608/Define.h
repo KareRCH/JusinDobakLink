@@ -54,14 +54,20 @@ enum CHANNELID { SOUND_EFFECT, SOUND_BGM, SYSTEM_EFFECT, SOUND_PLAYER, SOUND_ENE
 enum TILEOPTION { NORMAL = 0, WALL, FALL, SADARI, TRAP, PREPOTAL, POTAL, PRESTAGE, END };
 
 enum TEAM_ID { TEAM_ALPHA, TEAM_BETA, TEAM_GAMMA };
+
+enum STAGEID { LODING1, STAGE1, LODING2, STAGE2, LODING3, STAGE3, LODING4, STAGE4, STAGE_END };
+
 #pragma endregion
 
 #pragma region 기본
 // 범용 위치, 크기속성
 typedef struct tagInfo
 {
+	//
+	float	fCX;	// 가로 길이
+	float	fCY;	// 세로 길이	
+	//vector
 	D3DXVECTOR3		vPos;
-
 	D3DXVECTOR3		vDir;
 	D3DXVECTOR3		vLook;
 
@@ -70,6 +76,7 @@ typedef struct tagInfo
 	D3DXMATRIX		matWorld;
 
 }INFO;
+
 // 행렬 : 여러 개의 수를 행과 열의 상태로 정렬하여 저장한 것
 // 행렬의 사용 이유 : 객체의 여러 상태를 표현하기 위함
 // 정방 행렬 : 행과 열의 숫자가 일치하는 행렬
@@ -101,7 +108,7 @@ void		Safe_Delete(T& Temp)
 }
 
 // 객체 삭제 함수 객체
-struct DeleteObj
+struct CDeleteObj
 {
 	template<typename T>
 	void operator()(T& Temp)

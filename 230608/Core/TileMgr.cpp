@@ -48,9 +48,11 @@ void CTileMgr::Render(HDC hDC)
 {
 	/*for (auto& iter : m_vecTile)
 		iter->Render(hDC);*/
+	int iCullX = (int)abs(CCamera::Get_Instance()->Get_WindowPos().x / TILECX);
+	int iCullY = (int)abs(CCamera::Get_Instance()->Get_WindowPos().y / TILECY);
 
-	int iCullX = (int)abs(CScrollMgr::Get_Instance()->Get_ScollX() / TILECX);
-	int iCullY = (int)abs(CScrollMgr::Get_Instance()->Get_ScollY() / TILECY);
+	//int iCullX = (int)abs(CCamera::Get_Instance()->Get_ScollX() / TILECX);
+	//int iCullY = (int)abs(CCamera::Get_Instance()->Get_ScollY() / TILECY);
 
 	int	iMaxX = iCullX + WINCX / TILECX + 2;
 	int	iMaxY = iCullY + WINCY / TILECY + 2;
