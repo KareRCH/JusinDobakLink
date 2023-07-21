@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "StageMyungBin.h"
+#include "Lobby.h"
 
 StageMyungBin::StageMyungBin()
 	:m_eState(MyungBinStageState::MyungBinStageState_End)
@@ -17,7 +18,7 @@ void StageMyungBin::Initialize()
 	m_hDC = GetDC(g_hWnd);
 
 	m_eState = MyungBinStageState::LOBBY;
-	m_eMiniGames[(int)MyungBinStageState::LOBBY];
+	m_eMiniGames[(int)MyungBinStageState::LOBBY] = new Lobby;
 
 	//m_eScenes[STAGE1] = new CStage1();
 	//m_eScenes[STAGE2] = new CStage2();

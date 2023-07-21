@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Logo.h"
+#include "Scene.h"
+#include "StageMyungBin.h"
 //#include "MyMenu.h"
 
 class CSceneMgr

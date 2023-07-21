@@ -1,10 +1,10 @@
 #pragma once
 #include "DefindMyungBin.h"
 #include "MiniGame.h"
+#include "Scene.h"
 
 
-
-class StageMyungBin 
+class StageMyungBin : public CScene
 {
 public:
 	StageMyungBin();
