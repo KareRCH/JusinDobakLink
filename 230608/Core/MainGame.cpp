@@ -25,7 +25,7 @@ void CMainGame::Initialize()
 
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	
-	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_EDIT);
+	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_LOGO);
 
 	//CSoundMgr::Get_Instance()->Initialize();
 }

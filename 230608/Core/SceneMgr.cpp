@@ -17,7 +17,7 @@ CSceneMgr::~CSceneMgr()
 
 void CSceneMgr::Scene_Change(SCENEID eScene)
 {
-	return;
+	//return;
 	m_eCurScene = eScene;
 
 	if (m_ePreScene != m_eCurScene)
@@ -52,19 +52,19 @@ void CSceneMgr::Scene_Change(SCENEID eScene)
 
 void CSceneMgr::Update()
 {
-	return;
+	//return;
 	m_pScene->Update();
 }
 
 void CSceneMgr::Late_Update()
 {
-	return;
+	//return;
 	m_pScene->Late_Update();
 }
 
 void CSceneMgr::Render(HDC hDC)
 {
-	return;
+	//return;
 	m_pScene->Render(hDC);
 }
 

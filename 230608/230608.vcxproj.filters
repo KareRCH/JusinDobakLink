@@ -106,6 +106,15 @@
     <Filter Include="02. Design\11. Camera">
       <UniqueIdentifier>{0e771d95-6291-4f6e-a94d-7e5e21a47852}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03. Scene\MyungBin">
+      <UniqueIdentifier>{15c903b0-21d3-4dcd-a234-ab01cd33302b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\MyungBin\MiniGame">
+      <UniqueIdentifier>{b0e0798f-0f89-48b2-a89a-e3baa0dd2e69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\MyungBin\MiniGame\00. FishingStart">
+      <UniqueIdentifier>{556d2bb0-ea5f-4c4a-964e-66d3885f094c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -204,6 +213,15 @@
     <ClInclude Include="Core\Camera.h">
       <Filter>02. Design\11. Camera</Filter>
     </ClInclude>
+    <ClInclude Include="MyungBin\StageMyungBin.h">
+      <Filter>03. Scene\MyungBin</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\MiniGame.h">
+      <Filter>03. Scene\MyungBin\MiniGame</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\FishingStart.h">
+      <Filter>03. Scene\MyungBin\MiniGame\00. FishingStart</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -262,6 +280,12 @@
     </ClCompile>
     <ClCompile Include="Core\Camera.cpp">
       <Filter>02. Design\11. Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\StageMyungBin.cpp">
+      <Filter>03. Scene\MyungBin</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\FishingStart.cpp">
+      <Filter>03. Scene\MyungBin\MiniGame\00. FishingStart</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

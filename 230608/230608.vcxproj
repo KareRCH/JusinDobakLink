@@ -178,6 +178,9 @@
     <ClInclude Include="Core\Vector2.h" />
     <ClInclude Include="Core\Vector3.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="MyungBin\FishingStart.h" />
+    <ClInclude Include="MyungBin\MiniGame.h" />
+    <ClInclude Include="MyungBin\StageMyungBin.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -201,6 +204,8 @@
     <ClCompile Include="Core\Tile.cpp" />
     <ClCompile Include="Core\TileMgr.cpp" />
     <ClCompile Include="Core\VecCollisionMgr.cpp" />
+    <ClCompile Include="MyungBin\FishingStart.cpp" />
+    <ClCompile Include="MyungBin\StageMyungBin.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
