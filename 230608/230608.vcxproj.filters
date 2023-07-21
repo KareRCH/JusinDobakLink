@@ -112,8 +112,14 @@
     <Filter Include="03. Scene\MyungBin\MiniGame">
       <UniqueIdentifier>{b0e0798f-0f89-48b2-a89a-e3baa0dd2e69}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03. Scene\MyungBin\MiniGame\00. FishingStart">
+    <Filter Include="03. Scene\MyungBin\MiniGame\01. FishingStart">
       <UniqueIdentifier>{556d2bb0-ea5f-4c4a-964e-66d3885f094c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\MyungBin\MiniGame\00. Lobby">
+      <UniqueIdentifier>{26725d77-26f8-4445-930b-7beb0557c05c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\MyungBin\00. Define">
+      <UniqueIdentifier>{2a360fb4-b400-4150-bbb5-6e94e40bd2e4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -220,7 +226,13 @@
       <Filter>03. Scene\MyungBin\MiniGame</Filter>
     </ClInclude>
     <ClInclude Include="MyungBin\FishingStart.h">
-      <Filter>03. Scene\MyungBin\MiniGame\00. FishingStart</Filter>
+      <Filter>03. Scene\MyungBin\MiniGame\01. FishingStart</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\Lobby.h">
+      <Filter>03. Scene\MyungBin\MiniGame\00. Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\DefindMyungBin.h">
+      <Filter>03. Scene\MyungBin\00. Define</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -285,7 +297,10 @@
       <Filter>03. Scene\MyungBin</Filter>
     </ClCompile>
     <ClCompile Include="MyungBin\FishingStart.cpp">
-      <Filter>03. Scene\MyungBin\MiniGame\00. FishingStart</Filter>
+      <Filter>03. Scene\MyungBin\MiniGame\01. FishingStart</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\Lobby.cpp">
+      <Filter>03. Scene\MyungBin\MiniGame\00. Lobby</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
