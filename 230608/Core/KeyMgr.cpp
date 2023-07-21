@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "KeyMgr.h"
 
 CKeyMgr* CKeyMgr::m_pInstance = nullptr;
@@ -37,14 +37,14 @@ void CKeyMgr::Late_Update()
 	if (!g_bWinActivate)
 		return;
 
-	for (int i = 0; i < m_vInputKeys.size(); ++i)
+	for (size_t i = 0; i < m_vInputKeys.size(); ++i)
 	{
 		if (nullptr == m_vInputKeys[i])
 			continue;
 
-		for (int j = 0; j < m_vInputKeys[i]->vKeys.size(); ++j)
+		for (size_t j = 0; j < m_vInputKeys[i]->vKeys.size(); ++j)
 		{
-			// ÀÔ·ÂÀ» ¹Ş¾ÒÀ» ¶§
+			// ì…ë ¥ì„ ë°›ì•˜ì„ ë•Œ
 			if (GetAsyncKeyState(get<0>(m_vInputKeys[i]->vKeys[j])) & 0x8000)
 			{
 				if (EINPUT_KEY_STATE::NUETRAL >= get<1>(m_vInputKeys[i]->vKeys[j]))
@@ -52,7 +52,7 @@ void CKeyMgr::Late_Update()
 				else
 					get<1>(m_vInputKeys[i]->vKeys[j]) = EINPUT_KEY_STATE::PRESSING;
 			}
-			// ÀÔ·ÂÀÌ ¾øÀ» ¶§
+			// ì…ë ¥ì´ ì—†ì„ ë•Œ
 			else
 			{
 				if (EINPUT_KEY_STATE::PRESSING <= get<1>(m_vInputKeys[i]->vKeys[j]))
@@ -63,7 +63,7 @@ void CKeyMgr::Late_Update()
 		}
 	}
 
-	// m_bKeyState¿¡ ´ëÇØ Å° »óÅÂ¸¦ ¾÷µ¥ÀÌÆ® ÇÕ´Ï´Ù.
+	// m_bKeyStateì— ëŒ€í•´ í‚¤ ìƒíƒœë¥¼ ì—…ë°ì´íŠ¸ í•©ë‹ˆë‹¤.
 	for (int i = 0; i < VK_MAX; ++i)
 	{
 		if (m_bKeyState[i] && !(GetAsyncKeyState(i) & 0x8000))
@@ -102,7 +102,7 @@ bool CKeyMgr::Key_Down(int _iKey)
 	if (!g_bWinActivate)
 		return false;
 
-	// ÀÌÀü¿¡´Â ´­¸° ÀûÀÌ ¾ø°í ÇöÀç ´­·ÈÀ» °æ¿ì
+	// ì´ì „ì—ëŠ” ëˆŒë¦° ì ì´ ì—†ê³  í˜„ì¬ ëˆŒë ¸ì„ ê²½ìš°
 	if (!m_bKeyState[_iKey] && (GetAsyncKeyState(_iKey) & 0x8000))
 	{
 		return true;
@@ -116,7 +116,7 @@ bool CKeyMgr::Key_Up(int _iKey)
 	if (!g_bWinActivate)
 		return false;
 
-	// ÀÌÀü¿¡´Â ´­¸° ÀûÀÌ ÀÖ°í ÇöÀç ´­¸®Áö ¾Ê¾ÒÀ» °æ¿ì
+	// ì´ì „ì—ëŠ” ëˆŒë¦° ì ì´ ìˆê³  í˜„ì¬ ëˆŒë¦¬ì§€ ì•Šì•˜ì„ ê²½ìš°
 	if (m_bKeyState[_iKey] && !(GetAsyncKeyState(_iKey) & 0x8000))
 	{
 		return true;
