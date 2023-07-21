@@ -72,8 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)MyungBin\;$(ProjectDir)YuJeong\;$(ProjectDir)JunHo\;$(ProjectDir)HakJun\;$(ProjectDir)Core\;$(ProjectDir);$(DXSDK_DIR)Include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)Core\;$(DXSDK_DIR)Lib\x86\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(DXSDK_DIR)Include\;$(ProjectDir);$(ProjectDir)Core\;$(ProjectDir)External\;$(ProjectDir)MyungBin\;$(ProjectDir)YuJeong\;$(ProjectDir)JunHo\;$(ProjectDir)HakJun\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)External\;$(DXSDK_DIR)Lib\x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
