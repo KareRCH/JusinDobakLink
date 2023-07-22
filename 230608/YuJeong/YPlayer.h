@@ -14,7 +14,7 @@ public:
 	virtual void		Late_Update()	override;
 	virtual void		Render(HDC hDC)	override;
 	virtual void		Release()		override;
-	virtual void		Collide()		override;
+	virtual void		Collide(CObj* _pDst)		override;
 
 public:
 	void	Draw_Rectangle(HDC hDC);	// 사각형 그리기
@@ -36,5 +36,5 @@ private:
 	float				fDot2;
 
 public:
-	D3DXVECTOR3* Get_vPoint() { return m_vPoint; }
+	D3DXVECTOR3		Get_vPoint(int _iIndex) { return m_vPoint[_iIndex]; }
 };

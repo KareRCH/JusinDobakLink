@@ -226,6 +226,81 @@ void CBmpMgr::Draw_PNG_StripAlpha(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRA
 	}
 }
 
+void CBmpMgr::Draw_PNG(HDC hDC, INFO& tInfo, bool bAllowScroll)
+{
+	// Strip 형태의 PNG를 표시하는데 쓰인다.
+	// 단일용 PNG는 따로 관리한다.
+
+	CBitMap* pBitMap = CBmpMgr::Get_Instance()->Find_CBitMap(tInfo.tFrameTSet.Get_StrFrameKey());
+	if (!pBitMap) return;
+	Gdp::Bitmap* pImage = pBitMap->Get_Image();
+	Gdp::Graphics g(hDC);
+	auto& tFrame = (*tInfo.tFrameTSet);
+
+	float fScrollX = CCamera::Get_Instance()->Get_WindowPos().x;
+	float fScrollY = CCamera::Get_Instance()->Get_WindowPos().y;
+
+	g.TranslateTransform(tInfo.vPos.x - fScrollX * (float)bAllowScroll, tInfo.vPos.y - fScrollY * (float)bAllowScroll);
+	g.RotateTransform(tInfo.fAngle);
+	g.ScaleTransform(tInfo.vSize.x, tInfo.vSize.y);
+
+	g.DrawImage(
+		pImage, -(tFrame.iOffsetX), -(tFrame.iOffsetY),
+		0, 0, pImage->GetWidth(), pImage->GetHeight(),
+		Gdp::UnitPixel
+	);
+}
+
+void CBmpMgr::Draw_PNG(HDC hDC, INFO& tInfo, int srcx, int srcy, bool bAllowScroll)
+{
+	// Strip 형태의 PNG를 표시하는데 쓰인다.
+	// 단일용 PNG는 따로 관리한다.
+
+	CBitMap* pBitMap = CBmpMgr::Get_Instance()->Find_CBitMap(tInfo.tFrameTSet.Get_StrFrameKey());
+	if (!pBitMap) return;
+	Gdp::Bitmap* pImage = pBitMap->Get_Image();
+	Gdp::Graphics g(hDC);
+	auto& tFrame = (*tInfo.tFrameTSet);
+
+	float fScrollX = CCamera::Get_Instance()->Get_WindowPos().x;
+	float fScrollY = CCamera::Get_Instance()->Get_WindowPos().y;
+
+	g.TranslateTransform(tInfo.vPos.x - fScrollX * (float)bAllowScroll, tInfo.vPos.y - fScrollY * (float)bAllowScroll);
+	g.RotateTransform(tInfo.fAngle);
+	g.ScaleTransform(tInfo.vSize.x, tInfo.vSize.y);
+
+	g.DrawImage(
+		pImage, -(tFrame.iOffsetX), -(tFrame.iOffsetY),
+		srcx, srcy, pImage->GetWidth(), pImage->GetHeight(),
+		Gdp::UnitPixel
+	);
+}
+
+void CBmpMgr::Draw_PNG(HDC hDC, INFO& tInfo, int srcx, int srcy, int src_width, int src_height, bool bAllowScroll)
+{
+	// Strip 형태의 PNG를 표시하는데 쓰인다.
+	// 단일용 PNG는 따로 관리한다.
+
+	CBitMap* pBitMap = CBmpMgr::Get_Instance()->Find_CBitMap(tInfo.tFrameTSet.Get_StrFrameKey());
+	if (!pBitMap) return;
+	Gdp::Bitmap* pImage = pBitMap->Get_Image();
+	Gdp::Graphics g(hDC);
+	auto& tFrame = (*tInfo.tFrameTSet);
+
+	float fScrollX = CCamera::Get_Instance()->Get_WindowPos().x;
+	float fScrollY = CCamera::Get_Instance()->Get_WindowPos().y;
+
+	g.TranslateTransform(tInfo.vPos.x - fScrollX * (float)bAllowScroll, tInfo.vPos.y - fScrollY * (float)bAllowScroll);
+	g.RotateTransform(tInfo.fAngle);
+	g.ScaleTransform(tInfo.vSize.x, tInfo.vSize.y);
+
+	g.DrawImage(
+		pImage, -(tFrame.iOffsetX), -(tFrame.iOffsetY),
+		srcx, srcy, src_width, src_height,
+		Gdp::UnitPixel
+	);
+}
+
 void CBmpMgr::Draw_PNG(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRAME tFrame, bool bAllowScroll)
 {
 	// Strip 형태의 PNG를 표시하는데 쓰인다.

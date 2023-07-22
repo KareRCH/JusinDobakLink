@@ -98,7 +98,7 @@ void CYCustomer::Release()
 {
 }
 
-void CYCustomer::Collide()
+void CYCustomer::Collide(CObj* _pDst)
 {
 }
 

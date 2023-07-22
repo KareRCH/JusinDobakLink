@@ -21,13 +21,11 @@ void CCollisionMgr::Collision_Rect(list<CObj*> _Dst, list<CObj*> _Src)
 		{
 			if (IntersectRect(&rc, &(Dst->Get_Rect()), &(Src->Get_Rect())))
 			{
-				Dst->Collide();
-				Src->Collide();
+				Dst->Collide(Src);
+				Src->Collide(Dst);
 			}
 		}
 	}
-
-
 }
 
 void CCollisionMgr::Collision_RectEx(list<CObj*> _Dst, list<CObj*> _Src)
@@ -101,8 +99,8 @@ void CCollisionMgr::Collision_Sphere(list<CObj*> _Dst, list<CObj*> _Src)
 		{
 			if (Check_Sphere(Dst, Src))
 			{
-				Dst->Collide();
-				Src->Collide();
+				Dst->Collide(Src);
+				Src->Collide(Dst);
 			}
 		}
 	}

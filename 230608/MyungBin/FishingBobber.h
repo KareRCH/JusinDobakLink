@@ -54,6 +54,11 @@ public:
 		m_tInfo.vPos += m_tInfo.vDir * m_fSpeed; 
 	};
 
+	void	Move_Back() {
+		//D3DXVECTOR3 test = { 0.f , -1.f, 0.f };
+		m_tInfo.vPos -= m_tInfo.vDir * m_fSpeed;
+	};
+
 
 
 
@@ -63,7 +68,7 @@ public:
 	virtual void Late_Update() override;
 	virtual void Render(HDC hDC) override;
 	virtual void Release() override;
-	virtual void Collide() override;
+	virtual void Collide(CObj* _pDst) override;
 
 private:
 	D3DXMATRIX		matScale, matRotZ, matTrans;

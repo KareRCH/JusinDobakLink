@@ -114,7 +114,7 @@ void CJPlayer::Render(HDC hDC)
 void CJPlayer::Release()
 {
 }
-void CJPlayer::Collide()
+void CJPlayer::Collide(CObj* _pDst)
 {
 }
 void CJPlayer::Key_Input(void)

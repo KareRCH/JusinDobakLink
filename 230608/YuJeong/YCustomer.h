@@ -12,8 +12,8 @@ public:
 	virtual int			Update()		override;
 	virtual void		Late_Update()	override;
 	virtual void		Render(HDC hDC)	override;
-	virtual void		Release()		override;
-	virtual void		Collide()		override;
+	virtual void		Release()					override;
+	virtual void		Collide(CObj* _pDst)		override;
 
 public:
 	void		Draw_Rectangle(HDC hDC);	// 사각형 그리기

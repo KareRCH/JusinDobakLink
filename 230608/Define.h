@@ -88,16 +88,176 @@ typedef struct tagFrame
 	void Set_Loop(bool value) { bLoop = value; }
 	void Set_Stop() { bStop = true; }
 	void Set_Resume() { bStop = false; }
-	bool IsFrameEnd() { return (iFrameCur >= iFrameEnd); }
+	bool IsFrameEnd() { return ( iFrameCur >= iFrameEnd); }
 	bool IsFrameTick(int value) { return ((iFrameCur == value) && (ulTime == ulCurTime)); }
-	bool IsFrameStart() { return (iFrameCur == 0); }
+	bool IsFrameStart() { return ( iFrameCur == 0); }
+
+	// 프레임시간 업데이트 함수
+	void Update()
+	{
+		ulCurTime = GetTickCount64();
+		if (ulTime + ulSpeed < ulCurTime)
+		{
+			if (!bStop)
+				++iFrameCur;
+
+			if (iFrameCur > iFrameEnd)
+			{
+				if (bLoop)
+					iFrameCur = 0;
+				else
+					iFrameCur = iFrameEnd;
+			}
+
+			ulTime = ulCurTime;
+		}
+	}
 }FRAME;
+
+// FRAME에 키와 애니메이션 키값을 추가한 도구 세트
+struct FRAME_TSET
+{
+	FRAME_TSET() {}
+	~FRAME_TSET() {}
+
+	wstring sFrameKey;
+	wstring sAnimKey;
+	FRAME tFrame;
+
+	wstring& Get_FrameKey()
+	{
+		return sFrameKey;
+	}
+
+	wstring& Get_AnimKey()
+	{
+		return sAnimKey;
+	}
+
+	const TCHAR* Get_StrFrameKey()
+	{
+		return sFrameKey.c_str();
+	}
+	const TCHAR* Get_StrAnimKey()
+	{
+		return sAnimKey.c_str();
+	}
+
+	void Set_Keys(const TCHAR* _sFrameKey, const TCHAR* _sAnimKey)
+	{
+		sFrameKey = _sFrameKey;
+		sAnimKey = _sAnimKey;
+	}
+
+	FRAME& Get_Frame()
+	{
+		return tFrame;
+	}
+	FRAME& operator*()
+	{
+		return tFrame;
+	}
+	FRAME* operator->()
+	{
+		return &tFrame;
+	}
+
+	void Update()
+	{
+		tFrame.Update();
+	}
+};
+
+// FRAME을 활용하기 위해 만들어둔 STL 복합체
+template<typename T>
+struct FRAME_MAP
+{
+	FRAME_MAP() {}
+	~FRAME_MAP() {}
+
+	map<T, FRAME_TSET> mapFrame;
+
+	void Add_Frame(const T& tKey)
+	{
+		mapFrame.emplace(tKey, FRAME_TSET());
+	}
+
+	void Add_Frame(const T&& tKey)
+	{
+		mapFrame.emplace(tKey, FRAME_TSET());
+	}
+
+	void Update()
+	{
+		for (auto iter = mapFrame.begin(); iter != mapFrame.end(); ++iter)
+		{
+			(*iter).second.Update();
+		}
+	}
+
+	map<T, FRAME_TSET>& operator() ()
+	{
+		return mapFrame;
+	}
+
+	FRAME_TSET& operator[](const T& tIndex)
+	{
+		mapFrame[tIndex];
+	}
+
+	FRAME_TSET& operator[](const T&& tIndex)
+	{
+		mapFrame[tIndex];
+	}
+};
+
+struct FRAME_VECTOR
+{
+	FRAME_VECTOR() {}
+	~FRAME_VECTOR() {}
+
+	vector<FRAME_TSET> vFrame;
+
+	void Add_Frame()
+	{
+		vFrame.push_back(FRAME_TSET());
+	}
+
+	void Update()
+	{
+		for (size_t i = 0; i < vFrame.size(); ++i)
+		{
+			vFrame[i].Update();
+		}
+	}
+
+	vector<FRAME_TSET>& operator() ()
+	{
+		return vFrame;
+	}
+
+	FRAME_TSET& operator[](const int& iIndex)
+	{
+		return vFrame[iIndex];
+	}
+	FRAME_TSET& operator[](const int&& iIndex)
+	{
+		return vFrame[iIndex];
+	}
+};
+
 #pragma endregion
 
 #pragma region 기본
 // 범용 위치, 크기속성
 typedef struct tagInfo
 {
+	tagInfo() 
+		: fCX(float()), fCY(float()), vPos(), vDir(1.f, 0.f, 0.f), vLook(1.f, 0.f, 0.f), fAngle(),
+		vSize(1.f, 1.f, 1.f), vSpeed(0.f, 0.f, 0.f), vAccel(0.f, 0.f, 0.f), matWorld(*D3DXMatrixIdentity(&matWorld))
+	{}
+	~tagInfo() {}
+
 	float	fCX;	// 가로 길이
 	float	fCY;	// 세로 길이	
 
@@ -117,7 +277,7 @@ typedef struct tagInfo
 	D3DXVECTOR3		vAccel;
 
 	// 애니메이션, 이미지 틀
-	FRAME			tFrame;
+	FRAME_TSET		tFrameTSet;
 
 	// 행렬
 	D3DXMATRIX		matWorld;

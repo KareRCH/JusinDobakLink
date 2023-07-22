@@ -152,11 +152,6 @@
   <ItemGroup>
     <ClInclude Include="230608.h" />
     <ClInclude Include="Core\CollisionMgr.h" />
-    <ClInclude Include="HakJun\ObjFactory.h" />
-    <ClInclude Include="HakJun\Food_Cookie.h" />
-    <ClInclude Include="HakJun\Food.h" />
-    <ClInclude Include="HakJun\HPlayer.h" />
-    <ClInclude Include="HakJun\Scene_HakStage.h" />
     <ClInclude Include="Core\AbstractFactory.h" />
     <ClInclude Include="Core\Actor.h" />
     <ClInclude Include="Core\AnimationTable.h" />
@@ -213,10 +208,6 @@
   <ItemGroup>
     <ClCompile Include="230608.cpp" />
     <ClCompile Include="Core\CollisionMgr.cpp" />
-    <ClCompile Include="HakJun\Food_Cookie.cpp" />
-    <ClCompile Include="HakJun\Food.cpp" />
-    <ClCompile Include="HakJun\HPlayer.cpp" />
-    <ClCompile Include="HakJun\Scene_HakStage.cpp" />
     <ClCompile Include="Core\AnimationTable.cpp" />
     <ClCompile Include="Core\BitMap.cpp" />
     <ClCompile Include="Core\BmpMgr.cpp" />

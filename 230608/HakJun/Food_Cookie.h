@@ -1,23 +1,17 @@
 #pragma once
-#include "Scene.h"
-class CYScene_Serving :
-    public CScene
+#include "Food.h"
+class CFood_Cookie : public CFood
 {
 public:
-	CYScene_Serving();
-	virtual ~CYScene_Serving();
+	CFood_Cookie() {}
+	virtual ~CFood_Cookie() {}
 
 public:
 	virtual void Initialize() override;
-	virtual void Update() override;
+	virtual int Update() override;
 	virtual void Late_Update() override;
 	virtual void Render(HDC hDC) override;
 	virtual void Release() override;
-
-
-private:
-	void	Create_Dish();
-
-
-
+	virtual void Collide(CObj* _pDst) override;
 };
+

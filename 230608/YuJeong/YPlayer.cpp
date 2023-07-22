@@ -15,12 +15,11 @@ CYPlayer::~CYPlayer()
 void CYPlayer::Initialize()
 {
 	m_tInfo.vPos = { (WINCX / 2 + 60), (WINCY / 2 - 70), 0.f };
-	m_tInfo.vLook = { 0.f, -1.f, 0.f }; //방향
-	m_tInfo.vSize = { 50.f ,50.f, 0.f };
-	m_fSpeed = 3.f;
+	m_tInfo.vDir = { 1.f, 0.f, 0.f };		//방향
+	m_tInfo.vLook = { 0.f, -1.f, 0.f };		// 바라보는 방향
+	m_tInfo.vSize = { 10.f ,30.f, 0.f };	// 크기
 	m_eRender = RENDER_GAMEOBJECT;
 	m_eID = PLAYER;
-
 
 	m_vPoint[0] = { m_tInfo.vPos.x - 10.f ,m_tInfo.vPos.y - 30.f, 0.f };	// 좌 상단
 	m_vPoint[1] = { m_tInfo.vPos.x + 10.f ,m_tInfo.vPos.y - 30.f, 0.f };	// 우 상단	
@@ -30,7 +29,6 @@ void CYPlayer::Initialize()
 	for (int i = 0; i < 4; ++i)
 		m_vOriginPoint[i] = m_vPoint[i];
 
-	//m_tInfo.vPos = { 100.f,100.f,0.f };
 	m_fSpeed = 2.f;
 
 
@@ -120,8 +118,9 @@ void CYPlayer::Release()
 {
 }
 
-void CYPlayer::Collide()
+void CYPlayer::Collide(CObj* _pDst)
 {
+
 }
 
 void CYPlayer::Draw_Rectangle(HDC hDC)

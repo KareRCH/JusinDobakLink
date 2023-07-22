@@ -13,7 +13,7 @@ public:
 	virtual void Late_Update() override;
 	virtual void Render(HDC hDC) override;
 	virtual void Release() override;
-	virtual void Collide() override;
+	virtual void Collide(CObj* _pDst) override;
 
 public:
 	void	Set_Pos(D3DXVECTOR3 _Pos) { m_tInfo.vPos = _Pos; };
@@ -50,8 +50,12 @@ public:
 		Add_Angle(float(rand() % iAngleRange) - float(iAngleRange / 2.f));
 		UpdateDir();
 		UpdateMatrixDefault();
-
 	}
+
+	bool	Get_Flag() { return m_bFlag; };
+	void	Set_Flag(bool _bool) { m_bFlag = _bool; };
+
+	D3DXVECTOR3	Get_TargetPos() { return m_vTargetPos; };
 
 private:
 	D3DXMATRIX		matScale, matRotZ, matTrans;
@@ -60,6 +64,7 @@ private:
 
 	float	m_fAngle;
 	float	m_fSpeed;
+	bool	m_bFlag;
 
 
 	

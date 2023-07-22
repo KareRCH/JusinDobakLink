@@ -31,6 +31,12 @@ public:
 
 	void		Draw_PNG_Strip(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRAME tFrame, bool bAllowScroll = true);
 	void		Draw_PNG_StripAlpha(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRAME tFrame, float fOpacity, bool bAllowScroll = true);
+	
+	// INFO 안에 프레임과 각종 여러가지를 때려박은 형태로 쓰는 PNG 함수들
+	void		Draw_PNG(HDC hDC, INFO& tInfo, bool bAllowScroll = true);
+	void		Draw_PNG(HDC hDC, INFO& tInfo, int srcx, int srcy, bool bAllowScroll = true);
+	void		Draw_PNG(HDC hDC, INFO& tInfo, int srcx, int srcy, int src_width, int src_height, bool bAllowScroll = true);
+
 
 	// 디버그 계열
 	void		Draw_Test_Circle(HDC hDC, INFO tInfo, int iSize = 3);

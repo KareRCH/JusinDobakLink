@@ -109,7 +109,7 @@ public:
 private:
 	// 2차원 맵, 시트를 찾고, 애니메이션의 이름으로 프레임의 정보를 찾는다.
 	map<const TCHAR*, map<const TCHAR*, FAnimData>> m_mapTable;
-
+public:
 	void Create_Animation(const TCHAR* sName, const TCHAR* sAnimName,	
 		int iMotionX, int iMotionY, int iMotionSize, float fSpeed,
 		int iOffsetX, int iOffsetY, int iFrameWidth, int iFrameHeight)
@@ -196,6 +196,44 @@ public:
 				else
 					AnimData.Parse_Frame_Maintain(tFrameData);
 				
+				return AnimData;
+			}
+		}
+
+		return FAnimData();
+	}
+
+	FAnimData Load_AnimData(FRAME_TSET& tFrameTSet, bool bMaintain = false)
+	{
+		if (m_mapTable.empty())
+			return FAnimData();
+
+		auto iter = find_if(m_mapTable.begin(), m_mapTable.end(),
+			[&tFrameTSet](auto& Pair) {
+				return (!lstrcmp(tFrameTSet.Get_StrFrameKey(), Pair.first));
+			});
+
+		// 애니메이션 카테고리가 있을 때
+		if (iter != m_mapTable.end())
+		{
+			auto& mapAnim = (*iter).second;
+			auto iterAnim = find_if(mapAnim.begin(), mapAnim.end(),
+				[&tFrameTSet](auto& Pair) {
+					return (!lstrcmp(tFrameTSet.Get_StrAnimKey(), Pair.first));
+				});
+
+			// 카테고리에 대한 애니메이션이 있을 때
+			if (iterAnim != mapAnim.end())
+			{
+				auto& AnimData = (*iterAnim).second;
+				auto& tFrameData = *tFrameTSet;
+
+				// Frame 구조체에 대한 변환작업
+				if (!bMaintain)
+					AnimData.Parse_Frame(tFrameData);
+				else
+					AnimData.Parse_Frame_Maintain(tFrameData);
+
 				return AnimData;
 			}
 		}
