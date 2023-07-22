@@ -85,8 +85,8 @@ void CObjMgr::Late_Update()
 			if (m_ObjList[i].empty())
 				break;
 
-			//RENDERID eRender = iter->Get_RenderID();
-			//m_RenderList[(int)eRender].push_back(iter);
+			RENDERID eRender = iter->Get_RenderID();
+			m_RenderList[(int)eRender].push_back(iter);
 		}
 
 	}

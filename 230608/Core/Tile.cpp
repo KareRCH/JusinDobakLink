@@ -16,16 +16,15 @@ CTile::~CTile()
 
 void CTile::Initialize(void)
 {
-	/*m_tInfo.vPos.x = TILECX;
-	m_tInfo.vPos.y = TILECY;*/
+	m_tInfo.vPos.x = TILECX;
+	m_tInfo.vPos.y = TILECY;
 
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Edit/Tile.bmp", L"Tile");
 }
 
 int CTile::Update(void)
 {
-
-	//__super::Update_Rect();
+	__super::Update_Rect();
 
 	return OBJ_NOEVENT;
 }
@@ -68,5 +67,9 @@ void CTile::Render(HDC hDC)
 }
 
 void CTile::Release(void)
+{
+}
+
+void CTile::Collide()
 {
 }

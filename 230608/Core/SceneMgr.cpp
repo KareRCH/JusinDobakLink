@@ -3,6 +3,7 @@
 
 #include "Scene_HakStage.h"
 
+#include "Stage.h"
 
 
 CSceneMgr* CSceneMgr::m_pInstance = nullptr;
@@ -10,6 +11,8 @@ CSceneMgr* CSceneMgr::m_pInstance = nullptr;
 CSceneMgr::CSceneMgr()
 	: m_eCurScene(SCENEID::SC_LOGO), m_ePreScene(SCENEID::SC_END), m_pScene(nullptr)
 {
+	
+
 }
 
 CSceneMgr::~CSceneMgr()
@@ -41,6 +44,8 @@ void CSceneMgr::Scene_Change(SCENEID eScene)
 
 		case SCENEID::SC_STAGE:
 			m_pScene = new CScene_HakStage;
+		case SCENEID::SC_WORLD1:
+			m_pScene = new CStageMyungBin;
 			break;
 		}
 
@@ -54,16 +59,19 @@ void CSceneMgr::Scene_Change(SCENEID eScene)
 void CSceneMgr::Update()
 {
 	m_pScene->Update();
+	
 }
 
 void CSceneMgr::Late_Update()
 {
 	m_pScene->Late_Update();
+	
 }
 
 void CSceneMgr::Render(HDC hDC)
 {
 	m_pScene->Render(hDC);
+	
 }
 
 void CSceneMgr::Release()

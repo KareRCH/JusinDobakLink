@@ -6,7 +6,8 @@ template<typename T, typename T2>
 class Actor : public CObj
 {
 public:
-	Actor() {};
+	Actor() { ZeroMemory(m_States, sizeof(m_States)); };
+
 	virtual ~Actor() {};
 
 public:
