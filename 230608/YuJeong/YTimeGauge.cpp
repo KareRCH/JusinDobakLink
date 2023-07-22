@@ -17,7 +17,9 @@ void CYTimeGauge::Initialize()
 
 int CYTimeGauge::Update()
 {
-	return 0;
+
+
+	return OBJ_NOEVENT;
 }
 
 void CYTimeGauge::Late_Update()
@@ -29,6 +31,10 @@ void CYTimeGauge::Render(HDC hDC)
 }
 
 void CYTimeGauge::Release()
+{
+}
+
+void CYTimeGauge::Collide(CObj* _pDst)
 {
 }
 

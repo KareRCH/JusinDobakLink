@@ -1,7 +1,11 @@
 #include "stdafx.h"
 #include "SceneMgr.h"
+
+#include "Scene_HakStage.h"
+
 #include "Stage.h"
 
+#include "YScene_Serving.h"
 
 CSceneMgr* CSceneMgr::m_pInstance = nullptr;
 
@@ -19,7 +23,6 @@ CSceneMgr::~CSceneMgr()
 
 void CSceneMgr::Scene_Change(SCENEID eScene)
 {
-
 	m_eCurScene = eScene;
 
 	if (m_ePreScene != m_eCurScene)
@@ -29,7 +32,7 @@ void CSceneMgr::Scene_Change(SCENEID eScene)
 		switch (m_eCurScene)
 		{
 		case SCENEID::SC_LOGO:
-			m_pScene = new CLogo;
+			//m_pScene = new CLogo;
 			break;
 
 		//case SC_MENU:
@@ -40,11 +43,22 @@ void CSceneMgr::Scene_Change(SCENEID eScene)
 
 			break;
 
+		case SCENEID::SC_STAGE2:
+			m_pScene = new CScene_HakStage;
+			break;
+		case SCENEID::SC_WORLD1:
+			m_pScene = new CStageMyungBin;
+			break;
+
 		case SCENEID::SC_STAGE:
 			m_pScene = new CStage;
 			break;
-		}
 
+
+		case SCENEID::SC_STAGE3:
+			m_pScene = new CYScene_Serving;
+			break;
+		}
 		m_pScene->Initialize();
 
 		m_ePreScene = m_eCurScene;

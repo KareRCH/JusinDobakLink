@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="리소스 파일">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -97,9 +93,6 @@
     <Filter Include="02. Design\10. AnimationTable">
       <UniqueIdentifier>{10bbe053-daa2-4908-80b9-c67520293284}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02. Design\00. General\Math">
-      <UniqueIdentifier>{2b080d57-52d4-4a0c-9518-42dad44cbf1c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02. Design\00. General\Interface">
       <UniqueIdentifier>{57d7eff6-962e-4dfb-b90c-631368f0cc0a}</UniqueIdentifier>
     </Filter>
@@ -111,6 +104,52 @@
     </Filter>
     <Filter Include="01. Obj\01.Player">
       <UniqueIdentifier>{3084c8eb-a267-4709-b9c7-87d6180247bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin">
+      <UniqueIdentifier>{408965b1-6126-446f-a4ea-b92c2708cda5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design\00. General\Math %28번외%29">
+      <UniqueIdentifier>{2b080d57-52d4-4a0c-9518-42dad44cbf1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\Fish">
+      <UniqueIdentifier>{3f8d3b3d-7558-4c1e-a207-12884f38207a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\FishermanState">
+      <UniqueIdentifier>{9c7f0ebc-e5f7-4c39-ae53-495e53dfd305}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\Fisherman">
+      <UniqueIdentifier>{bc6c4610-7f00-42dc-91cf-1d1c7a74a17d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\MiniGame">
+      <UniqueIdentifier>{39260fc1-8833-46c5-a5fd-991243bd904e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\Bobber">
+      <UniqueIdentifier>{cf5f6bd8-9982-448f-a79c-d9ef1d666d63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\FishermanState\00. SelectDir">
+      <UniqueIdentifier>{f2c3340a-9776-40e4-a2e0-95f26cf12eed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\FishermanState\Catching">
+      <UniqueIdentifier>{a4d07b81-ef0e-4136-8c21-52c5ebbbce2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\FishermanState\Hooking">
+      <UniqueIdentifier>{b53266d2-6a48-4312-9b39-0dfa4374121e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\FishermanState\01. SelectPower">
+      <UniqueIdentifier>{08bbd6f2-8175-4c31-b2a6-f4a0f4a2f259}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\FishermanState\02. Throwing">
+      <UniqueIdentifier>{d22b284c-9a06-46be-9ee0-8c2549aad60f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. HakJun">
+      <UniqueIdentifier>{ba606346-5104-45bb-89c9-76526894032e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. YuJeong">
+      <UniqueIdentifier>{a62620af-58c4-4ec5-9c94-ea7bb9bf04bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -178,25 +217,25 @@
       <Filter>02. Design\00. General</Filter>
     </ClInclude>
     <ClInclude Include="Core\Vector3.h">
-      <Filter>02. Design\00. General\Math</Filter>
+      <Filter>02. Design\00. General\Math %28번외%29</Filter>
     </ClInclude>
     <ClInclude Include="Core\VecBox.h">
-      <Filter>02. Design\00. General\Math</Filter>
+      <Filter>02. Design\00. General\Math %28번외%29</Filter>
     </ClInclude>
     <ClInclude Include="Core\VecCollisionMgr.h">
-      <Filter>02. Design\00. General\Math</Filter>
+      <Filter>02. Design\00. General\Math %28번외%29</Filter>
     </ClInclude>
     <ClInclude Include="Core\VecLine3.h">
-      <Filter>02. Design\00. General\Math</Filter>
+      <Filter>02. Design\00. General\Math %28번외%29</Filter>
     </ClInclude>
     <ClInclude Include="Core\VecShpere.h">
-      <Filter>02. Design\00. General\Math</Filter>
+      <Filter>02. Design\00. General\Math %28번외%29</Filter>
     </ClInclude>
     <ClInclude Include="Core\Vector2.h">
-      <Filter>02. Design\00. General\Math</Filter>
+      <Filter>02. Design\00. General\Math %28번외%29</Filter>
     </ClInclude>
     <ClInclude Include="Core\CustomMath.h">
-      <Filter>02. Design\00. General\Math</Filter>
+      <Filter>02. Design\00. General\Math %28번외%29</Filter>
     </ClInclude>
     <ClInclude Include="Core\IState.h">
       <Filter>02. Design\00. General\Interface</Filter>
@@ -216,9 +255,6 @@
     <ClInclude Include="JunHo\LineMgr.h">
       <Filter>02. Design\03. LineMgr</Filter>
     </ClInclude>
-    <ClInclude Include="JunHo\CJPlayer.h">
-      <Filter>01. Obj\01.Player</Filter>
-    </ClInclude>
     <ClInclude Include="JunHo\Stage.h">
       <Filter>03. Scene\02. Stage</Filter>
     </ClInclude>
@@ -236,6 +272,81 @@
     </ClInclude>
     <ClInclude Include="YuJeong\YTimeGauge.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\StageMyungBin.h">
+      <Filter>04. MyungBin</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\MiniGame.h">
+      <Filter>04. MyungBin</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\DefindMyungBin.h">
+      <Filter>04. MyungBin</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CollisionMgr.h">
+      <Filter>02. Design\01. CollisionMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\Fish.h">
+      <Filter>04. MyungBin\Fish</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\Fisherman.h">
+      <Filter>04. MyungBin\Fisherman</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\FishingStart.h">
+      <Filter>04. MyungBin\MiniGame</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\Lobby.h">
+      <Filter>04. MyungBin\MiniGame</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\FishingBobber.h">
+      <Filter>04. MyungBin\Bobber</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\FishermanSelectDir.h">
+      <Filter>04. MyungBin\FishermanState\00. SelectDir</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\FishermanCatching.h">
+      <Filter>04. MyungBin\FishermanState\Catching</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\FishermanHooking.h">
+      <Filter>04. MyungBin\FishermanState\Hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\FishermanSelectPower.h">
+      <Filter>04. MyungBin\FishermanState\01. SelectPower</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\FishermanThrowing.h">
+      <Filter>04. MyungBin\FishermanState\02. Throwing</Filter>
+    </ClInclude>
+    <ClInclude Include="HakJun\Scene_HakStage.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="HakJun\HPlayer.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="HakJun\Food.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="HakJun\Food_Cookie.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="HakJun\ObjFactory.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YPlayer.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YScene_Serving.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YCustomer.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YTimeGauge.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YDish.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
+    <ClInclude Include="JunHo\CJPlayer.h">
+      <Filter>01. Obj\01.Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -285,7 +396,7 @@
       <Filter>01. Obj</Filter>
     </ClCompile>
     <ClCompile Include="Core\VecCollisionMgr.cpp">
-      <Filter>02. Design\00. General\Math</Filter>
+      <Filter>02. Design\00. General\Math %28번외%29</Filter>
     </ClCompile>
     <ClCompile Include="Core\ITeamAgent.cpp">
       <Filter>02. Design\00. General\Interface</Filter>
@@ -301,9 +412,6 @@
     </ClCompile>
     <ClCompile Include="JunHo\Line.cpp">
       <Filter>02. Design\03. LineMgr</Filter>
-    </ClCompile>
-    <ClCompile Include="JunHo\CJPlayer.cpp">
-      <Filter>01. Obj\01.Player</Filter>
     </ClCompile>
     <ClCompile Include="JunHo\Stage.cpp">
       <Filter>03. Scene\02. Stage</Filter>
@@ -322,6 +430,72 @@
     </ClCompile>
     <ClCompile Include="YuJeong\YTimeGauge.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\StageMyungBin.cpp">
+      <Filter>04. MyungBin</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\CollisionMgr.cpp">
+      <Filter>02. Design\01. CollisionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\Fish.cpp">
+      <Filter>04. MyungBin\Fish</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\Fisherman.cpp">
+      <Filter>04. MyungBin\Fisherman</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\FishingStart.cpp">
+      <Filter>04. MyungBin\MiniGame</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\Lobby.cpp">
+      <Filter>04. MyungBin\MiniGame</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\FishingBobber.cpp">
+      <Filter>04. MyungBin\Bobber</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\FishermanSelectDir.cpp">
+      <Filter>04. MyungBin\FishermanState\00. SelectDir</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\FishermanCatching.cpp">
+      <Filter>04. MyungBin\FishermanState\Catching</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\FishermanHooking.cpp">
+      <Filter>04. MyungBin\FishermanState\Hooking</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\FishermanSelectPower.cpp">
+      <Filter>04. MyungBin\FishermanState\01. SelectPower</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\FishermanThrowing.cpp">
+      <Filter>04. MyungBin\FishermanState\02. Throwing</Filter>
+    </ClCompile>
+    <ClCompile Include="HakJun\Scene_HakStage.cpp">
+      <Filter>05. HakJun</Filter>
+    </ClCompile>
+    <ClCompile Include="HakJun\HPlayer.cpp">
+      <Filter>05. HakJun</Filter>
+    </ClCompile>
+    <ClCompile Include="HakJun\Food.cpp">
+      <Filter>05. HakJun</Filter>
+    </ClCompile>
+    <ClCompile Include="HakJun\Food_Cookie.cpp">
+      <Filter>05. HakJun</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YPlayer.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YScene_Serving.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YCustomer.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YTimeGauge.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YDish.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="JunHo\CJPlayer.cpp">
+      <Filter>01. Obj\01.Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

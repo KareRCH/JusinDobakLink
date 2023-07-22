@@ -39,7 +39,8 @@ void CYScene_Serving::Initialize()
 
 
 	// 음식 생성 테스트
-	CObjMgr::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CYPlayer>::Create((float)WINCX / 2, (float)WINCY / 2));
+	CObjMgr::Get_Instance()->Add_Object(BULLET, CAbstractFactory<CYDish>::Create((float)WINCX / 2, (float)WINCY / 2));
+
 
 	// 손님 생성 테스트
 	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CYCustomer>::Create((float)WINCX / 2, (float)WINCY / 2));
@@ -66,5 +67,9 @@ void CYScene_Serving::Render(HDC hDC)
 }
 
 void CYScene_Serving::Release()
+{
+}
+
+void CYScene_Serving::Create_Dish()
 {
 }

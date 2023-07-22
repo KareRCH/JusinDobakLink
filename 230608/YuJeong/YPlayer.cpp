@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "YPlayer.h"
 
+#include "BmpMgr.h"
+
 CYPlayer::CYPlayer()
-	: m_fAngle(0.f)
 {
 }
 
@@ -13,13 +14,12 @@ CYPlayer::~CYPlayer()
 
 void CYPlayer::Initialize()
 {
-	m_eRender = RENDER_GAMEOBJECT;
-
 	m_tInfo.vPos = { (WINCX / 2 + 60), (WINCY / 2 - 70), 0.f };
-	//m_tInfo.vPos = { 0.f, 0.f, 0.f };
-	m_tInfo.vDir = { 1.f, 0.f, 0.f };
-	m_tInfo.vLook = { 0.f, -1.f, 0.f };
-	m_fSpeed = 2.f;
+	m_tInfo.vDir = { 1.f, 0.f, 0.f };		//방향
+	m_tInfo.vLook = { 0.f, -1.f, 0.f };		// 바라보는 방향
+	m_tInfo.vSize = { 10.f ,30.f, 0.f };	// 크기
+	m_eRender = RENDER_GAMEOBJECT;
+	m_eID = PLAYER;
 
 	m_vPoint[0] = { m_tInfo.vPos.x - 10.f ,m_tInfo.vPos.y - 30.f, 0.f };	// 좌 상단
 	m_vPoint[1] = { m_tInfo.vPos.x + 10.f ,m_tInfo.vPos.y - 30.f, 0.f };	// 우 상단	
@@ -29,9 +29,13 @@ void CYPlayer::Initialize()
 	for (int i = 0; i < 4; ++i)
 		m_vOriginPoint[i] = m_vPoint[i];
 
+	m_fSpeed = 2.f;
 
-	D3DXMatrixIdentity(&m_tInfo.matWorld);
+
+	CBmpMgr::Get_Instance()->Insert_PNG(L"../230608/YuJeong/Image_Yu/Link_Down1.png", L"YPlayer_Down");
+
 }
+
 
 int CYPlayer::Update()
 {
@@ -43,9 +47,8 @@ int CYPlayer::Update()
 	D3DXMatrixIdentity(&m_tInfo.matWorld);	// 항등행렬로 만들기
 
 	// 회전행렬을 만들고, 이를 벡터에 곱해서 회전된 벡터를 얻어야 한다.
-	D3DXMATRIX matScale, matRotZ, matTrans;
-	D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);			// 크기
-	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle));	// 회전
+	D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);					// 크기
+	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_tInfo.fAngle));	// 회전
 	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);	// 이동
 
 	// 크기x자전x이동
@@ -60,7 +63,7 @@ int CYPlayer::Update()
 		D3DXVec3TransformCoord(&m_vPoint[i], &m_vPoint[i], &m_tInfo.matWorld);
 	}
 
-	return 0;
+	return OBJ_NOEVENT;
 }
 
 void CYPlayer::Late_Update()
@@ -106,10 +109,18 @@ void CYPlayer::Render(HDC hDC)
 	// 브러쉬 해제
 	SelectObject(hDC, hOldBrush);
 	DeleteObject(hNewBrush);
+
+	FRAME tFrame = {};
+	CBmpMgr::Get_Instance()->Draw_PNG(hDC, L"YPlayer_Down", m_tInfo, tFrame, D3DXToDegree(m_tInfo.fAngle), 0, 0, 2600, 2400);
 }
 
 void CYPlayer::Release()
 {
+}
+
+void CYPlayer::Collide(CObj* _pDst)
+{
+
 }
 
 void CYPlayer::Draw_Rectangle(HDC hDC)
@@ -129,14 +140,14 @@ void CYPlayer::Key_Input()
 	if (GetAsyncKeyState('A'))
 	{
 		//m_fAngle += D3DX_PI / 180.0f;
-		m_fAngle -= 2.f;
+		m_tInfo.fAngle -= 2.f;
 	}
 
 
 	if (GetAsyncKeyState('D'))
 	{
 		//m_fAngle -= D3DX_PI / 180.0f;
-		m_fAngle += 2.f;
+		m_tInfo.fAngle += 2.f;
 	}
 
 
@@ -154,3 +165,29 @@ void CYPlayer::Key_Input()
 	//	m_tInfo.vPos -= m_tInfo.vDir * m_fSpeed;
 	//}
 }
+
+
+// 항등 행렬을 만들어주는 함수
+// D3DXMatrixIdentity(항등행렬을 만들고자 하는 행렬의 주소)
+
+// 크기 행렬을 만들어주는 함수
+// D3DXMatrixScaling(크기 행렬의 주소, x 배율, y배율, z배율)
+
+// x축 회전 행렬을 만들어주는 함수
+// D3DXMatrixRotationX(x축 회전 행렬의 주소, 회전각도(라디안))
+
+// y축 회전 행렬을 만들어주는 함수
+// D3DXMatrixRotationY(y축 회전 행렬의 주소, 회전각도(라디안))
+
+// z축 회전 행렬을 만들어주는 함수
+// D3DXMatrixRotationZ(z축 회전 행렬의 주소, 회전각도(라디안))
+
+// 이동 행렬을 만들어주는 함수
+// D3DXMatrixTranslation(이동 행렬의 주소, x좌표, y좌표, z좌표)
+
+// 역 행렬을 만들어주는 함수
+// D3DXMatrixInverse(결과 값을 저장할 행렬의 주소, NULL, 원본 행렬의 주소)
+
+// 벡터와 행렬의 곱셈을 수행하는 함수
+// 결과 값으로 위치 벡터가 발생 D3DXVec3TransformCoord(결과 값을 저장할 벡터 주소, 행렬과 곱하기를 할 위치 벡터 주소, 행렬 주소);
+// 결과 값으로 방향 벡터가 발생 D3DXVec3TransformNormal(결과 값을 저장할 벡터 주소, 행렬과 곱하기를 할 방향 벡터 주소, 행렬 주소);

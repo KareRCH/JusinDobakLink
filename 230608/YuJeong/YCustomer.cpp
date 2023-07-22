@@ -2,7 +2,6 @@
 #include "YCustomer.h"
 
 CYCustomer::CYCustomer()
-	: m_fAngle(0.f)
 {
 }
 
@@ -43,7 +42,7 @@ int CYCustomer::Update()
 	// 회전행렬을 만들고, 이를 벡터에 곱해서 회전된 벡터를 얻어야 한다.
 	D3DXMATRIX matScale, matRotZ, matTrans;
 	D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);			// 크기
-	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle));	// 회전
+	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_tInfo.fAngle));	// 회전
 	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);	// 이동
 
 	// 크기x자전x이동
@@ -58,7 +57,7 @@ int CYCustomer::Update()
 		D3DXVec3TransformCoord(&m_vPoint[i], &m_vPoint[i], &m_tInfo.matWorld);
 	}
 
-	return 0;
+	return OBJ_NOEVENT;
 }
 
 void CYCustomer::Late_Update()
@@ -96,6 +95,10 @@ void CYCustomer::Render(HDC hDC)
 }
 
 void CYCustomer::Release()
+{
+}
+
+void CYCustomer::Collide(CObj* _pDst)
 {
 }
 

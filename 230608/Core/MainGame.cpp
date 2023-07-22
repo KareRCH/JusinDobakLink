@@ -8,6 +8,12 @@
 #include "KeyMgr.h"
 #include "ObjMgr.h"
 #include "SoundMgr.h"
+#include "Camera.h"
+#include "AnimationTable.h"
+
+#include "TileMgr.h"
+#include "LineMgr.h"
+#include "Camera.h"
 
 CMainGame::CMainGame() : m_dwTime(GetTickCount()), m_iFPS(0)
 {
@@ -30,8 +36,10 @@ void CMainGame::Initialize()
 
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	
-	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_STAGE);
+	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_STAGE3);
+
 	//CSoundMgr::Get_Instance()->Initialize();
+	CAnimationTable::Get_Instance();
 }
 
 void CMainGame::Update()
@@ -53,7 +61,7 @@ void CMainGame::Render()
 
 	if (m_dwTime + 1000 < GetTickCount())
 	{
-		swprintf_s(m_szFPS, L"FPS : ÇÏÇÏ %d", m_iFPS);
+		swprintf_s(m_szFPS, L"FPS : %d", m_iFPS);
 		SetWindowText(g_hWnd, m_szFPS);
 
 		m_iFPS = 0;
@@ -82,19 +90,19 @@ void CMainGame::Render()
 	int iDstX = (iClientCY >= fRatioY) ? max(0, (iClientCX - iDstCX) / 2) : (iClientCX - iDstCX) / 2;
 	int iDstY = (iClientCX >= fRatioX) ? max(0, (iClientCY - iDstCY) / 2) : (iClientCY - iDstCY) / 2;
 
-	// Á¾È¾ À¯Áö
+	// ï¿½ï¿½È¾ ï¿½ï¿½ï¿½ï¿½
 	StretchBlt(
-		m_hDC,				// º¹»ç ¹ÞÀ» DC(ÃÖÁ¾ÀûÀ¸·Î ±×¸²À» ±×¸± DC°ø°£)
+		m_hDC,				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ DC(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ DCï¿½ï¿½ï¿½ï¿½)
 		iDstX, iDstY, iDstCX, iDstCY,
-		hMemDC,				// ºñÆ®¸Ê ÀÌ¹ÌÁö¸¦ ´ã°í ÀÖ´Â DC
+		hMemDC,				// ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ DC
 		0, 0, iTargetCX, iTargetCY,
 		SRCCOPY
 	);
-
-	//BitBlt(m_hDC,	// º¹»ç ¹ÞÀ» DC(ÃÖÁ¾ÀûÀ¸·Î ±×¸²À» ±×¸± DC°ø°£)
+	//94ë²ˆì¤„~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//BitBlt(m_hDC,	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ DC(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ DCï¿½ï¿½ï¿½ï¿½)
 	//	0, 0, WINCX, WINCY,
-	//	hMemDC,			// ºñÆ®¸Ê ÀÌ¹ÌÁö¸¦ ´ã°í ÀÖ´Â DC
-	//	0,					// ºñÆ®¸ÊÀ» Ãâ·ÂÇÒ ½ÃÀÛ X,YÁÂÇ¥
+	//	hMemDC,			// ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ DC
+	//	0,					// ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ X,Yï¿½ï¿½Ç¥
 	//	0,
 	//	SRCCOPY);
 
@@ -102,12 +110,16 @@ void CMainGame::Render()
 
 void CMainGame::Release()
 {
-	
 	CBmpMgr::Destroy_Instance();
+	CAnimationTable::Destroy_Instance();
 	CScrollMgr::Destroy_Instance();
+	CCamera::Destroy_Instance();
 	CKeyMgr::Destroy_Instance();
-	CObjMgr::Destroy_Instance();
 	CSceneMgr::Destroy_Instance();
+	CObjMgr::Destroy_Instance();
+	CLineMgr::Destroy_Instance();
+	CTileMgr::Destroy_Instance();
+	CCamera::Destroy_Instance();
 
 	Gdp::GdiplusShutdown(m_gdiplusToken);
 	ReleaseDC(g_hWnd, m_hDC);
