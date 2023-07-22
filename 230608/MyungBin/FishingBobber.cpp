@@ -46,3 +46,7 @@ void CFishingBobber::Render(HDC hDC)
 void CFishingBobber::Release()
 {
 }
+
+void CFishingBobber::Collide()
+{
+}

@@ -56,3 +56,7 @@ void CFish::Render(HDC hDC)
 void CFish::Release()
 {
 }
+
+void CFish::Collide()
+{
+}

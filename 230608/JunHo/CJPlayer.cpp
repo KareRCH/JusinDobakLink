@@ -109,6 +109,9 @@ void CJPlayer::Render(HDC hDC)
 void CJPlayer::Release()
 {
 }
+void CJPlayer::Collide()
+{
+}
 void CJPlayer::Key_Input(void)
 {
 

@@ -18,11 +18,19 @@ public:
 	virtual void		Late_Update()	PURE;
 	virtual void		Render(HDC hDC)	PURE;
 	virtual void		Release()		PURE;
+	virtual void		Collide()		PURE;
 
 protected:
 	INFO		m_tInfo;
+	RECT		m_tRect;
+
 	float		m_fSpeed;
 	RENDERID	m_eRender;
 	OBJID		m_eID;
+
+public: 
+	void Update_Rect();
+	RECT			Get_Rect() { return m_tRect; }
+
 };
 

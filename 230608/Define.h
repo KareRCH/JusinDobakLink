@@ -59,20 +59,67 @@ enum STAGEID { LODING1, STAGE1, LODING2, STAGE2, LODING3, STAGE3, LODING4, STAGE
 
 #pragma endregion
 
+#pragma region 애니메이션용 프레임
+// 이미지를 표시하기 위해 업그레이드 된 FRAME 구조체
+typedef struct tagFrame
+{
+	tagFrame() : bLoop(true), bStop(false), iFrameStart(), iFrameEnd(), iFrameCur(), iMotion(),
+		iWidth(), iHeight(), iOffsetX(), iOffsetY(), ulSpeed(),
+		ulTime(GetTickCount64()), ulCurTime(GetTickCount64()), ulDelayTime(GetTickCount64()) {}
+
+	bool			bLoop;
+	bool			bStop;
+
+	int				iFrameStart;	// 시작 프레임
+	int				iFrameEnd;		// 끝 프레임
+	int				iFrameCur;		// 현재 프레임
+	int				iMotion;		// 애니메이션 종류(스프라이트 시트용)
+
+	int				iOffsetX;		// 이미지 원점 X
+	int				iOffsetY;		// 이미지 원점 Y
+	int				iWidth;			// 이미지 너비
+	int				iHeight;		// 이미지 높이
+
+	ULONGLONG		ulSpeed;		// 속도
+	ULONGLONG		ulTime;			// 시간 체크
+	ULONGLONG		ulCurTime;		// 현재 시간
+	ULONGLONG		ulDelayTime;	// 딜레이 주는 시간
+
+	void Set_Loop(bool value) { bLoop = value; }
+	void Set_Stop() { bStop = true; }
+	void Set_Resume() { bStop = false; }
+	bool IsFrameEnd() { return (iFrameCur >= iFrameEnd); }
+	bool IsFrameTick(int value) { return ((iFrameCur == value) && (ulTime == ulCurTime)); }
+	bool IsFrameStart() { return (iFrameCur == 0); }
+}FRAME;
+#pragma endregion
+
 #pragma region 기본
 // 범용 위치, 크기속성
 typedef struct tagInfo
 {
-	//
 	float	fCX;	// 가로 길이
 	float	fCY;	// 세로 길이	
-	//vector
+
+	// 위치, 바라보는 방향
 	D3DXVECTOR3		vPos;
 	D3DXVECTOR3		vDir;
 	D3DXVECTOR3		vLook;
+
+	// 회전 각도 (Degree)
+	float			fAngle;
+	// 사이즈 (Scale)
 	D3DXVECTOR3		vSize;
 	//D3DXVECTOR3		vNormal;
 
+	// 물리 속도
+	D3DXVECTOR3		vSpeed;
+	D3DXVECTOR3		vAccel;
+
+	// 애니메이션, 이미지 틀
+	FRAME			tFrame;
+
+	// 행렬
 	D3DXMATRIX		matWorld;
 
 }INFO;
@@ -215,40 +262,7 @@ typedef struct tagLine
 }LINE;
 #pragma endregion
 
-#pragma region 애니메이션용 프레임
-// 이미지를 표시하기 위해 업그레이드 된 FRAME 구조체
-typedef struct tagFrame
-{
-	tagFrame() : bLoop(true), bStop(false), iFrameStart(), iFrameEnd(), iFrameCur(), iMotion(),
-		iWidth(), iHeight(), iOffsetX(), iOffsetY(), ulSpeed(),
-		ulTime(GetTickCount64()), ulCurTime(GetTickCount64()), ulDelayTime(GetTickCount64()) {}
 
-	bool			bLoop;
-	bool			bStop;
-
-	int				iFrameStart;	// 시작 프레임
-	int				iFrameEnd;		// 끝 프레임
-	int				iFrameCur;		// 현재 프레임
-	int				iMotion;		// 애니메이션 종류(스프라이트 시트용)
-
-	int				iOffsetX;		// 이미지 원점 X
-	int				iOffsetY;		// 이미지 원점 Y
-	int				iWidth;			// 이미지 너비
-	int				iHeight;		// 이미지 높이
-	
-	ULONGLONG		ulSpeed;		// 속도
-	ULONGLONG		ulTime;			// 시간 체크
-	ULONGLONG		ulCurTime;		// 현재 시간
-	ULONGLONG		ulDelayTime;	// 딜레이 주는 시간
-
-	void Set_Loop(bool value) { bLoop = value; }
-	void Set_Stop() { bStop = true; }
-	void Set_Resume() { bStop = false; }
-	bool IsFrameEnd() { return (iFrameCur >= iFrameEnd); }
-	bool IsFrameTick(int value) { return ((iFrameCur == value) && (ulTime == ulCurTime)); }
-	bool IsFrameStart() { return (iFrameCur == 0); }
-}FRAME;
-#pragma endregion
 
 #pragma region 간이 상태머신
 // 대충 아무때나 쓸 수 있는 상태머신 구조체

@@ -109,3 +109,7 @@ void CFisherman::Release(void)
 
 
 }
+
+void CFisherman::Collide()
+{
+}

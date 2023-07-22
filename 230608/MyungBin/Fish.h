@@ -13,6 +13,7 @@ public:
 	virtual void Late_Update() override;
 	virtual void Render(HDC hDC) override;
 	virtual void Release() override;
+	virtual void Collide() override;
 
 public:
 	void	Set_Pos(D3DXVECTOR3 _Pos) { m_tInfo.vPos = _Pos; };
@@ -59,5 +60,8 @@ private:
 
 	float	m_fAngle;
 	float	m_fSpeed;
+
+
+	
 
 };

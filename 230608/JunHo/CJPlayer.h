@@ -12,6 +12,8 @@ public:
 	virtual void Late_Update() override;
 	virtual void Render(HDC hDC) override;
 	virtual void Release() override;
+	virtual void Collide() override;
+
 public:
 	void Key_Input();
 private:

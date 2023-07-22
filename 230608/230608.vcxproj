@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="230608.h" />
+    <ClInclude Include="Core\CollisionMgr.h" />
     <ClInclude Include="JunHo\CJPlayer.h" />
     <ClInclude Include="Core\AbstractFactory.h" />
     <ClInclude Include="Core\Actor.h" />
@@ -201,6 +202,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="230608.cpp" />
+    <ClCompile Include="Core\CollisionMgr.cpp" />
     <ClCompile Include="JunHo\CJPlayer.cpp" />
     <ClCompile Include="Core\AnimationTable.cpp" />
     <ClCompile Include="Core\BitMap.cpp" />
