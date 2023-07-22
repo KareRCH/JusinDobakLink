@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "BmpMgr.h"
 
-#include "ScrollMgr.h"
+#include "Camera.h"
 
 CBmpMgr* CBmpMgr::m_pInstance = nullptr;
 
@@ -76,8 +76,8 @@ void CBmpMgr::Draw_BMP_Strip(HDC hDC, const TCHAR* pImgKey, FRAME tFrame, D3DXVE
 {
 	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(pImgKey);
 
-	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScollX();
-	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScollY();
+	int		iScrollX = (int)CCamera::Get_Instance()->Get_WindowPos().x;
+	int		iScrollY = (int)CCamera::Get_Instance()->Get_WindowPos().y;
 
 	GdiTransparentBlt(hDC,
 		(int)vecPos.x - (int)tFrame.iOffsetX - iScrollX * (int)bAllowScroll,
@@ -99,8 +99,8 @@ void CBmpMgr::Draw_PNG_Strip(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRAME tF
 	Gdp::Bitmap* pImage = pBitMap->Get_Image();
 	Gdp::Graphics g(hDC);
 
-	float fScrollX = CScrollMgr::Get_Instance()->Get_ScollX();
-	float fScrollY = CScrollMgr::Get_Instance()->Get_ScollY();
+	float fScrollX = CCamera::Get_Instance()->Get_WindowPos().x;
+	float fScrollY = CCamera::Get_Instance()->Get_WindowPos().y;
 
 	g.TranslateTransform(tInfo.vPos.x - fScrollX * (float)bAllowScroll, tInfo.vPos.y - fScrollY * (float)bAllowScroll);
 
@@ -124,8 +124,8 @@ void CBmpMgr::Draw_PNG_Strip(HDC hDC, const TCHAR* pImgKey, FRAME tFrame, D3DXVE
 	Gdp::Bitmap* pImage = pBitMap->Get_Image();
 	Gdp::Graphics g(hDC);
 
-	float fScrollX = CScrollMgr::Get_Instance()->Get_ScollX();
-	float fScrollY = CScrollMgr::Get_Instance()->Get_ScollY();
+	float fScrollX = CCamera::Get_Instance()->Get_WindowPos().x;
+	float fScrollY = CCamera::Get_Instance()->Get_WindowPos().y;
 
 	g.TranslateTransform(float(int(vecPos.x - fScrollX * (float)bAllowScroll)),
 		float(int(vecPos.y - vecPos.z - fScrollY * (float)bAllowScroll)));
@@ -151,8 +151,8 @@ void CBmpMgr::Draw_PNG_StripScale(HDC hDC, const TCHAR* pImgKey, FRAME tFrame, D
 	Gdp::Bitmap* pImage = pBitMap->Get_Image();
 	Gdp::Graphics g(hDC);
 
-	float fScrollX = CScrollMgr::Get_Instance()->Get_ScollX();
-	float fScrollY = CScrollMgr::Get_Instance()->Get_ScollY();
+	float fScrollX = CCamera::Get_Instance()->Get_WindowPos().x;
+	float fScrollY = CCamera::Get_Instance()->Get_WindowPos().y;
 
 	g.TranslateTransform(float(int(vecPos.x - fScrollX * (float)bAllowScroll)),
 		float(int(vecPos.y - vecPos.z - fScrollY * (float)bAllowScroll)));
@@ -178,8 +178,8 @@ void CBmpMgr::Draw_PNG_StripAlpha(HDC hDC, const TCHAR* pImgKey, FRAME tFrame, D
 	Gdp::Bitmap* pImage = pBitMap->Get_Image();
 	Gdp::Graphics g(hDC);
 
-	float fScrollX = CScrollMgr::Get_Instance()->Get_ScollX();
-	float fScrollY = CScrollMgr::Get_Instance()->Get_ScollY();
+	float fScrollX = CCamera::Get_Instance()->Get_WindowPos().x;
+	float fScrollY = CCamera::Get_Instance()->Get_WindowPos().y;
 
 	g.TranslateTransform(float(int(vecPos.x - fScrollX * (float)bAllowScroll)),
 		float(int(vecPos.y - vecPos.z - fScrollY * (float)bAllowScroll)));
@@ -237,8 +237,8 @@ void CBmpMgr::Draw_PNG(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRAME tFrame, 
 	Gdp::Bitmap* pImage = pBitMap->Get_Image();
 	Gdp::Graphics g(hDC);
 
-	float fScrollX = CScrollMgr::Get_Instance()->Get_ScollX();
-	float fScrollY = CScrollMgr::Get_Instance()->Get_ScollY();
+	float fScrollX = CCamera::Get_Instance()->Get_WindowPos().x;
+	float fScrollY = CCamera::Get_Instance()->Get_WindowPos().y;
 
 	g.TranslateTransform(tInfo.vPos.x - fScrollX * (float)bAllowScroll, tInfo.vPos.y - fScrollY * (float)bAllowScroll);
 
@@ -258,8 +258,8 @@ void CBmpMgr::Draw_PNG(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRAME tFrame, 
 	Gdp::Bitmap* pImage = pBitMap->Get_Image();
 	Gdp::Graphics g(hDC);
 
-	float fScrollX = CScrollMgr::Get_Instance()->Get_ScollX();
-	float fScrollY = CScrollMgr::Get_Instance()->Get_ScollY();
+	float fScrollX = CCamera::Get_Instance()->Get_WindowPos().x;
+	float fScrollY = CCamera::Get_Instance()->Get_WindowPos().y;
 
 	g.TranslateTransform(tInfo.vPos.x - fScrollX * (float)bAllowScroll, tInfo.vPos.y - fScrollY * (float)bAllowScroll);
 
@@ -279,10 +279,33 @@ void CBmpMgr::Draw_PNG(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRAME tFrame, 
 	Gdp::Bitmap* pImage = pBitMap->Get_Image();
 	Gdp::Graphics g(hDC);
 
-	float fScrollX = CScrollMgr::Get_Instance()->Get_ScollX();
-	float fScrollY = CScrollMgr::Get_Instance()->Get_ScollY();
+	float fScrollX = CCamera::Get_Instance()->Get_WindowPos().x;
+	float fScrollY = CCamera::Get_Instance()->Get_WindowPos().y;
 
 	g.TranslateTransform(tInfo.vPos.x - fScrollX * (float)bAllowScroll, tInfo.vPos.y - fScrollY * (float)bAllowScroll);
+
+	g.DrawImage(
+		pImage, -(tFrame.iOffsetX), -(tFrame.iOffsetY),
+		srcx, srcy, src_width, src_height,
+		Gdp::UnitPixel
+	);
+}
+
+void CBmpMgr::Draw_PNG(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRAME tFrame, float fAngle, int srcx, int srcy, int src_width, int src_height, bool bAllowScroll)
+{
+	// 단일용 PNG는 따로 관리한다.
+
+	CBitMap* pBitMap = CBmpMgr::Get_Instance()->Find_CBitMap(pImgKey);
+	if (!pBitMap) return;
+	Gdp::Bitmap* pImage = pBitMap->Get_Image();
+	Gdp::Graphics g(hDC);
+
+	float fScrollX = CCamera::Get_Instance()->Get_WindowPos().x;
+	float fScrollY = CCamera::Get_Instance()->Get_WindowPos().y;
+
+	g.TranslateTransform(tInfo.vPos.x - fScrollX * (float)bAllowScroll, tInfo.vPos.y - fScrollY * (float)bAllowScroll);
+	g.RotateTransform(fAngle);
+	g.ScaleTransform(3.f, 3.f);
 
 	g.DrawImage(
 		pImage, -(tFrame.iOffsetX), -(tFrame.iOffsetY),
@@ -298,8 +321,8 @@ void CBmpMgr::Draw_PNG_Alpha(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRAME tF
 	Gdp::Bitmap* pImage = pBitMap->Get_Image();
 	Gdp::Graphics g(hDC);
 
-	float fScrollX = CScrollMgr::Get_Instance()->Get_ScollX();
-	float fScrollY = CScrollMgr::Get_Instance()->Get_ScollY();
+	float fScrollX = CCamera::Get_Instance()->Get_WindowPos().x;
+	float fScrollY = CCamera::Get_Instance()->Get_WindowPos().y;
 
 	g.TranslateTransform(float(int(tInfo.vPos.x - fScrollX * (float)bAllowScroll)),
 		float(int(tInfo.vPos.y - fScrollY * (float)bAllowScroll)));
@@ -350,8 +373,8 @@ void CBmpMgr::Draw_Test_Circle(HDC hDC, INFO tInfo, int iSize)
 
 void CBmpMgr::Draw_Text_Circle_Vec3(HDC hDC, D3DXVECTOR3 vecPos, int iSize, bool bAllowScroll)
 {
-	float fScrollX = CScrollMgr::Get_Instance()->Get_ScollX();
-	float fScrollY = CScrollMgr::Get_Instance()->Get_ScollY();
+	float fScrollX = CCamera::Get_Instance()->Get_WindowPos().x;
+	float fScrollY = CCamera::Get_Instance()->Get_WindowPos().y;
 
 	MoveToEx(hDC, (int)vecPos.x - (int)fScrollX * (int)bAllowScroll,
 		(int)vecPos.y + (int)vecPos.z - (int)fScrollY * (int)bAllowScroll,

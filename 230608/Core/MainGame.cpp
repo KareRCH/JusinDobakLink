@@ -23,10 +23,14 @@ void CMainGame::Initialize()
 {
 	m_hDC = GetDC(g_hWnd);
 
+	Gdp::GdiplusStartupInput gdiplusStartupInput;
+	gdiplusStartupInput.GdiplusVersion = 1;
+	gdiplusStartupInput.SuppressBackgroundThread = FALSE;
+	Gdp::GdiplusStartup(&m_gdiplusToken, &gdiplusStartupInput, NULL);
+
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	
-	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_EDIT);
-
+	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_STAGE);
 	//CSoundMgr::Get_Instance()->Initialize();
 }
 
@@ -105,5 +109,6 @@ void CMainGame::Release()
 	CObjMgr::Destroy_Instance();
 	CSceneMgr::Destroy_Instance();
 
+	Gdp::GdiplusShutdown(m_gdiplusToken);
 	ReleaseDC(g_hWnd, m_hDC);
 }

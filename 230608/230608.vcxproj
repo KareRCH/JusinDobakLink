@@ -182,6 +182,7 @@
     <ClInclude Include="JunHo\Line.h" />
     <ClInclude Include="JunHo\LineMgr.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="JunHo\Stage.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -207,6 +208,7 @@
     <ClCompile Include="Core\VecCollisionMgr.cpp" />
     <ClCompile Include="JunHo\Line.cpp" />
     <ClCompile Include="JunHo\LineMgr.cpp" />
+    <ClCompile Include="JunHo\Stage.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -23,5 +23,7 @@ private:
 	int			m_iFPS;
 	TCHAR		m_szFPS[32];
 
+private:
+	ULONG_PTR m_gdiplusToken;
 };
 
