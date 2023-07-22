@@ -5,6 +5,7 @@
 
 #include "Stage.h"
 
+#include "YScene_Serving.h"
 
 CSceneMgr* CSceneMgr::m_pInstance = nullptr;
 
@@ -42,7 +43,7 @@ void CSceneMgr::Scene_Change(SCENEID eScene)
 
 			break;
 
-		case SCENEID::SC_STAGE:
+		case SCENEID::SC_STAGE2:
 			m_pScene = new CScene_HakStage;
 			break;
 		case SCENEID::SC_WORLD1:
@@ -52,6 +53,8 @@ void CSceneMgr::Scene_Change(SCENEID eScene)
 		case SCENEID::SC_STAGE:
 			m_pScene = new CStage;
 			break;
+
+
 		case SCENEID::SC_STAGE3:
 			m_pScene = new CYScene_Serving;
 			break;

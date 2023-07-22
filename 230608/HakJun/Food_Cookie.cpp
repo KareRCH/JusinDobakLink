@@ -41,6 +41,24 @@ int CFood_Cookie::Update()
 		m_tInfo.vPos.y += 5.f;
 	}
 
+	if (CKeyMgr::Get_Instance()->Key_Pressing('Q'))
+	{
+		m_tInfo.fAngle -= 5.f;
+	}
+	else if (CKeyMgr::Get_Instance()->Key_Pressing('E'))
+	{
+		m_tInfo.fAngle += 5.f;
+	}
+
+	if (CKeyMgr::Get_Instance()->Key_Pressing('W'))
+	{
+		m_tInfo.vSize *= 1.2f;
+	}
+	else if (CKeyMgr::Get_Instance()->Key_Pressing('S'))
+	{
+		m_tInfo.vSize *= 0.8f;
+	}
+
 	return 0;
 }
 
@@ -59,7 +77,7 @@ void CFood_Cookie::Release()
 
 }
 
-void CFood_Cookie::Collide()
+void CFood_Cookie::Collide(CObj* _pDst)
 {
 
 }

@@ -34,7 +34,7 @@ void CYTimeGauge::Release()
 {
 }
 
-void CYTimeGauge::Collide()
+void CYTimeGauge::Collide(CObj* _pDst)
 {
 }
 

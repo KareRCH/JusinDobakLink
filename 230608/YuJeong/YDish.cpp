@@ -6,6 +6,8 @@
 #include "YPlayer.h"
 
 CYDish::CYDish()
+	: m_pOwner(nullptr)
+	, m_iOffset(0)
 {
 }
 
@@ -16,15 +18,15 @@ CYDish::~CYDish()
 
 void CYDish::Initialize()
 {
-	m_eRender = RENDER_GAMEOBJECT;
-
 	m_pOwner = CObjMgr::Get_Instance()->Get_Player();
 
-	m_tInfo.vPos = { m_pOwner->Get_Info().vPos.x - 20.f, m_pOwner->Get_Info().vPos.y, 0.f };
-	//m_tInfo.vPos = { 0.f, 0.f, 0.f };
-	m_tInfo.vDir = { m_pOwner->Get_Info().vDir.x, m_pOwner->Get_Info().vDir.y, 0.f };
-	m_tInfo.vLook = { 0.f, 1.f, 0.f };
-	m_fSpeed = 2.f;
+	// 플레이어의 위치벡터 값을 가지고 태어난다.
+	m_tInfo.vPos = { CObjMgr::Get_Instance()->Get_Player()->Get_Info().vPos.x, CObjMgr::Get_Instance()->Get_Player()->Get_Info().vPos.y, 0.f };
+	m_tInfo.vDir = { 1.f, 0.f, 0.f };		//방향
+	m_tInfo.vLook = { 0.f, -1.f, 0.f };		// 바라보는 방향
+	m_tInfo.vSize = { 20.f ,20.f, 0.f };	// 크기
+	m_eRender = RENDER_GAMEOBJECT;
+	m_eID = BULLET;
 
 	m_vPoint[0] = { m_tInfo.vPos.x - 20.f ,m_tInfo.vPos.y - 20.f, 0.f };	// 좌 상단
 	m_vPoint[1] = { m_tInfo.vPos.x + 20.f ,m_tInfo.vPos.y - 20.f, 0.f };	// 우 상단	
@@ -33,38 +35,46 @@ void CYDish::Initialize()
 
 	for (int i = 0; i < 4; ++i)
 		m_vOriginPoint[i] = m_vPoint[i];
+
+	m_fSpeed = 2.f;		// 이동 속도
+
+	m_iOffset = 100;	// 플레이어로부터 얼마나 떨어져 있을지
 }
 
 int CYDish::Update()
 {
 	//Key_Input();
-	
+
+	// 플레이어를 바라보는 방향 구하기
+	m_tInfo.vDir = CObjMgr::Get_Instance()->Get_Player()->Get_Info().vPos - m_tInfo.vPos;
+
+	// 플레이어의 각도가 변하면 플레이어의 각도로 같이 변하게
+	m_tInfo.fAngle = CObjMgr::Get_Instance()->Get_Player()->Get_Info().fAngle;
+
 	// D3DXVec3Normalize(결과 값을 저장할 벡터 주소, 단위 벡터로 만들 벡터 주소) : 단위 벡터를 만들어주는 함수
 	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
 	D3DXVec3Normalize(&m_tInfo.vLook, &m_tInfo.vLook);
 	D3DXMatrixIdentity(&m_tInfo.matWorld);	// 항등행렬로 만들기
 
 	// 회전행렬을 만들고, 이를 벡터에 곱해서 회전된 벡터를 얻어야 한다.
-	D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);							// 크기
-	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_tInfo.fAngle));			// 회전
+	D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);					// 크기
+	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_tInfo.fAngle));	// 회전
 	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);	// 이동
 
-	// 크기x자전x이동x공전x부모
+	// 크기x자전x이동
 	m_tInfo.matWorld = matScale * matRotZ * matTrans;
 
 	// 사각형 점들을 회전행렬로 변환
 	for (int i = 0; i < 4; ++i)
 	{
 		m_vPoint[i] = m_vOriginPoint[i];
-		//m_vPoint[i] -= {(WINCX / 2 + 60), (WINCY / 2 - 70), 0.f};
-		m_vPoint[i] -= {m_pOwner->Get_Info().vPos.x, m_pOwner->Get_Info().vPos.y, 0.f};
-		//m_vPoint[i] -= {dynamic_cast<YCPlayer*>}
+		m_vPoint[i] -= { (float)(WINCX / 2 + m_iOffset), (WINCY / 2 - 70), 0.f};
 
-		//D3DXVec3TransformCoord(&m_vPoint[i], &m_vPoint[i], &m_tInfo.matWorld);
+		D3DXVec3TransformCoord(&m_vPoint[i], &m_vPoint[i], &m_tInfo.matWorld);
 	}
 
-	//m_tInfo.vPos = m_tInfo.vDir * m_fSpeed;
-
+	m_tInfo.vPos += m_tInfo.vDir * m_fSpeed;	// 이동
+	
 	return OBJ_NOEVENT;
 }
 
@@ -104,7 +114,7 @@ void CYDish::Release()
 {
 }
 
-void CYDish::Collide()
+void CYDish::Collide(CObj* _pDst)
 {
 }
 

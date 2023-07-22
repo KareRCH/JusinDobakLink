@@ -110,6 +110,6 @@ void CFisherman::Release(void)
 
 }
 
-void CFisherman::Collide()
+void CFisherman::Collide(CObj* _pDst)
 {
 }
