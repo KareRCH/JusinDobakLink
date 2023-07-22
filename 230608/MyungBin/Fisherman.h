@@ -119,6 +119,14 @@ public:
 	CFish* Get_Fish() { return m_pFish; };
 
 
+	D3DXVECTOR3		Get_BobberPos() { return m_vBobberPos; };
+	void			Set_BobberPos(D3DXVECTOR3 _pos) { m_vBobberPos = _pos; };
+		
+	bool			Get_FishingEnd() { return m_bFishingEnd; };
+	void			Set_FishingEnd(bool _bool) { m_bFishingEnd = _bool; };
+		
+		
+		
 
 private:
 	//D3DXVECTOR3		m_vPoint[4];
@@ -138,5 +146,9 @@ private:
 
 	CFishingBobber*	m_pFishingBobber;
 	CFish*			m_pFish;
+
+	D3DXVECTOR3		m_vBobberPos;
+
+	bool			m_bFishingEnd;
 
 };

@@ -24,6 +24,7 @@ void CFish::Initialize()
     m_vOriginTargetPos = m_vTargetPos - m_tInfo.vPos;
     m_tInfo.vLook = { 0.f, -1.f, 0.f };
     m_fSpeed = 3.f;
+    m_fAngle = 0;
 }
 
 int CFish::Update()

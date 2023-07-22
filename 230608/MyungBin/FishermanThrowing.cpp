@@ -39,6 +39,8 @@ FishermanState CFishermanThrowing::Update(CFisherman& _Actor)
 
 	if (m_preDeley + 1000 < GetTickCount64())
 	{
+		_Actor.Set_BobberPos(_Actor.Get_Bobber()->Get_Info().vPos);
+
 		return FishermanState::HOOKING;
 	}
 

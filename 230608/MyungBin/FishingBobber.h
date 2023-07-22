@@ -49,14 +49,14 @@ public:
 	};
 
 
-	void	Move() { 
+	void	Move(float fSpeed = 1.f) { 
 		//D3DXVECTOR3 test = { 0.f , -1.f, 0.f };
-		m_tInfo.vPos += m_tInfo.vDir * m_fSpeed; 
+		m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * fSpeed;
 	};
 
-	void	Move_Back() {
+	void	Move_Back(float fSpeed = 1.f) {
 		//D3DXVECTOR3 test = { 0.f , -1.f, 0.f };
-		m_tInfo.vPos -= m_tInfo.vDir * m_fSpeed;
+		m_tInfo.vPos -= m_tInfo.vDir * m_fSpeed * fSpeed;
 	};
 
 

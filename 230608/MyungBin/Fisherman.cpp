@@ -15,6 +15,7 @@ CFisherman::CFisherman()
     , m_iGauge(0)
     , m_pFishingBobber(nullptr)
     , m_pFish(nullptr)
+    , m_bFishingEnd(false)
 
 {
     //ZeroMemory(m_vPoint, sizeof(m_vPoint));
