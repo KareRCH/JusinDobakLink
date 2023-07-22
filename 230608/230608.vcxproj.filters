@@ -115,6 +115,9 @@
     <Filter Include="02. Design\00. General\Math %28번외%29">
       <UniqueIdentifier>{2b080d57-52d4-4a0c-9518-42dad44cbf1c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05. HakJun">
+      <UniqueIdentifier>{ba606346-5104-45bb-89c9-76526894032e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -267,6 +270,21 @@
     <ClInclude Include="Core\CollisionMgr.h">
       <Filter>02. Design\01. CollisionMgr</Filter>
     </ClInclude>
+    <ClInclude Include="HakJun\Scene_HakStage.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="HakJun\HPlayer.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="HakJun\Food.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="HakJun\Food_Cookie.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="HakJun\ObjFactory.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -373,6 +391,18 @@
     </ClCompile>
     <ClCompile Include="Core\CollisionMgr.cpp">
       <Filter>02. Design\01. CollisionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="HakJun\Scene_HakStage.cpp">
+      <Filter>05. HakJun</Filter>
+    </ClCompile>
+    <ClCompile Include="HakJun\HPlayer.cpp">
+      <Filter>05. HakJun</Filter>
+    </ClCompile>
+    <ClCompile Include="HakJun\Food.cpp">
+      <Filter>05. HakJun</Filter>
+    </ClCompile>
+    <ClCompile Include="HakJun\Food_Cookie.cpp">
+      <Filter>05. HakJun</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

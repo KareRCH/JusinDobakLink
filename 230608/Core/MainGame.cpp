@@ -8,6 +8,8 @@
 #include "KeyMgr.h"
 #include "ObjMgr.h"
 #include "SoundMgr.h"
+#include "Camera.h"
+#include "AnimationTable.h"
 
 CMainGame::CMainGame() : m_dwTime(GetTickCount()), m_iFPS(0)
 {
@@ -30,9 +32,10 @@ void CMainGame::Initialize()
 
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	
-	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_WORLD1);
+	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_STAGE);
 
 	//CSoundMgr::Get_Instance()->Initialize();
+	CAnimationTable::Get_Instance();
 }
 
 void CMainGame::Update()
@@ -105,10 +108,13 @@ void CMainGame::Release()
 {
 	
 	CBmpMgr::Destroy_Instance();
+	CAnimationTable::Destroy_Instance();
 	CScrollMgr::Destroy_Instance();
+	CCamera::Destroy_Instance();
 	CKeyMgr::Destroy_Instance();
-	CObjMgr::Destroy_Instance();
 	CSceneMgr::Destroy_Instance();
+	CObjMgr::Destroy_Instance();
+	
 
 	Gdp::GdiplusShutdown(m_gdiplusToken);
 	ReleaseDC(g_hWnd, m_hDC);

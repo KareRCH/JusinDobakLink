@@ -31,7 +31,7 @@ void CSceneMgr::Scene_Change(SCENEID eScene)
 		switch (m_eCurScene)
 		{
 		case SCENEID::SC_LOGO:
-			m_pScene = new CLogo;
+			//m_pScene = new CLogo;
 			break;
 
 		//case SC_MENU:
@@ -44,6 +44,7 @@ void CSceneMgr::Scene_Change(SCENEID eScene)
 
 		case SCENEID::SC_STAGE:
 			m_pScene = new CScene_HakStage;
+			break;
 		case SCENEID::SC_WORLD1:
 			m_pScene = new CStageMyungBin;
 			break;

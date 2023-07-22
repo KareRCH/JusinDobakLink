@@ -38,3 +38,7 @@ x86/
 Debug/
 Release/
 ipch/
+
+# 이미지 편집 파일 비포함
+*.afphoto
+*.psd
