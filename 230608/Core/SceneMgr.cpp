@@ -30,8 +30,11 @@ void CSceneMgr::Scene_Change(SCENEID eScene)
 		case SCENEID::SC_WORLD1:
 			m_pScene = new CStageMyungBin;
 			break;
-		}
 
+		case SCENEID::SC_STAGE:
+			m_pScene = new CStage;
+			break;
+		}
 		m_pScene->Initialize();
 
 		m_ePreScene = m_eCurScene;
