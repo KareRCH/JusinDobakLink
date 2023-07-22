@@ -91,7 +91,7 @@ void CMainGame::Render()
 		0, 0, iTargetCX, iTargetCY,
 		SRCCOPY
 	);
-
+	//94번줄~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//BitBlt(m_hDC,	// ���� ���� DC(���������� �׸��� �׸� DC����)
 	//	0, 0, WINCX, WINCY,
 	//	hMemDC,			// ��Ʈ�� �̹����� ��� �ִ� DC

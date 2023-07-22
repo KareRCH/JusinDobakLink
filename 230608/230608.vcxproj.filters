@@ -282,6 +282,9 @@
     <ClInclude Include="YuJeong\YDish.h">
       <Filter>05. YuJeong</Filter>
     </ClInclude>
+    <ClInclude Include="JunHo\CJPlayer.h">
+      <Filter>01. Obj\01.Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -400,6 +403,9 @@
     </ClCompile>
     <ClCompile Include="YuJeong\YDish.cpp">
       <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="JunHo\CJPlayer.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
