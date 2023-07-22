@@ -112,6 +112,9 @@
     <Filter Include="01. Obj\01.Player">
       <UniqueIdentifier>{3084c8eb-a267-4709-b9c7-87d6180247bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. HakJun">
+      <UniqueIdentifier>{c8961d33-0e71-40df-a0c3-ac41f2bc3af2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -219,6 +222,12 @@
     <ClInclude Include="JunHo\CJPlayer.h">
       <Filter>01. Obj\01.Player</Filter>
     </ClInclude>
+    <ClInclude Include="HakJun\HPlayer.h">
+      <Filter>04. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="HakJun\Scene_HakStage.h">
+      <Filter>04. HakJun</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -286,6 +295,12 @@
     </ClCompile>
     <ClCompile Include="JunHo\CJPlayer.cpp">
       <Filter>01. Obj\01.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="HakJun\HPlayer.cpp">
+      <Filter>04. HakJun</Filter>
+    </ClCompile>
+    <ClCompile Include="HakJun\Scene_HakStage.cpp">
+      <Filter>04. HakJun</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
