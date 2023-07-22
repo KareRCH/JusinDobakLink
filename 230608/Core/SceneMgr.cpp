@@ -34,6 +34,9 @@ void CSceneMgr::Scene_Change(SCENEID eScene)
 		case SCENEID::SC_STAGE:
 			m_pScene = new CStage;
 			break;
+		case SCENEID::SC_STAGE3:
+			m_pScene = new CYScene_Serving;
+			break;
 		}
 		m_pScene->Initialize();
 
