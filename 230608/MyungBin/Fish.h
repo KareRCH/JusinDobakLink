@@ -55,6 +55,8 @@ public:
 	bool	Get_Flag() { return m_bFlag; };
 	void	Set_Flag(bool _bool) { m_bFlag = _bool; };
 
+	D3DXVECTOR3	Get_TargetPos() { return m_vTargetPos; };
+
 private:
 	D3DXMATRIX		matScale, matRotZ, matTrans;
 	D3DXVECTOR3		m_vTargetPos;

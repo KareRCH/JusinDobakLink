@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "FishermanHooking.h"
 #include "KeyMgr.h"
+#include "CollisionMgr.h"
 
 CFishermanHooking::CFishermanHooking()
 {
@@ -27,21 +28,43 @@ void CFishermanHooking::Initialize(CFisherman& _Actor)
 
 	D3DXVECTOR3 startFishPos = { 150.f, WINCY / 2, 0.f };
 	_Actor.Get_Fish()->Set_Pos(startFishPos);
-
+	_Actor.Get_Fish()->Set_AngleDegree(90.f);
 
 }
 
 FishermanState CFishermanHooking::Update(CFisherman& _Actor)
 {
-	if (_Actor.Get_Fish()->Get_Flag()) 
+	if (m_preDeley + 1000.f < GetTickCount64()) 
 	{
-	
-	}
-	else 
-	{
-	
-	}
+		_Actor.Get_Fish()->Update();
+		if (_Actor.Get_Fish()->Get_Flag() && _Actor.Get_Fish()->Get_TargetPos().x <= 100)
+		{
+			D3DXVECTOR3 startFishPos = { 150.f, WINCY / 2 + float(rand() % (WINCY / 2) - (WINCY / 4)) , 0.f };
+			_Actor.Get_Fish()->Set_Pos(startFishPos);
+			_Actor.Get_Fish()->Set_AngleDegree(90.f);
+			_Actor.Get_Fish()->Set_Flag(false);
 
+			m_preDeley = GetTickCount64();
+		}
+		else if (!_Actor.Get_Fish()->Get_Flag() && _Actor.Get_Fish()->Get_TargetPos().x >= WINCX - 100)
+		{
+			D3DXVECTOR3 startFishPos = { WINCX - 150.f, WINCY / 2 + float(rand() % (WINCY / 2) - (WINCY / 4)), 0.f };
+			_Actor.Get_Fish()->Set_Pos(startFishPos);
+			_Actor.Get_Fish()->Set_AngleDegree(270.f);
+			_Actor.Get_Fish()->Set_Flag(true);
+
+			m_preDeley = GetTickCount64();
+		}
+
+		float fX;
+		float fY;
+
+		if (CCollisionMgr::Check_Rect(_Actor.Get_Bobber(), _Actor.Get_Fish(), &fX, &fY)) 
+		{
+			return FishermanState::CATCHING;
+		}
+
+	}
 
 	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_DOWN)) 
 	{
@@ -52,10 +75,10 @@ FishermanState CFishermanHooking::Update(CFisherman& _Actor)
 		_Actor.Get_Bobber()->Move_Back();
 	}
 
-	if (CKeyMgr::Get_Instance()->Key_Pressing('C')) 
-	{
-		return FishermanState::CATCHING;
-	}
+	//if (CKeyMgr::Get_Instance()->Key_Pressing('C')) 
+	//{
+	//	return FishermanState::CATCHING;
+	//}
 
 	return FishermanState::HOOKING;
 }
@@ -71,7 +94,11 @@ void CFishermanHooking::Render(HDC hDC, CFisherman& _Actor)
 	LineTo(hDC, _Actor.Get_Bobber()->Get_Info().vPos.x, _Actor.Get_Bobber()->Get_Info().vPos.y);
 
 	_Actor.Get_Bobber()->Render(hDC);
-	_Actor.Get_Fish()->Render(hDC);
+	
+	if (m_preDeley + 1000.f < GetTickCount64())
+	{
+		_Actor.Get_Fish()->Render(hDC);
+	}
 
 
 }
