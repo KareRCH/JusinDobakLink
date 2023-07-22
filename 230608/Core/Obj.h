@@ -10,7 +10,7 @@ public:
 
 public:
 	const INFO&		Get_Info() const { return m_tInfo; }
-
+	RENDERID		Get_RenderID() { return m_eRender; }
 public:
 	public:
 	virtual void		Initialize()	PURE;
@@ -22,6 +22,7 @@ public:
 protected:
 	INFO		m_tInfo;
 	float		m_fSpeed;
-
+	RENDERID	m_eRender;
+	OBJID		m_eID;
 };
 

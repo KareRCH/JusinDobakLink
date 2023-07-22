@@ -70,7 +70,7 @@ typedef struct tagInfo
 	D3DXVECTOR3		vPos;
 	D3DXVECTOR3		vDir;
 	D3DXVECTOR3		vLook;
-
+	D3DXVECTOR3		vSize;
 	//D3DXVECTOR3		vNormal;
 
 	D3DXMATRIX		matWorld;

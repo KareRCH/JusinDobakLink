@@ -306,6 +306,8 @@
     </ClInclude>
     <ClInclude Include="MyungBin\Fish.h">
       <Filter>04. MyungBin\Fisherman\Fish</Filter>
+    <ClInclude Include="JunHo\Stage.h">
+      <Filter>03. Scene\02. Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -372,6 +374,7 @@
     <ClCompile Include="JunHo\CJPlayer.cpp">
       <Filter>01. Obj\01.Player</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="MyungBin\Lobby.cpp">
       <Filter>04. MyungBin\MiniGameState\00. Lobby</Filter>
     </ClCompile>
@@ -407,6 +410,10 @@
     </ClCompile>
     <ClCompile Include="MyungBin\Fish.cpp">
       <Filter>04. MyungBin\Fisherman\Fish</Filter>
+=======
+    <ClCompile Include="JunHo\Stage.cpp">
+      <Filter>03. Scene\02. Stage</Filter>
+>>>>>>> main
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

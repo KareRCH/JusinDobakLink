@@ -23,6 +23,11 @@ void CMainGame::Initialize()
 {
 	m_hDC = GetDC(g_hWnd);
 
+	Gdp::GdiplusStartupInput gdiplusStartupInput;
+	gdiplusStartupInput.GdiplusVersion = 1;
+	gdiplusStartupInput.SuppressBackgroundThread = FALSE;
+	Gdp::GdiplusStartup(&m_gdiplusToken, &gdiplusStartupInput, NULL);
+
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	
 	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_WORLD1);
@@ -78,19 +83,19 @@ void CMainGame::Render()
 	int iDstX = (iClientCY >= fRatioY) ? max(0, (iClientCX - iDstCX) / 2) : (iClientCX - iDstCX) / 2;
 	int iDstY = (iClientCX >= fRatioX) ? max(0, (iClientCY - iDstCY) / 2) : (iClientCY - iDstCY) / 2;
 
-	// Á¾È¾ À¯Áö
+	// ï¿½ï¿½È¾ ï¿½ï¿½ï¿½ï¿½
 	StretchBlt(
-		m_hDC,				// º¹»ç ¹ÞÀ» DC(ÃÖÁ¾ÀûÀ¸·Î ±×¸²À» ±×¸± DC°ø°£)
+		m_hDC,				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ DC(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ DCï¿½ï¿½ï¿½ï¿½)
 		iDstX, iDstY, iDstCX, iDstCY,
-		hMemDC,				// ºñÆ®¸Ê ÀÌ¹ÌÁö¸¦ ´ã°í ÀÖ´Â DC
+		hMemDC,				// ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ DC
 		0, 0, iTargetCX, iTargetCY,
 		SRCCOPY
 	);
 
-	//BitBlt(m_hDC,	// º¹»ç ¹ÞÀ» DC(ÃÖÁ¾ÀûÀ¸·Î ±×¸²À» ±×¸± DC°ø°£)
+	//BitBlt(m_hDC,	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ DC(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ DCï¿½ï¿½ï¿½ï¿½)
 	//	0, 0, WINCX, WINCY,
-	//	hMemDC,			// ºñÆ®¸Ê ÀÌ¹ÌÁö¸¦ ´ã°í ÀÖ´Â DC
-	//	0,					// ºñÆ®¸ÊÀ» Ãâ·ÂÇÒ ½ÃÀÛ X,YÁÂÇ¥
+	//	hMemDC,			// ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ DC
+	//	0,					// ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ X,Yï¿½ï¿½Ç¥
 	//	0,
 	//	SRCCOPY);
 
@@ -105,5 +110,6 @@ void CMainGame::Release()
 	CObjMgr::Destroy_Instance();
 	CSceneMgr::Destroy_Instance();
 
+	Gdp::GdiplusShutdown(m_gdiplusToken);
 	ReleaseDC(g_hWnd, m_hDC);
 }
