@@ -70,6 +70,6 @@ void CTile::Release(void)
 {
 }
 
-void CTile::Collide()
+void CTile::Collide(CObj* _pDst)
 {
 }

@@ -9,6 +9,10 @@
 #include "ObjMgr.h"
 #include "SoundMgr.h"
 
+#include "TileMgr.h"
+#include "LineMgr.h"
+#include "Camera.h"
+
 CMainGame::CMainGame() : m_dwTime(GetTickCount()), m_iFPS(0)
 {
 	ZeroMemory(m_szFPS, sizeof(m_szFPS));
@@ -30,7 +34,7 @@ void CMainGame::Initialize()
 
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	
-	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_STAGE);
+	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_STAGE3);
 
 	//CSoundMgr::Get_Instance()->Initialize();
 }
@@ -103,12 +107,14 @@ void CMainGame::Render()
 
 void CMainGame::Release()
 {
-	
 	CBmpMgr::Destroy_Instance();
 	CScrollMgr::Destroy_Instance();
 	CKeyMgr::Destroy_Instance();
 	CObjMgr::Destroy_Instance();
 	CSceneMgr::Destroy_Instance();
+	CLineMgr::Destroy_Instance();
+	CTileMgr::Destroy_Instance();
+	CCamera::Destroy_Instance();
 
 	Gdp::GdiplusShutdown(m_gdiplusToken);
 	ReleaseDC(g_hWnd, m_hDC);

@@ -69,3 +69,7 @@ void CYScene_Serving::Render(HDC hDC)
 void CYScene_Serving::Release()
 {
 }
+
+void CYScene_Serving::Create_Dish()
+{
+}
