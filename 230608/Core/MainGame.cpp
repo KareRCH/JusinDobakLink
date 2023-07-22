@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "MainGame.h"
 #include "AbstractFactory.h"
 //#include "CollisionMgr.h"
@@ -8,8 +8,6 @@
 #include "KeyMgr.h"
 #include "ObjMgr.h"
 #include "SoundMgr.h"
-#include "Camera.h"
-#include "AnimationTable.h"
 
 #include "TileMgr.h"
 #include "LineMgr.h"
@@ -90,21 +88,14 @@ void CMainGame::Render()
 	int iDstX = (iClientCY >= fRatioY) ? max(0, (iClientCX - iDstCX) / 2) : (iClientCX - iDstCX) / 2;
 	int iDstY = (iClientCX >= fRatioX) ? max(0, (iClientCY - iDstCY) / 2) : (iClientCY - iDstCY) / 2;
 
-	// ��Ⱦ ����
+	
 	StretchBlt(
-		m_hDC,				// ���� ���� DC(���������� �׸��� �׸� DC����)
+		m_hDC,				
 		iDstX, iDstY, iDstCX, iDstCY,
-		hMemDC,				// ��Ʈ�� �̹����� ��� �ִ� DC
+		hMemDC,				
 		0, 0, iTargetCX, iTargetCY,
 		SRCCOPY
 	);
-	//94번줄~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//BitBlt(m_hDC,	// ���� ���� DC(���������� �׸��� �׸� DC����)
-	//	0, 0, WINCX, WINCY,
-	//	hMemDC,			// ��Ʈ�� �̹����� ��� �ִ� DC
-	//	0,					// ��Ʈ���� ����� ���� X,Y��ǥ
-	//	0,
-	//	SRCCOPY);
 
 }
 
@@ -117,9 +108,7 @@ void CMainGame::Release()
 	CKeyMgr::Destroy_Instance();
 	CSceneMgr::Destroy_Instance();
 	CObjMgr::Destroy_Instance();
-	CLineMgr::Destroy_Instance();
-	CTileMgr::Destroy_Instance();
-	CCamera::Destroy_Instance();
+	CSceneMgr::Destroy_Instance();
 
 	Gdp::GdiplusShutdown(m_gdiplusToken);
 	ReleaseDC(g_hWnd, m_hDC);

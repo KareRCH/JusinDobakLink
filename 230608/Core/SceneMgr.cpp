@@ -5,7 +5,6 @@
 
 #include "Stage.h"
 
-#include "YScene_Serving.h"
 
 CSceneMgr* CSceneMgr::m_pInstance = nullptr;
 
