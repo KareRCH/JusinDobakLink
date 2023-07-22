@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="리소스 파일">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -118,6 +114,13 @@
     <Filter Include="05. HakJun">
       <UniqueIdentifier>{ba606346-5104-45bb-89c9-76526894032e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05. YuJeong">
+      <UniqueIdentifier>{a62620af-58c4-4ec5-9c94-ea7bb9bf04bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -222,9 +225,6 @@
     <ClInclude Include="JunHo\LineMgr.h">
       <Filter>02. Design\03. LineMgr</Filter>
     </ClInclude>
-    <ClInclude Include="JunHo\CJPlayer.h">
-      <Filter>01. Obj\01.Player</Filter>
-    </ClInclude>
     <ClInclude Include="JunHo\Stage.h">
       <Filter>03. Scene\02. Stage</Filter>
     </ClInclude>
@@ -284,6 +284,24 @@
     </ClInclude>
     <ClInclude Include="HakJun\ObjFactory.h">
       <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YPlayer.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YScene_Serving.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YCustomer.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YTimeGauge.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YDish.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
+    <ClInclude Include="JunHo\CJPlayer.h">
+      <Filter>01. Obj\01.Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -350,9 +368,6 @@
     <ClCompile Include="JunHo\Line.cpp">
       <Filter>02. Design\03. LineMgr</Filter>
     </ClCompile>
-    <ClCompile Include="JunHo\CJPlayer.cpp">
-      <Filter>01. Obj\01.Player</Filter>
-    </ClCompile>
     <ClCompile Include="JunHo\Stage.cpp">
       <Filter>03. Scene\02. Stage</Filter>
     </ClCompile>
@@ -403,6 +418,24 @@
     </ClCompile>
     <ClCompile Include="HakJun\Food_Cookie.cpp">
       <Filter>05. HakJun</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YPlayer.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YScene_Serving.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YCustomer.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YTimeGauge.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YDish.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="JunHo\CJPlayer.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -30,7 +30,7 @@ protected:
 	OBJID		m_eID;
 
 public: 
-	void Update_Rect();
+	void			Update_Rect();
 	RECT			Get_Rect() { return m_tRect; }
 
 };
