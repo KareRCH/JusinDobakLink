@@ -109,8 +109,6 @@
     <Filter Include="01. Obj\01.Player">
       <UniqueIdentifier>{3084c8eb-a267-4709-b9c7-87d6180247bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04. HakJun">
-      <UniqueIdentifier>{c8961d33-0e71-40df-a0c3-ac41f2bc3af2}</UniqueIdentifier>
     <Filter Include="04. MyungBin">
       <UniqueIdentifier>{408965b1-6126-446f-a4ea-b92c2708cda5}</UniqueIdentifier>
     </Filter>
@@ -224,11 +222,6 @@
     <ClInclude Include="JunHo\CJPlayer.h">
       <Filter>01. Obj\01.Player</Filter>
     </ClInclude>
-    <ClInclude Include="HakJun\HPlayer.h">
-      <Filter>04. HakJun</Filter>
-    </ClInclude>
-    <ClInclude Include="HakJun\Scene_HakStage.h">
-      <Filter>04. HakJun</Filter>
     <ClInclude Include="JunHo\Stage.h">
       <Filter>03. Scene\02. Stage</Filter>
     </ClInclude>
@@ -342,11 +335,6 @@
     <ClCompile Include="JunHo\CJPlayer.cpp">
       <Filter>01. Obj\01.Player</Filter>
     </ClCompile>
-    <ClCompile Include="HakJun\HPlayer.cpp">
-      <Filter>04. HakJun</Filter>
-    </ClCompile>
-    <ClCompile Include="HakJun\Scene_HakStage.cpp">
-      <Filter>04. HakJun</Filter>
     <ClCompile Include="JunHo\Stage.cpp">
       <Filter>03. Scene\02. Stage</Filter>
     </ClCompile>

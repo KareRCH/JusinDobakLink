@@ -151,7 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="230608.h" />
-    <ClInclude Include="HakJun\HPlayer.h" />
     <ClInclude Include="Core\CollisionMgr.h" />
     <ClInclude Include="JunHo\CJPlayer.h" />
     <ClInclude Include="Core\AbstractFactory.h" />
@@ -197,14 +196,12 @@
     <ClInclude Include="MyungBin\MiniGame.h" />
     <ClInclude Include="MyungBin\StageMyungBin.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="HakJun\Scene_HakStage.h" />
     <ClInclude Include="JunHo\Stage.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="230608.cpp" />
-    <ClCompile Include="HakJun\HPlayer.cpp" />
     <ClCompile Include="Core\CollisionMgr.cpp" />
     <ClCompile Include="JunHo\CJPlayer.cpp" />
     <ClCompile Include="Core\AnimationTable.cpp" />
@@ -226,7 +223,6 @@
     <ClCompile Include="Core\VecCollisionMgr.cpp" />
     <ClCompile Include="JunHo\Line.cpp" />
     <ClCompile Include="JunHo\LineMgr.cpp" />
-    <ClCompile Include="HakJun\Scene_HakStage.cpp" />
     <ClCompile Include="JunHo\Stage.cpp" />
     <ClCompile Include="MyungBin\Fish.cpp" />
     <ClCompile Include="MyungBin\Fisherman.cpp" />
