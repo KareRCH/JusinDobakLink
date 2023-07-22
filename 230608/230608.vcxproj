@@ -184,9 +184,11 @@
     <ClInclude Include="JunHo\LineMgr.h" />
     <ClInclude Include="MyungBin\DefindMyungBin.h" />
     <ClInclude Include="MyungBin\Fisherman.h" />
+    <ClInclude Include="MyungBin\FishermanHooking.h" />
     <ClInclude Include="MyungBin\FishermanSelectDir.h" />
     <ClInclude Include="MyungBin\FishermanSelectPower.h" />
     <ClInclude Include="MyungBin\FishermanThrowing.h" />
+    <ClInclude Include="MyungBin\FishingBobber.h" />
     <ClInclude Include="MyungBin\FishingStart.h" />
     <ClInclude Include="MyungBin\Lobby.h" />
     <ClInclude Include="MyungBin\MiniGame.h" />
@@ -218,9 +220,11 @@
     <ClCompile Include="JunHo\Line.cpp" />
     <ClCompile Include="JunHo\LineMgr.cpp" />
     <ClCompile Include="MyungBin\Fisherman.cpp" />
+    <ClCompile Include="MyungBin\FishermanHooking.cpp" />
     <ClCompile Include="MyungBin\FishermanSelectDir.cpp" />
     <ClCompile Include="MyungBin\FishermanSelectPower.cpp" />
     <ClCompile Include="MyungBin\FishermanThrowing.cpp" />
+    <ClCompile Include="MyungBin\FishingBobber.cpp" />
     <ClCompile Include="MyungBin\FishingStart.cpp" />
     <ClCompile Include="MyungBin\Lobby.cpp" />
     <ClCompile Include="MyungBin\StageMyungBin.cpp" />

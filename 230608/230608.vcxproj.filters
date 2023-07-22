@@ -292,11 +292,14 @@
     <ClInclude Include="MyungBin\FishermanThrowing.h">
       <Filter>04. MyungBin\Fisherman\State\02. Throwing</Filter>
     </ClInclude>
+    <ClInclude Include="MyungBin\FishingBobber.h">
+      <Filter>04. MyungBin\Fisherman\FishingBobber</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\FishermanHooking.h">
+      <Filter>04. MyungBin\Fisherman\State\03. Hooking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="230608.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -380,6 +383,15 @@
     </ClCompile>
     <ClCompile Include="MyungBin\FishermanThrowing.cpp">
       <Filter>04. MyungBin\Fisherman\State\02. Throwing</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\FishingBobber.cpp">
+      <Filter>04. MyungBin\Fisherman\FishingBobber</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\FishermanHooking.cpp">
+      <Filter>04. MyungBin\Fisherman\State\03. Hooking</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

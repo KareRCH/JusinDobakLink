@@ -1,5 +1,6 @@
 #pragma once
 #include "Actor.h"
+#include "FishingBobber.h"
 
 enum class FishermanState 
 {
@@ -19,7 +20,7 @@ public:
 	~CFisherman();
 
 public:
-	void Set_State(FishermanState _state) 
+	void Set_State(FishermanState _state)
 	{
 		if (m_eState != _state)
 		{
@@ -40,7 +41,7 @@ public:
 public:
 	void	Set_Pos(D3DXVECTOR3 _Pos) { m_tInfo.vPos = _Pos; };
 	void	Set_TargetOriginPos(D3DXVECTOR3 _Pos) { m_vOriginTargetPos = _Pos; };
-	void	Update_TargetPos() {D3DXVec3TransformCoord(&m_vTargetPos, &m_vOriginTargetPos, &m_tInfo.matWorld);};
+	void	Update_TargetPos() { D3DXVec3TransformCoord(&m_vTargetPos, &m_vOriginTargetPos, &m_tInfo.matWorld); };
 	void	Set_vLook(D3DXVECTOR3 _Look) { m_tInfo.vLook = _Look; };
 
 	D3DXVECTOR3		Get_TargetPos() { return m_vTargetPos; };
@@ -59,17 +60,9 @@ public:
 
 
 	void	UpdateDir() { D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld); };
-	
-	/*void	Set_Scale(D3DXVECTOR3 _vec) { D3DXMatrixScaling(&matScale, _vec.x, _vec.y, _vec.z); };
-	void	UpdateMatrix() 
-	{
-		D3DXMatrixRotationZ(&matRotZ, m_fAngle);
-		D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
-		m_tInfo.matWorld = matScale * matRotZ * matTrans;
-	};*/
 
-	void	UpdateMatrixDefault() 
-	{ 
+	void	UpdateMatrixDefault()
+	{
 		D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
 		D3DXMatrixRotationZ(&matRotZ, m_fAngle);
 		D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
@@ -80,6 +73,20 @@ public:
 	void	Set_Gauge(int _gauge) { m_iGauge = _gauge; };
 	void	Add_Gauge(int _value) { m_iGauge += _value; };
 
+	float	Calc_Distance() 
+	{
+		return sqrt
+		(
+			(m_tInfo.vPos.x - m_vTargetPos.x) * (m_tInfo.vPos.x - m_vTargetPos.x) + 
+			(m_tInfo.vPos.y - m_vTargetPos.y) * (m_tInfo.vPos.y - m_vTargetPos.y)
+		);
+	};
+
+
+	void Reset_Bobber_Pos() 
+	{
+		m_pFishingBobber->Set_Pos(m_tInfo.vPos);
+	}
 
 
 	void	Render_SelectDir(HDC hDC)
@@ -98,6 +105,15 @@ public:
 		LineTo(hDC, WINCX - 125, WINCY - Get_Gauge());
 	};
 
+	CFishingBobber*	Get_Bobber() { return m_pFishingBobber; };
+
+
+	void	Set_Bobber_Dir(bool _bool) 
+	{
+		D3DXVECTOR3 vDir = _bool ? m_tInfo.vDir : -m_tInfo.vDir;
+		m_pFishingBobber->Set_Dir(vDir);
+	}
+
 
 
 private:
@@ -115,4 +131,6 @@ private:
 	bool			m_bFlag;
 
 	int				m_iGauge;
+
+	CFishingBobber*	m_pFishingBobber;
 };

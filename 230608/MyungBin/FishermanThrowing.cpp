@@ -14,12 +14,18 @@ void CFishermanThrowing::Initialize(CFisherman& _Actor)
 	m_preDeley = GetTickCount64();
 	m_PostDelay = GetTickCount64();
 
+	_Actor.Reset_Bobber_Pos();
+	_Actor.Set_Bobber_Dir(true);
+	_Actor.Get_Bobber()->Set_Speed(_Actor.Get_Gauge()/300);
 
 }
 
 FishermanState CFishermanThrowing::Update(CFisherman& _Actor)
 {
-	
+	//float speed = _Actor.Calc_Distance() / 100;
+
+	_Actor.Get_Bobber()->Update();
+
 
 	if (m_preDeley + 3000 < GetTickCount64())
 	{
@@ -36,6 +42,8 @@ void CFishermanThrowing::Late_Update(CFisherman& _Actor)
 void CFishermanThrowing::Render(HDC hDC, CFisherman& _Actor)
 {
 	_Actor.Render_SelectPower(hDC);
+
+	_Actor.Get_Bobber()->Render(hDC);
 
 	//MoveToEx(hDC, _Actor.Get_Info().vPos.x, _Actor.Get_Info().vPos.y, nullptr);
 	//LineTo(hDC, _Actor.Get_TargetPos().x, _Actor.Get_TargetPos().y);

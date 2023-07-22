@@ -11,6 +11,7 @@ CFisherman::CFisherman()
     , m_fSpeed(0.f)
     , m_bFlag(false)
     , m_iGauge(0)
+    , m_pFishingBobber(nullptr)
 {
     //ZeroMemory(m_vPoint, sizeof(m_vPoint));
     //ZeroMemory(m_vOriginPoint, sizeof(m_vOriginPoint));
@@ -30,6 +31,12 @@ void CFisherman::Initialize(void)
 
     m_eState = FishermanState::SELECT_DIR;
     m_States[(int)m_eState]->Initialize(*this);
+
+
+    m_pFishingBobber = new CFishingBobber;
+    m_pFishingBobber->Initialize();
+    Reset_Bobber_Pos();
+    Set_Bobber_Dir(true);
 }
 
 int CFisherman::Update(void)
@@ -85,5 +92,6 @@ void CFisherman::Release(void)
 
     }
 
+    Safe_Delete(m_pFishingBobber);
 
 }
