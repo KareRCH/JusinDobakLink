@@ -222,6 +222,21 @@
     <ClInclude Include="JunHo\Stage.h">
       <Filter>03. Scene\02. Stage</Filter>
     </ClInclude>
+    <ClInclude Include="YuJeong\YCustomer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YDish.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YPlayer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YScene_Serving.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YTimeGauge.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -292,6 +307,21 @@
     </ClCompile>
     <ClCompile Include="JunHo\Stage.cpp">
       <Filter>03. Scene\02. Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YCustomer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YDish.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YPlayer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YScene_Serving.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YTimeGauge.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
