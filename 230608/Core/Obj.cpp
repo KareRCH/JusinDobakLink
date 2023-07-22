@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "Obj.h"
 
-CObj::CObj() : m_fSpeed(0.f)
+CObj::CObj() : m_fSpeed(0.f), m_eRender()
 {
-	ZeroMemory(&m_tInfo, sizeof(INFO));
-	D3DXMatrixIdentity(&m_tInfo.matWorld);
+	/*ZeroMemory(&m_tInfo, sizeof(INFO));
+	D3DXMatrixIdentity(&m_tInfo.matWorld);*/
 }
 
 CObj::~CObj()

@@ -31,9 +31,10 @@ public:
 
     POINT      Get_Point_RenderPos(POINT _tPointPos);
 
-    D3DXVECTOR3      Get_LookAtPos()
+    INFO      Get_LookAtPos()
 	{ 
-        D3DXVECTOR3 vTmp = { m_tLookAt.vPos.x + (m_IsCameraShake ? -10.f : 0.f),
+		INFO vTmp;
+		vTmp.vPos= { m_tLookAt.vPos.x + (m_IsCameraShake ? -10.f : 0.f),
 					        m_tLookAt.vPos.y + (m_IsCameraShake ? -10.f : 0.f), 0.f};
 		return vTmp;
 	}

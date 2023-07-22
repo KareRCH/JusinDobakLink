@@ -58,6 +58,6 @@ void CFish::Release()
 {
 }
 
-void CFish::Collide()
+void CFish::Collide(CObj* _pDst)
 {
 }

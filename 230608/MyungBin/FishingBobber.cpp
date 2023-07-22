@@ -47,6 +47,6 @@ void CFishingBobber::Release()
 {
 }
 
-void CFishingBobber::Collide()
+void CFishingBobber::Collide(CObj* _pDst)
 {
 }

@@ -14,26 +14,31 @@ CJPlayer::~CJPlayer()
 void CJPlayer::Initialize()
 {
 	//m_tInfo.vPos = { 100.f,100.f,0.f };
+	D3DXVECTOR3 NOCHANGE = { 50.f ,50.f, 0.f };
 	m_fSpeed = 1.f;
 	m_tInfo.vPos = { 400.f, 300.f, 0.f }; //위치
 	m_tInfo.vLook = { 1.f, 0.f, 0.f }; //방향
-	m_tInfo.vSize = { 50.f ,50.f, 0.f };
+	m_tInfo.vSize = {1.f ,1.f, 0.f };
 	m_fDistance = 100.f;
 	m_fSpeed = 3.f;
 	m_fAngle = 0.f;
+	m_tInfo.fCX = 50.f;
+	m_tInfo.fCY = 50.f;
+	m_tInfo.fAngle = 0.f;
+	
 	m_eRender = RENDER_GAMEOBJECT;
 	m_eID = PLAYER;
 	// 좌상단 
-	m_vQ[0] = { m_tInfo.vPos.x - m_tInfo.vSize.x , m_tInfo.vPos.y - m_tInfo.vSize.y, 0.f };
+	m_vQ[0] = { m_tInfo.vPos.x - NOCHANGE.x , m_tInfo.vPos.y - NOCHANGE.y, 0.f };
 
 	// 우 상단
-	m_vQ[1] = { m_tInfo.vPos.x + m_tInfo.vSize.x, m_tInfo.vPos.y - m_tInfo.vSize.y, 0.f };
+	m_vQ[1] = { m_tInfo.vPos.x + NOCHANGE.x, m_tInfo.vPos.y - NOCHANGE.y, 0.f };
 
 	// 우하단 
-	m_vQ[2] = { m_tInfo.vPos.x + m_tInfo.vSize.x, m_tInfo.vPos.y + m_tInfo.vSize.y, 0.f };
+	m_vQ[2] = { m_tInfo.vPos.x + NOCHANGE.x, m_tInfo.vPos.y + NOCHANGE.y, 0.f };
 
 	// 좌하단
-	m_vQ[3] = { m_tInfo.vPos.x - m_tInfo.vSize.x, m_tInfo.vPos.y + m_tInfo.vSize.y, 0.f };
+	m_vQ[3] = { m_tInfo.vPos.x - NOCHANGE.x, m_tInfo.vPos.y + NOCHANGE.y, 0.f };
 
 
 	for (int i = 0; i < 4; ++i)
@@ -62,10 +67,10 @@ int CJPlayer::Update()
 		fAngle = 2 * D3DX_PI - fAngle;
 
 	if (m_tInfo.vPos.y < m_tInfo.vLook.y)
-		m_fAngle = 2 * D3DX_PI - m_fAngle;
+		m_tInfo.fAngle = 2 * D3DX_PI - m_tInfo.fAngle;
 
 	D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);
-	D3DXMatrixRotationZ(&matRotZ, m_fAngle);
+	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_tInfo.fAngle));
 	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
 
 	m_tInfo.matWorld = matScale * matRotZ * matTrans;
@@ -91,35 +96,35 @@ void CJPlayer::Render(HDC hDC)
 {
 	FRAME tFrame = {};
 	tFrame.iOffsetX = 25; tFrame.iOffsetY = 25;
-	CBmpMgr::Get_Instance()->Draw_PNG(hDC, L"Link_Ski", m_tInfo, tFrame, D3DXToDegree(m_fAngle), 0, 0, 50, 50);
-	CBmpMgr::Get_Instance()->Draw_Text_Circle_Vec3(hDC, m_tInfo.vPos, 3);
+	CBmpMgr::Get_Instance()->Draw_PNG(hDC, L"Link_Ski", m_tInfo, tFrame, 0, 0, 50,50);
+	//CBmpMgr::Get_Instance()->Draw_Text_Circle_Vec3(hDC, m_tInfo.vPos, 3);
 
-	MoveToEx(hDC, m_tInfo.vPos.x, m_tInfo.vPos.y, nullptr);
-	LineTo(hDC, m_tPosin.x, m_tPosin.y);
+	//MoveToEx(hDC, m_tInfo.vPos.x, m_tInfo.vPos.y, nullptr);
+	//LineTo(hDC, m_tPosin.x, m_tPosin.y);
 
-	MoveToEx(hDC, m_vQ[0].x, m_vQ[0].y, nullptr);
+	//MoveToEx(hDC, m_vQ[0].x, m_vQ[0].y, nullptr);
 
-	for (int i = 1; i < 4;++i)
-		LineTo(hDC, m_vQ[i].x, m_vQ[i].y);
+	//for (int i = 1; i < 4;++i)
+	//	LineTo(hDC, m_vQ[i].x, m_vQ[i].y);
 
-	LineTo(hDC, m_vQ[0].x, m_vQ[0].y);
-	Rectangle(hDC, vTest.x - 3.f, vTest.y - 3.f, vTest.x + 3.f, vTest.y + 3.f);
+	//LineTo(hDC, m_vQ[0].x, m_vQ[0].y);
+	//Rectangle(hDC, vTest.x - 3.f, vTest.y - 3.f, vTest.x + 3.f, vTest.y + 3.f);
 }
 
 void CJPlayer::Release()
 {
 }
-void CJPlayer::Collide()
+void CJPlayer::Collide(CObj* _pDst)
 {
 }
 void CJPlayer::Key_Input(void)
 {
 
 	if (GetAsyncKeyState(VK_LEFT))
-		m_fAngle -= D3DXToRadian(5.f);
+		m_tInfo.fAngle -=5.f;
 
 	if (GetAsyncKeyState(VK_RIGHT))
-		m_fAngle += D3DXToRadian(5.f);
+		m_tInfo.fAngle +=5.f;
 
 	if (GetAsyncKeyState(VK_UP))
 	{
