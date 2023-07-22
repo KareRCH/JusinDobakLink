@@ -4,7 +4,7 @@
 CFishingBobber::CFishingBobber()
     : m_fAngle(0.f)
     , m_fSpeed(0.f)
-    , m_iScaleCount(0)
+    //, m_iScaleCount(0)
 
 {
 }

@@ -157,6 +157,9 @@
     <Filter Include="04. MyungBin\Fisherman\State\05. Finishing">
       <UniqueIdentifier>{6d38fe7a-c5b0-4128-a903-f1a0467efee9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. MyungBin\Fisherman\Fish">
+      <UniqueIdentifier>{c276d7fb-5a4a-4454-aa7e-bf0ddf856f0e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -298,6 +301,12 @@
     <ClInclude Include="MyungBin\FishermanHooking.h">
       <Filter>04. MyungBin\Fisherman\State\03. Hooking</Filter>
     </ClInclude>
+    <ClInclude Include="FishermanCatching.h">
+      <Filter>04. MyungBin\Fisherman\State\04. Catching</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\Fish.h">
+      <Filter>04. MyungBin\Fisherman\Fish</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="230608.cpp">
@@ -392,6 +401,12 @@
     </ClCompile>
     <ClCompile Include="MyungBin\FishermanHooking.cpp">
       <Filter>04. MyungBin\Fisherman\State\03. Hooking</Filter>
+    </ClCompile>
+    <ClCompile Include="FishermanCatching.cpp">
+      <Filter>04. MyungBin\Fisherman\State\04. Catching</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\Fish.cpp">
+      <Filter>04. MyungBin\Fisherman\Fish</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

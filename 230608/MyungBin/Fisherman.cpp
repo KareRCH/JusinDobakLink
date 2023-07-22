@@ -4,6 +4,8 @@
 #include "FishermanSelectPower.h"
 #include "FishermanThrowing.h"
 
+#include "FishermanCatching.h"
+
 CFisherman::CFisherman()
     :  m_vTargetPos(0.f, 0.f, 0.f)
     , m_vOriginTargetPos(0.f, 0.f, 0.f)
@@ -12,6 +14,8 @@ CFisherman::CFisherman()
     , m_bFlag(false)
     , m_iGauge(0)
     , m_pFishingBobber(nullptr)
+    , m_pFish(nullptr)
+
 {
     //ZeroMemory(m_vPoint, sizeof(m_vPoint));
     //ZeroMemory(m_vOriginPoint, sizeof(m_vOriginPoint));
@@ -29,6 +33,9 @@ void CFisherman::Initialize(void)
     m_States[(int)FishermanState::SELECT_POWER] = new CFishermanSelectPower();
     m_States[(int)FishermanState::THROWING]     = new CFishermanThrowing();
 
+    m_States[(int)FishermanState::CATCHING]     = new CFishermanCatching();
+
+
     m_eState = FishermanState::SELECT_DIR;
     m_States[(int)m_eState]->Initialize(*this);
 
@@ -37,6 +44,11 @@ void CFisherman::Initialize(void)
     m_pFishingBobber->Initialize();
     Reset_Bobber_Pos();
     Set_Bobber_Dir(true);
+
+
+    m_pFish = new CFish;
+    m_pFish->Initialize();
+
 }
 
 int CFisherman::Update(void)
@@ -93,5 +105,7 @@ void CFisherman::Release(void)
     }
 
     Safe_Delete(m_pFishingBobber);
+    Safe_Delete(m_pFish);
+
 
 }

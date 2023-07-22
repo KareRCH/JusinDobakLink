@@ -1,6 +1,7 @@
 #pragma once
 #include "Actor.h"
 #include "FishingBobber.h"
+#include "Fish.h"
 
 enum class FishermanState 
 {
@@ -8,7 +9,7 @@ enum class FishermanState
 	SELECT_POWER,
 	THROWING,
 	//HOOKING,
-	//CATCHING,
+	CATCHING,
 	//FINISHING,
 	FishermanState_End,
 };
@@ -115,6 +116,9 @@ public:
 	}
 
 
+	CFish* Get_Fish() { return m_pFish; };
+
+
 
 private:
 	//D3DXVECTOR3		m_vPoint[4];
@@ -133,4 +137,6 @@ private:
 	int				m_iGauge;
 
 	CFishingBobber*	m_pFishingBobber;
+	CFish*			m_pFish;
+
 };

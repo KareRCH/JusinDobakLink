@@ -27,9 +27,19 @@ FishermanState CFishermanThrowing::Update(CFisherman& _Actor)
 	_Actor.Get_Bobber()->Update();
 
 
+	//if (m_preDeley + 1000 >= GetTickCount64()) 
+	//{
+	//	_Actor.Get_Bobber()->Scale_Up();
+	//}
+	//else //if (m_preDeley + 2000 >= GetTickCount64())
+	//{
+	//	_Actor.Get_Bobber()->Scale_Down();
+	//}
+
+
 	if (m_preDeley + 3000 < GetTickCount64())
 	{
-		return FishermanState::SELECT_DIR;
+		return FishermanState::CATCHING;
 	}
 
 	return FishermanState::THROWING;

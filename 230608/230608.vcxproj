@@ -152,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="230608.h" />
+    <ClInclude Include="FishermanCatching.h" />
     <ClInclude Include="JunHo\CJPlayer.h" />
     <ClInclude Include="Core\AbstractFactory.h" />
     <ClInclude Include="Core\Actor.h" />
@@ -183,6 +184,7 @@
     <ClInclude Include="JunHo\Line.h" />
     <ClInclude Include="JunHo\LineMgr.h" />
     <ClInclude Include="MyungBin\DefindMyungBin.h" />
+    <ClInclude Include="MyungBin\Fish.h" />
     <ClInclude Include="MyungBin\Fisherman.h" />
     <ClInclude Include="MyungBin\FishermanHooking.h" />
     <ClInclude Include="MyungBin\FishermanSelectDir.h" />
@@ -199,6 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="230608.cpp" />
+    <ClCompile Include="FishermanCatching.cpp" />
     <ClCompile Include="JunHo\CJPlayer.cpp" />
     <ClCompile Include="Core\AnimationTable.cpp" />
     <ClCompile Include="Core\BitMap.cpp" />
@@ -219,6 +222,7 @@
     <ClCompile Include="Core\VecCollisionMgr.cpp" />
     <ClCompile Include="JunHo\Line.cpp" />
     <ClCompile Include="JunHo\LineMgr.cpp" />
+    <ClCompile Include="MyungBin\Fish.cpp" />
     <ClCompile Include="MyungBin\Fisherman.cpp" />
     <ClCompile Include="MyungBin\FishermanHooking.cpp" />
     <ClCompile Include="MyungBin\FishermanSelectDir.cpp" />
