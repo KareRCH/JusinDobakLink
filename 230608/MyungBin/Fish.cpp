@@ -5,6 +5,7 @@
 CFish::CFish()
     : m_fAngle(0.f)
     , m_fSpeed(0.f)
+    , m_bFlag(false)
 {
 }
 

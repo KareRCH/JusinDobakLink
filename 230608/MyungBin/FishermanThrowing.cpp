@@ -16,7 +16,7 @@ void CFishermanThrowing::Initialize(CFisherman& _Actor)
 
 	_Actor.Reset_Bobber_Pos();
 	_Actor.Set_Bobber_Dir(true);
-	_Actor.Get_Bobber()->Set_Speed(_Actor.Get_Gauge()/300);
+	_Actor.Get_Bobber()->Set_Speed(_Actor.Get_Gauge()/100);
 
 }
 
@@ -37,9 +37,9 @@ FishermanState CFishermanThrowing::Update(CFisherman& _Actor)
 	//}
 
 
-	if (m_preDeley + 3000 < GetTickCount64())
+	if (m_preDeley + 1000 < GetTickCount64())
 	{
-		return FishermanState::CATCHING;
+		return FishermanState::HOOKING;
 	}
 
 	return FishermanState::THROWING;

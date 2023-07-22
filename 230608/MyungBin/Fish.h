@@ -50,8 +50,10 @@ public:
 		Add_Angle(float(rand() % iAngleRange) - float(iAngleRange / 2.f));
 		UpdateDir();
 		UpdateMatrixDefault();
-
 	}
+
+	bool	Get_Flag() { return m_bFlag; };
+	void	Set_Flag(bool _bool) { m_bFlag = _bool; };
 
 private:
 	D3DXMATRIX		matScale, matRotZ, matTrans;
@@ -60,6 +62,7 @@ private:
 
 	float	m_fAngle;
 	float	m_fSpeed;
+	bool	m_bFlag;
 
 
 	

@@ -16,8 +16,8 @@ CFishingBobber::~CFishingBobber()
 
 void CFishingBobber::Initialize()
 {
-    m_tInfo.fCX = 10;
-    m_tInfo.fCY = 10;
+    m_tInfo.fCX = 20;
+    m_tInfo.fCY = 20;
 
 
 }

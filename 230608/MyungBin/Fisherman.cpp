@@ -3,7 +3,7 @@
 #include "FishermanSelectDir.h"
 #include "FishermanSelectPower.h"
 #include "FishermanThrowing.h"
-
+#include "FishermanHooking.h"
 #include "FishermanCatching.h"
 
 CFisherman::CFisherman()
@@ -32,7 +32,7 @@ void CFisherman::Initialize(void)
     m_States[(int)FishermanState::SELECT_DIR]   = new CFishermanSelectDir();
     m_States[(int)FishermanState::SELECT_POWER] = new CFishermanSelectPower();
     m_States[(int)FishermanState::THROWING]     = new CFishermanThrowing();
-
+    m_States[(int)FishermanState::HOOKING]      = new CFishermanHooking();
     m_States[(int)FishermanState::CATCHING]     = new CFishermanCatching();
 
 

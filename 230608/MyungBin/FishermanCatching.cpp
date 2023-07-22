@@ -15,6 +15,7 @@ void CFishermanCatching::Initialize(CFisherman& _Actor)
 	m_preDeley = GetTickCount64();
 	m_PostDelay = GetTickCount64();
 
+	_Actor.Get_Fish()->Initialize();
 	targetVec3 = { 400, 450, 0 };
 }
 
@@ -23,6 +24,11 @@ FishermanState CFishermanCatching::Update(CFisherman& _Actor)
 	_Actor.Get_Fish()->Update();
 
 	tempVec3 = _Actor.Get_Fish()->Get_Info().vPos - targetVec3;
+
+	if (_Actor.Get_Fish()->Get_Info().vPos.y - _Actor.Get_Fish()->Get_Info().fCY < 100) 
+	{
+		return FishermanState::SELECT_DIR;
+	}
 
 	if (sqrt(tempVec3.x * tempVec3.x + tempVec3.y * tempVec3.y) < _Actor.Get_Fish()->Get_Speed() * 2)
 	{

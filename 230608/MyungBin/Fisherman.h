@@ -8,7 +8,7 @@ enum class FishermanState
 	SELECT_DIR,
 	SELECT_POWER,
 	THROWING,
-	//HOOKING,
+	HOOKING,
 	CATCHING,
 	//FINISHING,
 	FishermanState_End,

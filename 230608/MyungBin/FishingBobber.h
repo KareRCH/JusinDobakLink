@@ -54,6 +54,11 @@ public:
 		m_tInfo.vPos += m_tInfo.vDir * m_fSpeed; 
 	};
 
+	void	Move_Back() {
+		//D3DXVECTOR3 test = { 0.f , -1.f, 0.f };
+		m_tInfo.vPos -= m_tInfo.vDir * m_fSpeed;
+	};
+
 
 
 
