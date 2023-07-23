@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ObjMgr.h"
-//#include "CollisionMgr.h"
+#include "CollisionMgr.h"
 
 CObjMgr* CObjMgr::m_pInstance = nullptr;
 
@@ -90,6 +90,10 @@ void CObjMgr::Late_Update()
 		}
 
 	}
+
+	CCollisionMgr::Collision_Rect(m_ObjList[PLAYER], m_ObjList[MONSTER]);
+	CCollisionMgr::Collision_Rect(m_ObjList[PLAYER], m_ObjList[BULLET]);
+	CCollisionMgr::Collision_Rect(m_ObjList[MONSTER], m_ObjList[BULLET]);
 }
 
 void CObjMgr::Render(HDC hDC)

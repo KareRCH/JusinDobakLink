@@ -333,6 +333,9 @@
     <ClInclude Include="JunHo\CJPlayer.h">
       <Filter>01. Obj\01.Player</Filter>
     </ClInclude>
+    <ClInclude Include="YTeacher.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -466,6 +469,9 @@
     </ClCompile>
     <ClCompile Include="JunHo\CJPlayer.cpp">
       <Filter>01. Obj\01.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="YTeacher.cpp">
+      <Filter>05. YuJeong</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

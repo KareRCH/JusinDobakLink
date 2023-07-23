@@ -12,6 +12,7 @@ public:
 	void			Set_Info(INFO& value) { m_tInfo = value; }
 	const INFO&		Get_Info() const { return m_tInfo; }
 	RENDERID		Get_RenderID() { return m_eRender; }
+
 public:
 	public:
 	virtual void		Initialize()	PURE;

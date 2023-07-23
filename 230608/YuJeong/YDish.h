@@ -1,5 +1,8 @@
 #pragma once
 #include "Obj.h"
+
+class CScene;	// 전방선언
+
 class CYDish :
     public CObj
 {
@@ -8,35 +11,71 @@ public:
 	virtual ~CYDish();
 
 public:
-	virtual void		Initialize()	override;
-	virtual int			Update()		override;
-	virtual void		Late_Update()	override;
-	virtual void		Render(HDC hDC)	override;
-	virtual void		Release()		override;
+	virtual void		Initialize()				override;
+	virtual int			Update()					override;
+	virtual void		Late_Update()				override;
+	virtual void		Render(HDC hDC)				override;
+	virtual void		Release()					override;
 	virtual void		Collide(CObj* _pDst)		override;
 
 public:
 	void			Draw_Rectangle(HDC hDC);	// 사각형 그리기
 
 private:
+	D3DXVECTOR3		m_vCenter;		// 원점, 플레이어 생성위치?
+	D3DXVECTOR3		m_vPointScale;	// 점들의 간격
+	D3DXVECTOR3		m_vOffset;	// 플레이어로부터 얼마나 떨어져 있을지
+
 	D3DXVECTOR3		m_vPoint[4];
 	D3DXVECTOR3		m_vOriginPoint[4];
 
-private:
-	CObj*			m_pOwner;
+public:
+	void			Set_Center(D3DXVECTOR3 _vCenter) { m_vCenter = _vCenter; }
+	D3DXVECTOR3		Get_Center() { return m_vCenter; }
 
 private:
 	D3DXMATRIX		matScale;
 	D3DXMATRIX		matRotZ;
 	D3DXMATRIX		matTrans;
 
-	int			m_iOffset;	// 플레이어로부터 얼마나 떨어져 있을지
+
+// 객체 활성화 여부 판단
+private:
+	bool	m_bActive;
 
 public:
-	void			Set_Owner(CObj* _pOwner) { m_pOwner = _pOwner; }
-	CObj*			Get_Owner() { return m_pOwner; }
+	void	Set_Active(bool _Active) { m_bActive = _Active; }
+	bool	Get_Active() { return m_bActive; }
 
 
 private:
-	void		Key_Input();
+	CObj*			m_pPlayer;
+	CObj*			m_pCustomer;
+
+
+public:
+	void			Set_Player(CObj* _pPlayer) { m_pPlayer = _pPlayer; }
+	CObj*			Get_Player() { return m_pPlayer; }
+
+	void			Set_Customer(CObj* _pCustomer) { m_pCustomer = _pCustomer; }
+	CObj*			Get_Customer() { return m_pCustomer; }
+
+
+public:
+	OBJID   Get_Id() { return m_eID; };
+
+// 무엇과 충돌했는지 판단
+private:
+	bool		m_bIsPlayerColl;
+	bool		m_bIsCustomerColl;
+
+
+// 씬...ㅠ
+private:
+	CScene* m_ServingScene;
+
+public:
+	void		Set_Scene(CScene* _ServingScene) { m_ServingScene = _ServingScene; }
+	CScene*		Get_Scene() { return m_ServingScene; }
+
 };

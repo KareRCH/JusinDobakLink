@@ -26,7 +26,4 @@ public:
 
 		return pObj;
 	}
-
-
 };
-
