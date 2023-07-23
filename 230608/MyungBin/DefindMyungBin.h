@@ -9,3 +9,12 @@ enum class MyungBinStageState
 
 	MyungBinStageState_End,
 };
+
+enum class FishImgState 
+{
+	LEFT,
+	RIGHT,
+	UP,
+	DOWN,
+	FishImgState_END,
+};

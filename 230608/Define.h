@@ -39,6 +39,7 @@
 extern HWND g_hWnd;					// 윈도우 핸들
 extern vector<HFONT> g_vFonts;		// 시스템에 폰트를 여러개 추가하기 위한 용도
 extern bool g_bWinActivate;			// 창 비활성화시 키입력 없애는 용도(근데 언제부터 안됨) 쓰지마
+extern float g_fDeltaTime;
 #pragma endregion
 
 #pragma region 전역 ID 태그
@@ -253,7 +254,7 @@ struct FRAME_VECTOR
 typedef struct tagInfo
 {
 	tagInfo() 
-		: fCX(float()), fCY(float()), vPos(), vDir(1.f, 0.f, 0.f), vLook(1.f, 0.f, 0.f), fAngle(),
+		: fCX(float()), fCY(float()), vPos(0.f, 0.f, 0.f), vDir(1.f, 0.f, 0.f), vLook(1.f, 0.f, 0.f), fAngle(0.f),
 		vSize(1.f, 1.f, 1.f), vSpeed(0.f, 0.f, 0.f), vAccel(0.f, 0.f, 0.f), matWorld(*D3DXMatrixIdentity(&matWorld))
 	{}
 	~tagInfo() {}
@@ -512,7 +513,7 @@ template <typename T>
 using STATE_INFO = tagState<T>;
 
 template <typename Key, typename Func>
-using MAP_FUNC = map<Key, function<Func>>;
+using MAP_FUNC = unordered_map<Key, function<Func>>;
 
 // 상태머신과 함수를 묶어 사용할 수 있는 템플릿
 template<typename Key, typename Func>
@@ -630,6 +631,10 @@ public:
 	void Reset()
 	{
 		Cur = T();
+	}
+	void Reset(T value)
+	{
+		Cur = value;
 	}
 
 	// Max 값 재설정 및 현재값 초기화

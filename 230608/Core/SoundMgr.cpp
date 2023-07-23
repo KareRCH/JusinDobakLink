@@ -60,6 +60,11 @@ void CSoundMgr::PlaySound(TCHAR* pSoundKey, CHANNELID eID, float fVolume)
 	{
 		FMOD_System_PlaySound(m_pSystem, FMOD_CHANNEL_FREE, iter->second, FALSE, &m_pChannelArr[eID]);
 	}
+	else
+	{
+		FMOD_Channel_Stop(m_pChannelArr[eID]);
+		FMOD_System_PlaySound(m_pSystem, FMOD_CHANNEL_FREE, iter->second, FALSE, &m_pChannelArr[eID]);
+	}
 
 	FMOD_Channel_SetVolume(m_pChannelArr[eID], fVolume);
 

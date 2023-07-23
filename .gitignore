@@ -40,5 +40,5 @@ Release/
 ipch/
 
 # 이미지 편집 파일 비포함
-*.afphoto
+#*.afphoto
 *.psd

@@ -77,7 +77,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)MyungBin/;$(ProjectDir)YuJeong/;$(ProjectDir)JunHo/;$(ProjectDir)HakJun/;$(ProjectDir)Core/;$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)MyungBin/;$(ProjectDir)YuJeong/;$(ProjectDir)JunHo/;$(ProjectDir)HakJun/;$(ProjectDir)Core/;$(ProjectDir);C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -151,7 +152,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="230608.h" />
+    <ClInclude Include="HakJun\Broly.h" />
+    <ClInclude Include="HakJun\Bowl.h" />
     <ClInclude Include="Core\CollisionMgr.h" />
+    <ClInclude Include="FishermanFail.h" />
+    <ClInclude Include="FishermanSuccess.h" />
     <ClInclude Include="HakJun\ObjFactory.h" />
     <ClInclude Include="HakJun\Food_Cookie.h" />
     <ClInclude Include="HakJun\Food.h" />
@@ -184,6 +189,7 @@
     <ClInclude Include="Core\Vector2.h" />
     <ClInclude Include="Core\Vector3.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="HakJun\HitCircle.h" />
     <ClInclude Include="JunHo\CJPlayer.h" />
     <ClInclude Include="JunHo\Line.h" />
     <ClInclude Include="JunHo\LineMgr.h" />
@@ -216,7 +222,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="230608.cpp" />
+    <ClCompile Include="HakJun\Broly.cpp" />
+    <ClCompile Include="HakJun\Bowl.cpp" />
     <ClCompile Include="Core\CollisionMgr.cpp" />
+    <ClCompile Include="FishermanFail.cpp" />
+    <ClCompile Include="FishermanSuccess.cpp" />
     <ClCompile Include="HakJun\Food_Cookie.cpp" />
     <ClCompile Include="HakJun\Food.cpp" />
     <ClCompile Include="HakJun\HPlayer.cpp" />
@@ -238,6 +248,7 @@
     <ClCompile Include="Core\Tile.cpp" />
     <ClCompile Include="Core\TileMgr.cpp" />
     <ClCompile Include="Core\VecCollisionMgr.cpp" />
+    <ClCompile Include="HakJun\HitCircle.cpp" />
     <ClCompile Include="JunHo\CJPlayer.cpp" />
     <ClCompile Include="JunHo\Line.cpp" />
     <ClCompile Include="JunHo\LineMgr.cpp" />

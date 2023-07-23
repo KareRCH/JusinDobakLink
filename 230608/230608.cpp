@@ -14,6 +14,7 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 HWND	g_hWnd;
 vector<HFONT>   g_hFonts;
 bool    g_bWinActivate;
+float   g_fDeltaTime;
 
 // 이 코드 모듈에 들어 있는 함수의 정방향 선언입니다.
 ATOM                MyRegisterClass(HINSTANCE hInstance);		// 창 스타일을 제어하는 기능의 함수
@@ -98,7 +99,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,		   // 현재 프로그램의 고유 식별
 			if (ulTime + 10ULL < GetTickCount64())
 			{
                 // 1초를 기준으로 현재 시간에 과거 시간을 뺀 값을 
-                float fDeltaTime = (static_cast<float>(ulCurTime - ulTime)) / 1000.f;
+                g_fDeltaTime = (static_cast<float>(ulCurTime - ulTime)) / 1000.f;
 
 				MainGame.Update();
 				MainGame.Late_Update();

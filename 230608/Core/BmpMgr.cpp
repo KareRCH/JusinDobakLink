@@ -140,6 +140,63 @@ void CBmpMgr::Draw_BMP_Strip(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRAME tF
 		RGB(255, 255, 255)); // 제거하고자 하는 색상
 }
 
+void CBmpMgr::Draw_BMP(HDC hDC, INFO tInfo, bool bAllowScroll)
+{
+	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(tInfo.tFrameTSet.Get_StrFrameKey());
+
+	int		iScrollX = (int)CCamera::Get_Instance()->Get_WindowPos().x;
+	int		iScrollY = (int)CCamera::Get_Instance()->Get_WindowPos().y;
+
+	FRAME& tFrame = (*tInfo.tFrameTSet);
+
+	GdiTransparentBlt(hDC,
+		(int)tInfo.vPos.x - (int)tFrame.iOffsetX - iScrollX * (int)bAllowScroll,
+		(int)tInfo.vPos.y - (int)tFrame.iOffsetY - iScrollY * (int)bAllowScroll,
+		tFrame.iWidth, tFrame.iHeight,
+		hMemDC,			// 비트맵 이미지를 담고 있는 DC
+		(tFrame.iFrameStart + tFrame.iFrameCur) * tFrame.iWidth, 0,
+		tFrame.iWidth, tFrame.iHeight,
+		RGB(255, 255, 255)); // 제거하고자 하는 색상
+}
+
+void CBmpMgr::Draw_BMP(HDC hDC, INFO tInfo, int srcx, int srcy, bool bAllowScroll)
+{
+	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(tInfo.tFrameTSet.Get_StrFrameKey());
+
+	int		iScrollX = (int)CCamera::Get_Instance()->Get_WindowPos().x;
+	int		iScrollY = (int)CCamera::Get_Instance()->Get_WindowPos().y;
+
+	FRAME& tFrame = (*tInfo.tFrameTSet);
+
+	GdiTransparentBlt(hDC,
+		(int)tInfo.vPos.x - (int)tFrame.iOffsetX - iScrollX * (int)bAllowScroll,
+		(int)tInfo.vPos.y - (int)tFrame.iOffsetY - iScrollY * (int)bAllowScroll,
+		tFrame.iWidth, tFrame.iHeight,
+		hMemDC,			// 비트맵 이미지를 담고 있는 DC
+		srcx, srcy,
+		tFrame.iWidth, tFrame.iHeight,
+		RGB(255, 255, 255)); // 제거하고자 하는 색상
+}
+
+void CBmpMgr::Draw_BMP(HDC hDC, INFO tInfo, int srcx, int srcy, int src_width, int src_height, bool bAllowScroll)
+{
+	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(tInfo.tFrameTSet.Get_StrFrameKey());
+
+	int		iScrollX = (int)CCamera::Get_Instance()->Get_WindowPos().x;
+	int		iScrollY = (int)CCamera::Get_Instance()->Get_WindowPos().y;
+
+	FRAME& tFrame = (*tInfo.tFrameTSet);
+
+	GdiTransparentBlt(hDC,
+		(int)tInfo.vPos.x - (int)tFrame.iOffsetX - iScrollX * (int)bAllowScroll,
+		(int)tInfo.vPos.y - (int)tFrame.iOffsetY - iScrollY * (int)bAllowScroll,
+		tFrame.iWidth, tFrame.iHeight,
+		hMemDC,			// 비트맵 이미지를 담고 있는 DC
+		srcx, srcy,
+		src_width, src_height,
+		RGB(255, 255, 255)); // 제거하고자 하는 색상
+}
+
 void CBmpMgr::Draw_PNG_Strip(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRAME tFrame, bool bAllowScroll)
 {
 	// Strip 형태의 PNG를 표시하는데 쓰인다.

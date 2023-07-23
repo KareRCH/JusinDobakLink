@@ -32,11 +32,11 @@ void CMainGame::Initialize()
 	gdiplusStartupInput.SuppressBackgroundThread = FALSE;
 	Gdp::GdiplusStartup(&m_gdiplusToken, &gdiplusStartupInput, NULL);
 
-	CSoundMgr::Get_Instance()->Initialize();
-
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	
-	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_STAGE3);
+	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_STAGE2);
+
+	CSoundMgr::Get_Instance()->Initialize();
 	CAnimationTable::Get_Instance();
 }
 
@@ -51,6 +51,8 @@ void CMainGame::Late_Update()
 	CScrollMgr::Get_Instance()->Scroll_Lock();
 
 	CSceneMgr::Get_Instance()->Late_Update();
+
+	CKeyMgr::Get_Instance()->Late_Update();
 }
 
 void CMainGame::Render()
@@ -101,16 +103,15 @@ void CMainGame::Render()
 
 void CMainGame::Release()
 {
-	
 	CBmpMgr::Destroy_Instance();
 	CAnimationTable::Destroy_Instance();
 	CScrollMgr::Destroy_Instance();
 	CCamera::Destroy_Instance();
 	CKeyMgr::Destroy_Instance();
+	CSoundMgr::Destroy_Instance();
 	CSceneMgr::Destroy_Instance();
 	CObjMgr::Destroy_Instance();
 	CSceneMgr::Destroy_Instance();
-	CSoundMgr::Get_Instance()->Destroy_Instance();
 
 	Gdp::GdiplusShutdown(m_gdiplusToken);
 	ReleaseDC(g_hWnd, m_hDC);
