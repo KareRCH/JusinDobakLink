@@ -14,6 +14,8 @@ public:
 
 public:
 	LINE		Get_Info() { return m_tInfo; }
+	void 		Line_Option(int _Lineoption) { m_Lineoption = _Lineoption; }
+	int 		GetLine_Option() { return m_Lineoption; }
 
 public:
 
@@ -21,5 +23,5 @@ public:
 
 private:
 	LINE		m_tInfo;
-
+	int			m_Lineoption;
 };

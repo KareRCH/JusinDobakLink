@@ -22,6 +22,8 @@ CLine::~CLine()
 {
 }
 
+
+
 void CLine::Render(HDC hDC)
 {
 	 //기존 코드

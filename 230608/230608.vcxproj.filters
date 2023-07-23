@@ -154,6 +154,12 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="04. MyungBin\FishermanState\Success">
+      <UniqueIdentifier>{036d7bf4-411e-4fa4-ac05-b60fbdb8ad94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\FishermanState\Fail">
+      <UniqueIdentifier>{7fe09ed9-abfc-4be1-9363-52ee838c06d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -336,6 +342,12 @@
     <ClInclude Include="JunHo\CJPlayer.h">
       <Filter>01. Obj\01.Player</Filter>
     </ClInclude>
+    <ClInclude Include="FishermanSuccess.h">
+      <Filter>04. MyungBin\FishermanState\Success</Filter>
+    </ClInclude>
+    <ClInclude Include="FishermanFail.h">
+      <Filter>04. MyungBin\FishermanState\Fail</Filter>
+     </ClInclude>
     <ClInclude Include="MoveBg.h">
       <Filter>03. Scene\02. Stage</Filter>
     </ClInclude>
@@ -484,6 +496,12 @@
     </ClCompile>
     <ClCompile Include="JunHo\CJPlayer.cpp">
       <Filter>01. Obj\01.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="FishermanSuccess.cpp">
+      <Filter>04. MyungBin\FishermanState\Success</Filter>
+    </ClCompile>
+    <ClCompile Include="FishermanFail.cpp">
+      <Filter>04. MyungBin\FishermanState\Fail</Filter>
     </ClCompile>
     <ClCompile Include="MoveBg.cpp">
       <Filter>03. Scene\02. Stage</Filter>

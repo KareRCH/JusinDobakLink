@@ -1,8 +1,11 @@
 #pragma once
+#include "DefindMyungBin.h"
 #include "Obj.h"
 
 class CFish : public CObj 
 {
+
+
 public:
 	CFish();
 	~CFish();
@@ -51,7 +54,7 @@ public:
 		UpdateDir();
 		UpdateMatrixDefault();
 
-		int iboost = 20;
+		int iboost = 15;
 
 		m_fSpeed *= iboost;
 		Move();
@@ -64,6 +67,40 @@ public:
 
 	D3DXVECTOR3	Get_TargetPos() { return m_vTargetPos; };
 
+	int Get_RendMode() { return m_iRendMode; };
+	void Set_RenderMode(int iMode) { m_iRendMode = iMode; };
+
+	void	Set_FishImg(FishImgState eState) 
+	{
+
+
+
+		fishImg.vSize.x = 0.2f;
+		fishImg.vSize.y = 0.2f;
+
+		switch (eState)
+		{
+		case FishImgState::LEFT:
+			fishImg.tFrameTSet.sFrameKey = L"TegoFish1";
+			fishImg.fAngle = 0;
+
+			break;
+		case FishImgState::RIGHT:
+			fishImg.tFrameTSet.sFrameKey = L"TegoFish1_1";
+			fishImg.fAngle = 0;
+
+			break;
+		case FishImgState::UP:
+			//fishImg.vSize.x = 0.3f;
+			//fishImg.vSize.y = 0.3f;
+			fishImg.tFrameTSet.sFrameKey = L"TegoFish2";
+			break;
+		default:
+			break;
+		}
+	
+	};
+
 private:
 	D3DXMATRIX		matScale, matRotZ, matTrans;
 	D3DXVECTOR3		m_vTargetPos;
@@ -73,7 +110,9 @@ private:
 	float	m_fSpeed;
 	bool	m_bFlag;
 
+	int		m_iRendMode;
 
+	INFO	fishImg;
 	
 
 };
