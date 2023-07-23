@@ -14,6 +14,6 @@ public:
 	virtual void Render(HDC hDC, CFisherman& _Actor) override;
 	virtual void Release(CFisherman& _Actor) override;
 private:
-	D3DXVECTOR3 targetVec3;
-	D3DXVECTOR3 tempVec3;
+	int iRand;
+
 };
