@@ -57,11 +57,11 @@ void CJPlayer::Initialize()
 
 int CJPlayer::Update()
 {
-	//Jump();
+	Key_Input();
+	Jump();
 
 	vTest = { (m_vQ[1].x - m_vQ[0].x) * 0.5f, (m_vQ[1].y - m_vQ[0].y) * 0.5f, 0.f };
 	vTest += m_tInfo.vPos;
-	Key_Input();
 
 	m_tInfo.vDir = ::Get_Mouse() - m_tInfo.vPos;
 
@@ -123,23 +123,29 @@ void CJPlayer::Release()
 }
 void CJPlayer::Collide(CObj* _pDst)
 {
+	
 }
 void CJPlayer::Key_Input(void)
 {
 
 	if (GetAsyncKeyState(VK_LEFT))
-		m_tInfo.fAngle -=5.f;
+		m_tInfo.fAngle -=10.f;
 
 	if (GetAsyncKeyState(VK_RIGHT))
-		m_tInfo.fAngle +=5.f;
+		m_tInfo.fAngle +=10.f;
 
-	if (GetAsyncKeyState(VK_UP))
-	{
+	//if (GetAsyncKeyState(VK_UP))
+	//{
 		D3DXVECTOR3 vLook = m_tInfo.vPos - vTest;
 		D3DXVec3Normalize(&vLook, &vLook);
 		m_tInfo.vPos -= m_fSpeed * vLook;
 		fuckingswitch = true;
-	}
+	//}
+
+	if (GetAsyncKeyState(VK_UP))
+		m_fSpeed += 0.05f;
+	if (GetAsyncKeyState(VK_SPACE))
+		m_bJump = true;
 
 	if (GetAsyncKeyState(VK_DOWN))
 	{
@@ -153,29 +159,61 @@ void CJPlayer::Key_Input(void)
 void CJPlayer::Jump()
 {
 	float	fY = 0.f;
+	float	fGradient = 0.f;
+	CLine* pLine = nullptr;
 
-	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(m_tInfo, &fY);
+	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(m_tInfo, &pLine , &fY, &fGradient);
 
 	if (m_bJump)
 	{
-		m_tInfo.vPos.y -= (m_fPower * m_fTime) - 9.8f * m_fTime * m_fTime * 0.5f;
-		m_fTime += 0.2f;
-
-		if (bLineCol && (fY < m_tInfo.vPos.y))
+		m_fPower = 3.f;
+		m_tInfo.vPos.y -= (m_fPower * m_fTime) - 9.8 * m_fTime * m_fTime * 0.5f;
+		m_fTime += 0.1f;
+		if (bLineCol && (fY - 15 < m_tInfo.vPos.y))
 		{
 			m_bJump = false;
 			m_fTime = 0.f;
-			m_tInfo.vPos.y = fY;
+			
+			m_tInfo.vPos.y = fY-15;
+			if (fGradient != 0.f)
+			{
+				m_tInfo.fAngle = (fGradient)*180/D3DX_PI;
+				//fAngle 값 조정
+			}
 		}
 	}
 	else if (bLineCol)
 	{
-		m_tInfo.vPos.y = fY;
+		m_tInfo.vPos.y = fY-15;
 		m_fTime = 0.f;
+		if (fGradient != 0.f)
+		{
+			m_tInfo.fAngle = (fGradient) * 180 / D3DX_PI;
+			//fAngle 값 조정
+		}
 	}
 	else
 	{
 		m_tInfo.vPos.y += 9.8f * m_fTime * m_fTime * 0.5f;
 		m_fTime += 0.2f;
+	}
+
+	if (pLine)
+	{
+		if (pLine->GetLine_Option() == 0 || m_tInfo.fAngle >= 0)
+		{
+			m_fSpeed += 0.1f;
+			if (m_bIsDrop == false)
+			{
+				m_bIsDrop = true;
+				m_bJump = true;
+ 			}
+		}
+		else
+		{
+			m_fSpeed -= 0.13f;
+			if (m_bIsDrop)
+ 				m_bIsDrop = false;
+		}
 	}
 }
