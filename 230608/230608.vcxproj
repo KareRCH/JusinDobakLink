@@ -152,6 +152,8 @@
   <ItemGroup>
     <ClInclude Include="230608.h" />
     <ClInclude Include="Core\CollisionMgr.h" />
+    <ClInclude Include="FishermanFail.h" />
+    <ClInclude Include="FishermanSuccess.h" />
     <ClInclude Include="HakJun\ObjFactory.h" />
     <ClInclude Include="HakJun\Food_Cookie.h" />
     <ClInclude Include="HakJun\Food.h" />
@@ -213,6 +215,8 @@
   <ItemGroup>
     <ClCompile Include="230608.cpp" />
     <ClCompile Include="Core\CollisionMgr.cpp" />
+    <ClCompile Include="FishermanFail.cpp" />
+    <ClCompile Include="FishermanSuccess.cpp" />
     <ClCompile Include="HakJun\Food_Cookie.cpp" />
     <ClCompile Include="HakJun\Food.cpp" />
     <ClCompile Include="HakJun\HPlayer.cpp" />

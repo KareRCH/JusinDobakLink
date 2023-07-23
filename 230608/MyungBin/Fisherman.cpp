@@ -5,6 +5,9 @@
 #include "FishermanThrowing.h"
 #include "FishermanHooking.h"
 #include "FishermanCatching.h"
+#include "FishermanSuccess.h"
+#include "FishermanFail.h"
+
 
 CFisherman::CFisherman()
     :  m_vTargetPos(0.f, 0.f, 0.f)
@@ -35,6 +38,9 @@ void CFisherman::Initialize(void)
     m_States[(int)FishermanState::THROWING]     = new CFishermanThrowing();
     m_States[(int)FishermanState::HOOKING]      = new CFishermanHooking();
     m_States[(int)FishermanState::CATCHING]     = new CFishermanCatching();
+    m_States[(int)FishermanState::SUCCESS]      = new CFishermanSuccess();
+    m_States[(int)FishermanState::FAIL]         = new CFishermanFail();
+
 
 
     m_eState = FishermanState::SELECT_DIR;

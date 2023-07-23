@@ -38,12 +38,12 @@ FishermanState CFishermanCatching::Update(CFisherman& _Actor)
 
 	if (sqrt(tempVec3.x * tempVec3.x + tempVec3.y * tempVec3.y) < _Actor.Get_Fish()->Get_Speed() * 2)
 	{
-		return FishermanState::SELECT_DIR;
+		return FishermanState::SUCCESS;
 	}
 
 	if (_Actor.Get_Fish()->Get_TargetPos().y <= 100) 
 	{
- 		return FishermanState::SELECT_DIR;
+ 		return FishermanState::FAIL;
 	}
 
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_SPACE))

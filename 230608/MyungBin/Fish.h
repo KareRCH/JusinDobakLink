@@ -54,7 +54,7 @@ public:
 		UpdateDir();
 		UpdateMatrixDefault();
 
-		int iboost = 20;
+		int iboost = 15;
 
 		m_fSpeed *= iboost;
 		Move();

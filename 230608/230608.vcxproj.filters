@@ -339,6 +339,12 @@
     <ClInclude Include="JunHo\CJPlayer.h">
       <Filter>01. Obj\01.Player</Filter>
     </ClInclude>
+    <ClInclude Include="FishermanSuccess.h">
+      <Filter>04. MyungBin\FishermanState\Success</Filter>
+    </ClInclude>
+    <ClInclude Include="FishermanFail.h">
+      <Filter>04. MyungBin\FishermanState\Fail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -472,6 +478,12 @@
     </ClCompile>
     <ClCompile Include="JunHo\CJPlayer.cpp">
       <Filter>01. Obj\01.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="FishermanSuccess.cpp">
+      <Filter>04. MyungBin\FishermanState\Success</Filter>
+    </ClCompile>
+    <ClCompile Include="FishermanFail.cpp">
+      <Filter>04. MyungBin\FishermanState\Fail</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,8 @@ enum class FishermanState
 	THROWING,
 	HOOKING,
 	CATCHING,
-	//FINISHING,
+	SUCCESS,
+	FAIL,
 	FishermanState_End,
 };
 
