@@ -23,6 +23,10 @@ public:
 	void		Draw_BMP(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRAME tFrame, int srcx, int srcy, int src_width, int src_height, bool bAllowScroll = true);
 	void		Draw_BMP_Strip(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRAME tFrame, bool bAllowScroll);
 
+	void		Draw_BMP(HDC hDC, INFO tInfo, bool bAllowScroll = true);
+	void		Draw_BMP(HDC hDC, INFO tInfo, int srcx, int srcy, bool bAllowScroll = true);
+	void		Draw_BMP(HDC hDC, INFO tInfo, int srcx, int srcy, int src_width, int src_height, bool bAllowScroll = true);
+
 	// PNG 계열 드로우
 	void		Draw_PNG(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRAME tFrame, bool bAllowScroll = true);
 	void		Draw_PNG(HDC hDC, const TCHAR* pImgKey, INFO tInfo, FRAME tFrame, int srcx, int srcy, bool bAllowScroll = true);
