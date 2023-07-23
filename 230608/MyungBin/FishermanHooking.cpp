@@ -30,11 +30,13 @@ void CFishermanHooking::Initialize(CFisherman& _Actor)
 	_Actor.Get_Fish()->Set_Pos(startFishPos);
 	_Actor.Get_Fish()->Set_AngleDegree(90.f);
 
+	iRand = 20;
+
 }
 
 FishermanState CFishermanHooking::Update(CFisherman& _Actor)
 {
-	if (m_preDeley + 1000.f < GetTickCount64()) 
+	if (m_preDeley + iRand * 100 < GetTickCount64())
 	{
 		_Actor.Get_Fish()->Update();
 		if (_Actor.Get_Fish()->Get_Flag() && _Actor.Get_Fish()->Get_TargetPos().x <= 100)
@@ -45,6 +47,7 @@ FishermanState CFishermanHooking::Update(CFisherman& _Actor)
 			_Actor.Get_Fish()->Set_Flag(false);
 
 			m_preDeley = GetTickCount64();
+			iRand = rand() % 30 + 10;
 		}
 		else if (!_Actor.Get_Fish()->Get_Flag() && _Actor.Get_Fish()->Get_TargetPos().x >= WINCX - 100)
 		{
@@ -54,6 +57,7 @@ FishermanState CFishermanHooking::Update(CFisherman& _Actor)
 			_Actor.Get_Fish()->Set_Flag(true);
 
 			m_preDeley = GetTickCount64();
+			iRand = rand() % 30 + 10;
 		}
 
 		float fX;
@@ -68,11 +72,19 @@ FishermanState CFishermanHooking::Update(CFisherman& _Actor)
 
 	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_DOWN)) 
 	{
-		_Actor.Get_Bobber()->Move();
+		if (_Actor.Get_Bobber()->Get_Info().vPos.y < WINCY - 150) 
+		{
+			_Actor.Get_Bobber()->Move(0.4f);
+		}
+		
 	}
 	else if (CKeyMgr::Get_Instance()->Key_Pressing(VK_UP))
 	{
-		_Actor.Get_Bobber()->Move_Back();
+		if (_Actor.Get_Bobber()->Get_Info().vPos.y > 150)
+		{
+			_Actor.Get_Bobber()->Move_Back(0.4f);
+		}
+		
 	}
 
 	//if (CKeyMgr::Get_Instance()->Key_Pressing('C')) 
@@ -95,7 +107,7 @@ void CFishermanHooking::Render(HDC hDC, CFisherman& _Actor)
 
 	_Actor.Get_Bobber()->Render(hDC);
 	
-	if (m_preDeley + 1000.f < GetTickCount64())
+	if (m_preDeley + iRand * 100.f < GetTickCount64())
 	{
 		_Actor.Get_Fish()->Render(hDC);
 	}

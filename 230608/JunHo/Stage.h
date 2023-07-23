@@ -12,5 +12,11 @@ public:
 	virtual void Late_Update() override;
 	virtual void Render(HDC hDC) override;
 	virtual void Release() override;
+public:
+	float fuckingx;
+	float fuckingy;
+
+	bool m_bMapEdit;
+	
 };
 

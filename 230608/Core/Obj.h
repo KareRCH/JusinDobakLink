@@ -11,6 +11,7 @@ public:
 public:
 	void			Set_Info(INFO& value) { m_tInfo = value; }
 	const INFO&		Get_Info() const { return m_tInfo; }
+	INFO&			Get_Info() { return m_tInfo; }
 	RENDERID		Get_RenderID() { return m_eRender; }
 
 public:

@@ -46,10 +46,17 @@ public:
 
 	void	Move_Pop() 
 	{
-		int iAngleRange = 40;
+		int iAngleRange = 120;
 		Add_Angle(float(rand() % iAngleRange) - float(iAngleRange / 2.f));
 		UpdateDir();
 		UpdateMatrixDefault();
+
+		int iboost = 20;
+
+		m_fSpeed *= iboost;
+		Move();
+		m_fSpeed /= iboost;
+
 	}
 
 	bool	Get_Flag() { return m_bFlag; };
