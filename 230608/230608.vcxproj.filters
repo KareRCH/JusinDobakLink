@@ -333,6 +333,9 @@
     <ClInclude Include="JunHo\CJPlayer.h">
       <Filter>01. Obj\01.Player</Filter>
     </ClInclude>
+    <ClInclude Include="MoveBg.h">
+      <Filter>03. Scene\02. Stage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -466,6 +469,9 @@
     </ClCompile>
     <ClCompile Include="JunHo\CJPlayer.cpp">
       <Filter>01. Obj\01.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveBg.cpp">
+      <Filter>03. Scene\02. Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -26,7 +26,7 @@
 // 디버깅용 콘솔에 대한 switch on/off용 매크로 상수
 #define		_TEST_CONSOLE	0
 
-#define		STAGE_MAPCX		3021
+#define		STAGE_MAPCX		0x7FFFFFFF
 #define		STAGE_MAPCY		2067
 #define		STAGE2_MAPCX	3024
 #define		STAGE2_MAPCY	2880

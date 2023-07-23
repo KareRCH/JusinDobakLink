@@ -8,7 +8,7 @@
 #include "KeyMgr.h"
 #include "ObjMgr.h"
 #include "SoundMgr.h"
-
+#include "AnimationTable.h"
 #include "TileMgr.h"
 #include "LineMgr.h"
 #include "Camera.h"
@@ -34,7 +34,7 @@ void CMainGame::Initialize()
 
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	
-	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_STAGE2);
+	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_STAGE);
 
 	//CSoundMgr::Get_Instance()->Initialize();
 	CAnimationTable::Get_Instance();

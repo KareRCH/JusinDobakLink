@@ -187,6 +187,7 @@
     <ClInclude Include="JunHo\CJPlayer.h" />
     <ClInclude Include="JunHo\Line.h" />
     <ClInclude Include="JunHo\LineMgr.h" />
+    <ClInclude Include="MoveBg.h" />
     <ClInclude Include="MyungBin\DefindMyungBin.h" />
     <ClInclude Include="MyungBin\Fish.h" />
     <ClInclude Include="MyungBin\Fisherman.h" />
@@ -238,6 +239,7 @@
     <ClCompile Include="JunHo\Line.cpp" />
     <ClCompile Include="JunHo\LineMgr.cpp" />
     <ClCompile Include="JunHo\Stage.cpp" />
+    <ClCompile Include="MoveBg.cpp" />
     <ClCompile Include="MyungBin\Fish.cpp" />
     <ClCompile Include="MyungBin\Fisherman.cpp" />
     <ClCompile Include="MyungBin\FishermanCatching.cpp" />
