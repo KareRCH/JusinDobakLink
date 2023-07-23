@@ -513,7 +513,7 @@ template <typename T>
 using STATE_INFO = tagState<T>;
 
 template <typename Key, typename Func>
-using MAP_FUNC = map<Key, function<Func>>;
+using MAP_FUNC = unordered_map<Key, function<Func>>;
 
 // 상태머신과 함수를 묶어 사용할 수 있는 템플릿
 template<typename Key, typename Func>
@@ -631,6 +631,10 @@ public:
 	void Reset()
 	{
 		Cur = T();
+	}
+	void Reset(T value)
+	{
+		Cur = value;
 	}
 
 	// Max 값 재설정 및 현재값 초기화

@@ -34,9 +34,9 @@ void CMainGame::Initialize()
 
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	
-	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_STAGE);
+	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_STAGE2);
 
-	//CSoundMgr::Get_Instance()->Initialize();
+	CSoundMgr::Get_Instance()->Initialize();
 	CAnimationTable::Get_Instance();
 }
 
@@ -51,6 +51,8 @@ void CMainGame::Late_Update()
 	CScrollMgr::Get_Instance()->Scroll_Lock();
 
 	CSceneMgr::Get_Instance()->Late_Update();
+
+	CKeyMgr::Get_Instance()->Late_Update();
 }
 
 void CMainGame::Render()
@@ -106,6 +108,7 @@ void CMainGame::Release()
 	CScrollMgr::Destroy_Instance();
 	CCamera::Destroy_Instance();
 	CKeyMgr::Destroy_Instance();
+	CSoundMgr::Destroy_Instance();
 	CSceneMgr::Destroy_Instance();
 	CObjMgr::Destroy_Instance();
 	CSceneMgr::Destroy_Instance();

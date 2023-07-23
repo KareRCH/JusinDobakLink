@@ -4,11 +4,14 @@
 #include "KeyMgr.h"
 #include "BmpMgr.h"
 #include "AnimationTable.h"
+#include <HakJun/HitCircle.h>
 
 void CFood_Cookie::Initialize()
 {
-	m_tInfo.fCX = 40.f;
-	m_tInfo.fCY = 40.f;
+	m_tInfo.fCX = 80.f;
+	m_tInfo.fCY = 80.f;
+
+	m_tInfo.vSize = { 3.f, 3.f, 1.f };
 
 #pragma region 이미지 & 애니메이션
 	CBmpMgr::Get_Instance()->Insert_PNG(L"../Image/Hak/cookie.png", L"Cookie");
@@ -32,7 +35,7 @@ void CFood_Cookie::Initialize()
 
 int CFood_Cookie::Update()
 {
-	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_RIGHT))
+	/*if (CKeyMgr::Get_Instance()->Key_Pressing(VK_RIGHT))
 	{
 		m_tInfo.vPos.x += 5.f;
 	}
@@ -66,7 +69,7 @@ int CFood_Cookie::Update()
 	else if (CKeyMgr::Get_Instance()->Key_Pressing('S'))
 	{
 		m_tInfo.vSize *= 0.9f;
-	}
+	}*/
 
 	m_tState.Get_StateFunc()(this);
 
@@ -112,12 +115,16 @@ void CFood_Cookie::Render(HDC hDC)
 
 void CFood_Cookie::Release()
 {
-
+	
 }
 
 void CFood_Cookie::Collide(CObj* _pDst)
 {
-	
+	CHitCircle* pCircle = dynamic_cast<CHitCircle*>(_pDst);
+	if (_pDst)
+	{
+		m_tState.Set_State(ESTATE::HIT);
+	}
 }
 
 void CFood_Cookie::Idle()
@@ -147,8 +154,7 @@ void CFood_Cookie::Move()
 
 	if (m_tState.Can_Update())
 	{
-		m_tInfo.vPos -= m_tInfo.vSpeed;
-		m_tState.Set_State(ESTATE::HIT);
+		m_tInfo.vPos += m_tInfo.vSpeed;
 	}
 
 	if (m_tState.IsState_Exit())
@@ -161,41 +167,33 @@ void CFood_Cookie::Hit()
 {
 	if (m_tState.IsState_Entered())
 	{
-		m_tInfo.vSpeed = { 0.f, 5.f, 0.f };
-		m_iTime = 0;
-		m_tInfo.vAccel = { 0.f, -g_fDeltaTime * G, 0.f };
-		m_tInfo.vDir = { m_vTargetPos.x - m_tInfo.vPos.x, 0.f, 0.f };
-		m_tInfo.vDir.x = (m_tInfo.vDir.x < 0.f) ? (-1.f) : (1.f);
+		m_tInfo.vSpeed = { 0.f, 0.f, 0.f };
+		m_tInfo.vAccel = { 0.f, -G, 0.f };
+		/*m_tInfo.vDir = { m_vTargetPos.x - m_tInfo.vPos.x, 0.f, 0.f };
+		m_tInfo.vDir.x = (m_tInfo.vDir.x < 0.f) ? (-1.f) : (1.f);*/
 
-		// 최대 높이와 각 점에 대해 적분연산 후 해당 높이에 도달하여 지정 좌표에 떨어지기 위한 가로Speed값 산출
-		float fMaxHeight_FromTarget = m_fMaxHeight + (m_vTargetPos.y - m_tInfo.vPos.y);
+		float dtY = m_vTargetPos.y - m_tInfo.vPos.y;
+		float fDistanceX = m_vTargetPos.x - m_tInfo.vPos.x;
 
-		float fTemp = m_fMaxHeight;
-		while (fTemp > 0)
-		{
-			++m_iTime;
-			m_tInfo.vSpeed -= m_tInfo.vAccel;
-			fTemp -= m_tInfo.vSpeed.y;
-		}
+		float fRequired = 1.f;
 
-		fTemp = fMaxHeight_FromTarget;
-		while (fTemp > 0)
-		{
-			++m_iTime;
-			m_tInfo.vSpeed -= m_tInfo.vAccel;
-			fTemp -= m_tInfo.vSpeed.y;
-		}
+		m_tInfo.vSpeed.x = fDistanceX / fRequired;
 
-		// 나온 시간 값을 사용해, 너비와 나눈다.
-		m_tInfo.vSpeed.x = (m_vTargetPos.x - m_tInfo.vPos.x) / (float)m_iTime;
+		m_tInfo.vSpeed.y = (m_fMaxHeight - dtY) + (m_fMaxHeight) * ((m_fMaxHeight) / (m_fMaxHeight + fabs(dtY))) * fRequired;
 	}
 
 	if (m_tState.Can_Update())
 	{
+		m_fTime += g_fDeltaTime;
 		m_tInfo.vSpeed.y += m_tInfo.vAccel.y;
 
-		m_tInfo.vPos.x += m_tInfo.vSpeed.x;
-		m_tInfo.vPos.y -= m_tInfo.vSpeed.y;
+		m_tInfo.vPos.x += m_tInfo.vSpeed.x * g_fDeltaTime;
+		m_tInfo.vPos.y -= m_tInfo.vSpeed.y * g_fDeltaTime;
+
+		m_tInfo.fAngle -= 10.f * ((m_tInfo.vSpeed.x >= 0) ? 1.f : -1.f);
+
+		if (m_tInfo.vPos.x < m_vTargetPos.x)
+			m_fTime = m_fTime;
 	}
 
 	if (m_tState.IsState_Exit())

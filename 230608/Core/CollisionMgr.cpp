@@ -107,6 +107,19 @@ void CCollisionMgr::Collision_Sphere(list<CObj*> _Dst, list<CObj*> _Src)
 
 }
 
+void CCollisionMgr::Collision_Sphere(list<CObj*> _Dst, CObj* _Src)
+{
+	for (auto& Dst : _Dst)
+	{
+		if (Check_Sphere(Dst, _Src))
+		{
+			Dst->Collide(_Src);
+			_Src->Collide(Dst);
+		}
+	}
+
+}
+
 bool CCollisionMgr::Check_Sphere(CObj * _Dst, CObj * _Src)
 {
 	float	fWidth  = abs(_Dst->Get_Info().vPos.x - _Src->Get_Info().vPos.x);
