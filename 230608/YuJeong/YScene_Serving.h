@@ -45,12 +45,27 @@ public:
 	int			Get_CurDish() { return m_iCurDish; }
 
 private:
-	CObj*		m_Customer[6];		// 손님 6명
+	CObj*		m_pCustomer[6];		// 손님 6명
 	D3DXVECTOR3 m_vCustomerPos[6];	// 손님 생성 위치
 
 	int			m_iRand;			// 난수 생성
+	int			m_iCustomerRand;
 
 public:
 	CObj* Create_Customer(D3DXVECTOR3 _vCenterPos);
+
+
+// 벽이 생성될 위치
+private:
+	CObj*			m_pWall[8];		// 벽 개수
+	D3DXVECTOR3		m_vWallPos[8];
+
+public:
+	CObj* Create_Wall(D3DXVECTOR3 _vCenterPos, int _iType);
+
+private:
+	CObj*	m_pTimeGauge;
+
+
 
 };

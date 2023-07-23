@@ -16,6 +16,8 @@ public:
 	virtual void		Release()					override;
 	virtual void		Collide(CObj* _pDst)		override;
 
+	void				CollisionTile(CObj* pTarget);
+
 public:
 	void	Draw_Rectangle(HDC hDC);	// 사각형 그리기
 
@@ -43,10 +45,14 @@ public:
 	OBJID   Get_Id() { return m_eID; };
 
 private:
-	bool		m_bIsDIshColl;
+	bool		m_bIsDishColl;
+	bool		m_bIsWallColl;
+
+	float		m_fPreAngle;
 
 private:
 	int			m_iMoney;
+	int			m_iPreMoney;
 	int			m_iDishCount;
 
 public:

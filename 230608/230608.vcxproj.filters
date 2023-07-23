@@ -336,6 +336,15 @@
     <ClInclude Include="MoveBg.h">
       <Filter>03. Scene\02. Stage</Filter>
     </ClInclude>
+    <ClInclude Include="YCoin.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
+    <ClInclude Include="YTeacher.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
+    <ClInclude Include="YWall.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -472,6 +481,15 @@
     </ClCompile>
     <ClCompile Include="MoveBg.cpp">
       <Filter>03. Scene\02. Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="YTeacher.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="YCoin.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="YWall.cpp">
+      <Filter>05. YuJeong</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -40,6 +40,16 @@ void CTile::Render(HDC hDC)
 
 	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(L"Tile");
 
+	BitBlt(hDC,
+		m_tRect.left + iScrollX,
+		m_tRect.top + iScrollY,
+		TILECX,
+		TILECY,
+		hMemDC,
+		TILECX * m_iDrawID,
+		0,
+		SRCCOPY);
+
 	//BitBlt(hDC,
 	//	m_tRect.left + iScrollX,
 	//	m_tRect.top + iScrollY,
