@@ -32,6 +32,8 @@ void CFishermanHooking::Initialize(CFisherman& _Actor)
 
 	iRand = 20;
 
+	_Actor.Get_Fish()->Set_FishImg(FishImgState::LEFT);
+
 }
 
 FishermanState CFishermanHooking::Update(CFisherman& _Actor)
@@ -45,6 +47,7 @@ FishermanState CFishermanHooking::Update(CFisherman& _Actor)
 			_Actor.Get_Fish()->Set_Pos(startFishPos);
 			_Actor.Get_Fish()->Set_AngleDegree(90.f);
 			_Actor.Get_Fish()->Set_Flag(false);
+			_Actor.Get_Fish()->Set_FishImg(FishImgState::LEFT);
 
 			m_preDeley = GetTickCount64();
 			iRand = rand() % 30 + 10;
@@ -55,6 +58,7 @@ FishermanState CFishermanHooking::Update(CFisherman& _Actor)
 			_Actor.Get_Fish()->Set_Pos(startFishPos);
 			_Actor.Get_Fish()->Set_AngleDegree(270.f);
 			_Actor.Get_Fish()->Set_Flag(true);
+			_Actor.Get_Fish()->Set_FishImg(FishImgState::RIGHT);
 
 			m_preDeley = GetTickCount64();
 			iRand = rand() % 30 + 10;
@@ -102,6 +106,26 @@ void CFishermanHooking::Late_Update(CFisherman& _Actor)
 
 void CFishermanHooking::Render(HDC hDC, CFisherman& _Actor)
 {
+	int iSize = 100;
+	Rectangle(hDC, iSize, iSize, WINCX - iSize, WINCY - iSize);
+
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/inSea.bmp", L"inSea");
+	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(L"inSea");
+
+	FRAME f;
+	f.iWidth = WINCX - iSize * 2;
+	f.iHeight = WINCY - iSize * 2;
+	f.iFrameStart = 0;
+	f.iFrameCur = 0;
+
+	INFO background;
+	background.vPos.x = iSize;
+	background.vPos.y = iSize;
+
+	CBmpMgr::Get_Instance()->Draw_BMP(hDC, L"inSea", background, f, 0, 0, 612, 339, false);
+
+
+
 	MoveToEx(hDC, _Actor.Get_Info().vPos.x, _Actor.Get_Info().vPos.y, nullptr);
 	LineTo(hDC, _Actor.Get_Bobber()->Get_Info().vPos.x, _Actor.Get_Bobber()->Get_Info().vPos.y);
 

@@ -151,6 +151,12 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="04. MyungBin\FishermanState\Success">
+      <UniqueIdentifier>{036d7bf4-411e-4fa4-ac05-b60fbdb8ad94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\FishermanState\Fail">
+      <UniqueIdentifier>{7fe09ed9-abfc-4be1-9363-52ee838c06d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
