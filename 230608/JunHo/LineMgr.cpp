@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "LineMgr.h"
 #include "KeyMgr.h"		// 유정 0622 추가
-
+#include "Line.h"
 CLineMgr* CLineMgr::m_pInstance = nullptr;
 
 CLineMgr::CLineMgr() : m_bIsDraw(true) // 유정 0622 추가
@@ -15,24 +15,37 @@ CLineMgr::~CLineMgr()
 	Release();
 }
 
-bool CLineMgr::Collision_Line(INFO& m_tInfo, float* pY)
+bool CLineMgr::Collision_Line(INFO& m_tInfo, CLine** pLine, float* pY, float* pfGradient)
 {
 	if (m_LineList.empty())
 		return false;
 
-	CLine* pTarget = nullptr;
-
-	for (auto& line : m_LineList)
+	list<CLine*>::iterator curiter;
+	
+	for (auto& iter = m_LineList.begin(); iter != m_LineList.end(); ++iter)
 	{
-		if (line->Get_Info().tLpoint.fX <= m_tInfo.vPos.x &&
-			line->Get_Info().tRpoint.fX > m_tInfo.vPos.x)
+		list<CLine*>::iterator curiter = iter;
+
+		if ((*iter)->Get_Info().tLpoint.fX <= m_tInfo.vPos.x &&
+			(*iter)->Get_Info().tRpoint.fX > m_tInfo.vPos.x)
 			//pTarget = iter;
 		{
-			float   x1 = line->Get_Info().tLpoint.fX;
-			float   x2 = line->Get_Info().tRpoint.fX;
+			//line 현재 충돌한 라인 객체
+			LINEPOINT lPoint = (*curiter)->Get_Info().tLpoint;
+			++curiter;
+			if (curiter != m_LineList.end())
+			{
+				LINEPOINT rPoint = (*curiter)->Get_Info().tRpoint;
+				
+				//*pfGradient = (rPoint.fY - lPoint.fY) / (rPoint.fX - lPoint.fX);
+				*pfGradient = atan2(rPoint.fY - lPoint.fY, rPoint.fX - lPoint.fX);
+			}
 
-			float   y1 = line->Get_Info().tLpoint.fY;
-			float   y2 = line->Get_Info().tRpoint.fY;
+			float   x1 = (*iter)->Get_Info().tLpoint.fX;
+			float   x2 = (*iter)->Get_Info().tRpoint.fX;
+
+			float   y1 = (*iter)->Get_Info().tLpoint.fY;
+			float   y2 = (*iter)->Get_Info().tRpoint.fY;
 
 			float m_Y = ((y2 - y1) / (x2 - x1)) * (m_tInfo.vPos.x - x1) + y1;
 
@@ -40,22 +53,22 @@ bool CLineMgr::Collision_Line(INFO& m_tInfo, float* pY)
 			//bool test2 = (m_Y - (m_tInfo.fCY - 40) <= m_tInfo.fY);
 
 
-			if (m_Y + (m_tInfo.fCY +5) >= m_tInfo.vPos.y && m_Y - (m_tInfo.fCY +5) <= m_tInfo.vPos.y)
+			if (m_Y + (m_tInfo.fCY + 5) >= m_tInfo.vPos.y && m_Y - (m_tInfo.fCY + 5) <= m_tInfo.vPos.y)
 			{
-				pTarget = line;
+				*pLine = (*iter);
 			}
 
 		}
 	}
 
-	if (!pTarget)
+	if (!(*pLine))
 		return false;
 
-	float   x1 = pTarget->Get_Info().tLpoint.fX;
-	float   x2 = pTarget->Get_Info().tRpoint.fX;
+	float   x1 = (*pLine)->Get_Info().tLpoint.fX;
+	float   x2 = (*pLine)->Get_Info().tRpoint.fX;
 
-	float   y1 = pTarget->Get_Info().tLpoint.fY;
-	float   y2 = pTarget->Get_Info().tRpoint.fY;
+	float   y1 = (*pLine)->Get_Info().tLpoint.fY;
+	float   y2 = (*pLine)->Get_Info().tRpoint.fY;
 
 	*pY = ((y2 - y1) / (x2 - x1)) * (m_tInfo.vPos.x - x1) + y1;
 
@@ -64,7 +77,7 @@ bool CLineMgr::Collision_Line(INFO& m_tInfo, float* pY)
 
 void CLineMgr::Save_Line()
 {
-	HANDLE		hFile = CreateFile(L"../Data/Line.dat",		// 파일의 경로
+	HANDLE		hFile = CreateFile(L"../Data/Line2.dat",		// 파일의 경로
 		GENERIC_WRITE,	// 개방 파일의 모드(GENERIC_READ : 읽기 전용 모드)
 		NULL, // 공유방식, 파일이 열려있는 상태에서 다른 프로세스가 열려할 때 허가할 것인가, NULL이면 공유하지 않겠다.
 		NULL, // 보안속성, NULL인 경우 기본 보안 상태
@@ -77,12 +90,14 @@ void CLineMgr::Save_Line()
 		MessageBox(g_hWnd, L"개방 실패", _T("실패"), MB_OK);
 		return;
 	}
-
+	
 	DWORD		dwByte = 0;
 
 	for (auto& iter : m_LineList)
 	{
+		int lineOption = iter->GetLine_Option();
 		WriteFile(hFile, &(iter->Get_Info()), sizeof(LINE), &dwByte, nullptr);
+		WriteFile(hFile, &lineOption, sizeof(int), &dwByte, nullptr);
 	}
 
 	CloseHandle(hFile);
@@ -95,7 +110,7 @@ void CLineMgr::Load_Line()
 {
 	Release();
 
-	HANDLE		hFile = CreateFile(L"../Data/Line.dat",		// 파일의 경로
+	HANDLE		hFile = CreateFile(L"../Data/Line2.dat",		// 파일의 경로
 		GENERIC_READ,	// 개방 파일의 모드(GENERIC_READ : 읽기 전용 모드)
 		NULL, // 공유방식, 파일이 열려있는 상태에서 다른 프로세스가 열려할 때 허가할 것인가, NULL이면 공유하지 않겠다.
 		NULL, // 보안속성, NULL인 경우 기본 보안 상태
@@ -114,12 +129,16 @@ void CLineMgr::Load_Line()
 
 	while (true)
 	{
+		int lineOption = 0;
 		ReadFile(hFile, &tInfo, sizeof(LINE), &dwByte, nullptr);
+		ReadFile(hFile, &lineOption, sizeof(int), &dwByte, nullptr);
 
 		if (0 == dwByte)
 			break;
 
-		m_LineList.push_back(new CLine(tInfo));
+		CLine* pLine = new CLine(tInfo);
+		pLine->Line_Option(lineOption);
+		m_LineList.push_back(pLine);
 	}
 
 	CloseHandle(hFile);
@@ -145,6 +164,7 @@ int CLineMgr::Update()
 	pt.y += (int)CCamera::Get_Instance()->Get_WindowPos().y;
 	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_LBUTTON))
 	{
+		
 		if ((!m_tLintPoint[0].fX) && !(m_tLintPoint[0].fY))
 		{
 			m_tLintPoint[0].fX = float(pt.x);
@@ -156,8 +176,10 @@ int CLineMgr::Update()
 			m_tLintPoint[1].fY = float(pt.y);
 
 			LINE	tInfo{ m_tLintPoint[0], m_tLintPoint[1] };
-			m_LineList.push_back(new CLine(tInfo));
-
+			CLine* pLine = new CLine(tInfo);
+			pLine->Line_Option(m_LineChange);
+			m_LineList.push_back(pLine);
+			
 			m_tLintPoint[0].fX = m_tLintPoint[1].fX;
 			m_tLintPoint[0].fY = m_tLintPoint[1].fY;
 		}
@@ -174,7 +196,10 @@ int CLineMgr::Update()
 
 	if (CKeyMgr::Get_Instance()->Key_Down('S'))
 		Load_Line();
-
+	if (CKeyMgr::Get_Instance()->Key_Down('1'))
+		m_LineChange = 0;
+	if (CKeyMgr::Get_Instance()->Key_Down('2'))
+		m_LineChange = 1;
 	return 0;
 }
 

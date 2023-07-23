@@ -44,7 +44,8 @@ void CFisherman::Initialize(void)
 
 
     m_eState = FishermanState::SELECT_DIR;
-    m_States[(int)m_eState]->Initialize(*this);
+	//삭제하는 경우가 생길 때 예외 처리 안하면 터지기 쉬움
+	m_States[(int)m_eState]->Initialize(*this);
 
 
     m_pFishingBobber = new CFishingBobber;
