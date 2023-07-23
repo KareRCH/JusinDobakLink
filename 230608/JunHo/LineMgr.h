@@ -11,6 +11,7 @@ private:
 
 public:
 	bool		Collision_Line(INFO& m_tInfo, float* pY);
+	void		Save_Line();
 	void		Load_Line();	// 유정 0622 추가 : 에디터에서 그린 라인 불러오기(Initialize에서 호출)
 	bool		DashCheck(float fX, int nDrection);
 public:

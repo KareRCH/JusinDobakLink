@@ -1,10 +1,23 @@
 #include "stdafx.h"
 #include "YPlayer.h"
 
+#include "KeyMgr.h"
 #include "BmpMgr.h"
+#include "AnimationTable.h"
+#include "CollisionMgr.h"
+
+// Obj
+#include "YDish.h"
+#include "YCustomer.h"
 
 CYPlayer::CYPlayer()
+	: m_vPointScale{}
+	, m_vCenter{}
+	, m_bIsDIshColl(false)
+	, m_iMoney(0)
+	, m_iDishCount(0)
 {
+
 }
 
 CYPlayer::~CYPlayer()
@@ -14,25 +27,46 @@ CYPlayer::~CYPlayer()
 
 void CYPlayer::Initialize()
 {
-	m_tInfo.vPos = { (WINCX / 2 + 60), (WINCY / 2 - 70), 0.f };
-	m_tInfo.vDir = { 1.f, 0.f, 0.f };		//방향
-	m_tInfo.vLook = { 0.f, -1.f, 0.f };		// 바라보는 방향
-	m_tInfo.vSize = { 10.f ,30.f, 0.f };	// 크기
 	m_eRender = RENDER_GAMEOBJECT;
 	m_eID = PLAYER;
 
-	m_vPoint[0] = { m_tInfo.vPos.x - 10.f ,m_tInfo.vPos.y - 30.f, 0.f };	// 좌 상단
-	m_vPoint[1] = { m_tInfo.vPos.x + 10.f ,m_tInfo.vPos.y - 30.f, 0.f };	// 우 상단	
-	m_vPoint[2] = { m_tInfo.vPos.x + 10.f ,m_tInfo.vPos.y + 30.f, 0.f };	// 우 하단
-	m_vPoint[3] = { m_tInfo.vPos.x - 10.f ,m_tInfo.vPos.y + 30.f, 0.f };	// 좌 하단
+	m_tInfo.fCX = 50.f;
+	m_tInfo.fCY = 50.f;
+
+	// ================
+	// D3DXVECTOR3 Init
+	// ================
+	m_vCenter = { (WINCX / 2 + 60), (WINCY / 2 - 70), 0.f };	// 원점, 플레이어 생성위치?
+	m_tInfo.vPos = { m_vCenter.x, m_vCenter.y, m_vCenter.z };	
+	m_tInfo.vDir = { 1.f, 0.f, 0.f };							//방향
+	m_tInfo.vLook = { 0.f, 1.f, 0.f };							// 바라보는 방향
+	m_tInfo.vSize = { 1.f, 1.f, 0.f };							// 크기(배율)
+	m_vPointScale = { 50.f, 50.f, 0.f };						// 점들의 간격
+
+	m_fSpeed = 2.f;												// 속도
+
+	m_vPoint[0] = { m_tInfo.vPos.x - m_vPointScale.x ,m_tInfo.vPos.y - m_vPointScale.y, m_vPointScale.z };	// 좌 상단
+	m_vPoint[1] = { m_tInfo.vPos.x + m_vPointScale.x ,m_tInfo.vPos.y - m_vPointScale.y, m_vPointScale.z };	// 우 상단	
+	m_vPoint[2] = { m_tInfo.vPos.x + m_vPointScale.x ,m_tInfo.vPos.y + m_vPointScale.y, m_vPointScale.z };	// 우 하단
+	m_vPoint[3] = { m_tInfo.vPos.x - m_vPointScale.x ,m_tInfo.vPos.y + m_vPointScale.y, m_vPointScale.z };	// 좌 하단
 
 	for (int i = 0; i < 4; ++i)
 		m_vOriginPoint[i] = m_vPoint[i];
 
-	m_fSpeed = 2.f;
 
-
+	// ================
+	// 이미지 관련 Init
+	// ================
 	CBmpMgr::Get_Instance()->Insert_PNG(L"../230608/YuJeong/Image_Yu/Link_Down1.png", L"YPlayer_Down");
+	CAnimationTable::Get_Instance()->Create_Animation(
+		L"YPlayer_Down", L"1",
+		0, 0, 1, 0.f,
+		32, 25, 50, 50
+	);
+
+	// 애니메이션, 이미지 설정 초기화
+	m_tInfo.tFrameTSet.Set_Keys(L"YPlayer_Down", L"1");
+	CAnimationTable::Get_Instance()->Load_AnimData(m_tInfo.tFrameTSet);
 
 }
 
@@ -58,16 +92,20 @@ int CYPlayer::Update()
 	for (int i = 0; i < 4; ++i)
 	{
 		m_vPoint[i] = m_vOriginPoint[i];
-		m_vPoint[i] -= {(WINCX / 2 + 60), (WINCY / 2 - 70), 0.f};
+		m_vPoint[i] -= { m_vCenter.x, m_vCenter.y, m_vCenter.z };
 
 		D3DXVec3TransformCoord(&m_vPoint[i], &m_vPoint[i], &m_tInfo.matWorld);
 	}
+
+	__super::Update_Rect();
 
 	return OBJ_NOEVENT;
 }
 
 void CYPlayer::Late_Update()
 {
+
+
 }
 
 void CYPlayer::Render(HDC hDC)
@@ -80,27 +118,35 @@ void CYPlayer::Render(HDC hDC)
 
 	// 브러쉬 설정
 	//hNewBrush = CreateSolidBrush(RGB(240, 128, 128));
-	hNewBrush = CreateSolidBrush(RGB(0, 100, 100));
+	hNewBrush = CreateSolidBrush(RGB(0, 255, 0));
 	hOldBrush = (HBRUSH)SelectObject(hDC, hNewBrush);
 
 	// 펜 설정 + 해제
-	hNewPen = CreatePen(PS_SOLID, 3, RGB(0, 100, 100));
+	hNewPen = CreatePen(PS_SOLID, 3, RGB(0, 255, 0));
 	hOldPen = (HPEN)SelectObject(hDC, hNewPen);
 
-	Ellipse(hDC,
-		m_vPoint[0].x - 5.f,
-		m_vPoint[0].y - 5.f,
-		m_vPoint[0].x + 5.f,
-		m_vPoint[0].y + 5.f);
+	//Ellipse(hDC,
+	//	m_vPoint[2].x - 5.f,
+	//	m_vPoint[2].y - 5.f,
+	//	m_vPoint[2].x + 5.f,
+	//	m_vPoint[2].y + 5.f);
 
-	Ellipse(hDC,
-		m_vPoint[1].x - 5.f,
-		m_vPoint[1].y - 5.f,
-		m_vPoint[1].x + 5.f,
-		m_vPoint[1].y + 5.f);
+	//Ellipse(hDC,
+	//	m_vPoint[3].x - 5.f,
+	//	m_vPoint[3].y - 5.f,
+	//	m_vPoint[3].x + 5.f,
+	//	m_vPoint[3].y + 5.f);
 
 
-	Draw_Rectangle(hDC);
+	Rectangle(hDC,
+		m_tRect.left,
+		m_tRect.top,
+		m_tRect.right,
+		m_tRect.bottom);
+
+
+	//Draw_Rectangle(hDC);
+
 
 	// 펜 해제
 	SelectObject(hDC, hOldPen);
@@ -110,8 +156,31 @@ void CYPlayer::Render(HDC hDC)
 	SelectObject(hDC, hOldBrush);
 	DeleteObject(hNewBrush);
 
-	FRAME tFrame = {};
-	CBmpMgr::Get_Instance()->Draw_PNG(hDC, L"YPlayer_Down", m_tInfo, tFrame, D3DXToDegree(m_tInfo.fAngle), 0, 0, 2600, 2400);
+	CBmpMgr::Get_Instance()->Draw_PNG(hDC, m_tInfo, false);
+
+
+	TCHAR szMoney[128];
+	_stprintf_s(szMoney, L"%d", m_iMoney);
+	TextOutW(hDC, 670, 11, szMoney, lstrlen(szMoney));
+
+	TCHAR szDishCount[128];
+	_stprintf_s(szDishCount, L"DishCount : %d", m_iDishCount);
+	TextOutW(hDC, 0, 540, szDishCount, lstrlen(szDishCount));
+
+
+	if (m_bIsDIshColl)
+	{
+		TCHAR szBuffer[128];
+		_stprintf_s(szBuffer, L"충돌!!!");
+		TextOutW(hDC, 0, 560, szBuffer, lstrlen(szBuffer));
+	}
+
+	// ===================
+	// 좌표 확인 텍스트 표시
+	// ===================
+	TCHAR szBuffer[128];
+	_stprintf_s(szBuffer, L"Player.x : %f \t Player.y : %f", m_tInfo.vPos.x, m_tInfo.vPos.y);
+	TextOutW(hDC, 0,580, szBuffer, lstrlen(szBuffer));
 }
 
 void CYPlayer::Release()
@@ -120,7 +189,10 @@ void CYPlayer::Release()
 
 void CYPlayer::Collide(CObj* _pDst)
 {
-
+	if (dynamic_cast<CYDish*>(_pDst) != nullptr);
+	{
+		m_bIsDIshColl = true;
+	}
 }
 
 void CYPlayer::Draw_Rectangle(HDC hDC)
@@ -137,33 +209,33 @@ void CYPlayer::Draw_Rectangle(HDC hDC)
 
 void CYPlayer::Key_Input()
 {
-	if (GetAsyncKeyState('A'))
+	if (GetAsyncKeyState(VK_LEFT))
 	{
 		//m_fAngle += D3DX_PI / 180.0f;
 		m_tInfo.fAngle -= 2.f;
 	}
 
 
-	if (GetAsyncKeyState('D'))
+	if (GetAsyncKeyState(VK_RIGHT))
 	{
 		//m_fAngle -= D3DX_PI / 180.0f;
 		m_tInfo.fAngle += 2.f;
 	}
 
 
-	if (GetAsyncKeyState('W'))
+	if (GetAsyncKeyState(VK_UP))
 	{
 		D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
-		m_tInfo.vPos += m_tInfo.vDir * m_fSpeed;
+		m_tInfo.vPos -= m_tInfo.vDir * m_fSpeed;
 
 		//D3DXVec3TransformCoord(&)
 	}
 
-	//if (GetAsyncKeyState('S'))
-	//{
-	//	D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
-	//	m_tInfo.vPos -= m_tInfo.vDir * m_fSpeed;
-	//}
+	if (GetAsyncKeyState(VK_DOWN))
+	{
+		D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
+		m_tInfo.vPos += m_tInfo.vDir * m_fSpeed;
+	}
 }
 
 

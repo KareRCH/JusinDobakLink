@@ -72,8 +72,8 @@ public:
 
 private:
 	D3DXMATRIX		matScale, matRotZ, matTrans;
-	float	m_fAngle;
-	float	m_fSpeed;
+	float			m_fAngle;
+	float			m_fSpeed;
 
 	//int		m_iScaleCount;
 };

@@ -19,9 +19,21 @@ public:
 	void		Draw_Rectangle(HDC hDC);	// 사각형 그리기
 
 private:
-	float			m_fAngle;
+	D3DXMATRIX		matScale;
+	D3DXMATRIX		matRotZ;
+	D3DXMATRIX		matTrans;
+
+	D3DXVECTOR3		m_vCenter;		// 원점, 타임 게이지 생성위치?
+	D3DXVECTOR3		m_vPointScale;	// 점들의 간격
 
 	D3DXVECTOR3		m_vPoint[4];
 	D3DXVECTOR3		m_vOriginPoint[4];
+
+private:
+	DWORD		m_dwTime = GetTickCount();		//GetTickCount() 타이머용
+	int			m_iCount;						// 딜레이 타이머용
+
+	float			m_fmaxTime;
+	float			m_fCurTime;
 };
 

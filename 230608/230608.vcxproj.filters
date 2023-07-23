@@ -344,6 +344,9 @@
     </ClInclude>
     <ClInclude Include="FishermanFail.h">
       <Filter>04. MyungBin\FishermanState\Fail</Filter>
+     </ClInclude>
+    <ClInclude Include="MoveBg.h">
+      <Filter>03. Scene\02. Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -484,6 +487,9 @@
     </ClCompile>
     <ClCompile Include="FishermanFail.cpp">
       <Filter>04. MyungBin\FishermanState\Fail</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveBg.cpp">
+      <Filter>03. Scene\02. Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

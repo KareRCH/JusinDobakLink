@@ -2,6 +2,8 @@
 #include "CJPlayer.h"
 #include "Camera.h"
 #include "BmpMgr.h"
+#include "LineMgr.h"
+
 CJPlayer::CJPlayer()
 {
 }
@@ -25,6 +27,9 @@ void CJPlayer::Initialize()
 	m_tInfo.fCX = 50.f;
 	m_tInfo.fCY = 50.f;
 	m_tInfo.fAngle = 0.f;
+	m_bJump = false;
+	m_fPower = 0.f;
+	m_fTime = 0.f;
 	
 	m_eRender = RENDER_GAMEOBJECT;
 	m_eID = PLAYER;
@@ -52,6 +57,8 @@ void CJPlayer::Initialize()
 
 int CJPlayer::Update()
 {
+	//Jump();
+
 	vTest = { (m_vQ[1].x - m_vQ[0].x) * 0.5f, (m_vQ[1].y - m_vQ[0].y) * 0.5f, 0.f };
 	vTest += m_tInfo.vPos;
 	Key_Input();
@@ -131,6 +138,7 @@ void CJPlayer::Key_Input(void)
 		D3DXVECTOR3 vLook = m_tInfo.vPos - vTest;
 		D3DXVec3Normalize(&vLook, &vLook);
 		m_tInfo.vPos -= m_fSpeed * vLook;
+		fuckingswitch = true;
 	}
 
 	if (GetAsyncKeyState(VK_DOWN))
@@ -138,5 +146,36 @@ void CJPlayer::Key_Input(void)
 		D3DXVECTOR3 vLook = m_tInfo.vPos - vTest;
 		D3DXVec3Normalize(&vLook, &vLook);
 		m_tInfo.vPos += m_fSpeed * vLook;
+		fuckingswitch = true;
+	}
+}
+
+void CJPlayer::Jump()
+{
+	float	fY = 0.f;
+
+	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(m_tInfo, &fY);
+
+	if (m_bJump)
+	{
+		m_tInfo.vPos.y -= (m_fPower * m_fTime) - 9.8f * m_fTime * m_fTime * 0.5f;
+		m_fTime += 0.2f;
+
+		if (bLineCol && (fY < m_tInfo.vPos.y))
+		{
+			m_bJump = false;
+			m_fTime = 0.f;
+			m_tInfo.vPos.y = fY;
+		}
+	}
+	else if (bLineCol)
+	{
+		m_tInfo.vPos.y = fY;
+		m_fTime = 0.f;
+	}
+	else
+	{
+		m_tInfo.vPos.y += 9.8f * m_fTime * m_fTime * 0.5f;
+		m_fTime += 0.2f;
 	}
 }

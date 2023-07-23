@@ -15,7 +15,11 @@ public:
 	virtual void		Collide(CObj* _pDst)		override;
 
 public:
+	bool Get_fuckingswitch() { return fuckingswitch; }
+	void Set_fucking(bool _fucking) { fuckingswitch = _fucking; }
 	void Key_Input();
+	void Jump();
+
 private:
 	D3DXVECTOR3 m_vP[4];
 	D3DXVECTOR3 m_vQ[4];
@@ -27,5 +31,10 @@ private:
 	float				fDot;
 	float				fDot2;
 	float				m_fAngle;
+	bool				fuckingswitch=false;
+
+	bool				m_bJump;
+	float				m_fPower;
+	float				m_fTime;
 };
 

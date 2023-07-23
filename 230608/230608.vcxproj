@@ -189,6 +189,7 @@
     <ClInclude Include="JunHo\CJPlayer.h" />
     <ClInclude Include="JunHo\Line.h" />
     <ClInclude Include="JunHo\LineMgr.h" />
+    <ClInclude Include="MoveBg.h" />
     <ClInclude Include="MyungBin\DefindMyungBin.h" />
     <ClInclude Include="MyungBin\Fish.h" />
     <ClInclude Include="MyungBin\Fisherman.h" />
@@ -206,6 +207,7 @@
     <ClInclude Include="JunHo\Stage.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="YTeacher.h" />
     <ClInclude Include="YuJeong\YCustomer.h" />
     <ClInclude Include="YuJeong\YDish.h" />
     <ClInclude Include="YuJeong\YPlayer.h" />
@@ -242,6 +244,7 @@
     <ClCompile Include="JunHo\Line.cpp" />
     <ClCompile Include="JunHo\LineMgr.cpp" />
     <ClCompile Include="JunHo\Stage.cpp" />
+    <ClCompile Include="MoveBg.cpp" />
     <ClCompile Include="MyungBin\Fish.cpp" />
     <ClCompile Include="MyungBin\Fisherman.cpp" />
     <ClCompile Include="MyungBin\FishermanCatching.cpp" />
@@ -259,6 +262,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="YTeacher.cpp" />
     <ClCompile Include="YuJeong\YCustomer.cpp" />
     <ClCompile Include="YuJeong\YDish.cpp" />
     <ClCompile Include="YuJeong\YPlayer.cpp" />
