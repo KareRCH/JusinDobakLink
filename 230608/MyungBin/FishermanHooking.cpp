@@ -33,6 +33,7 @@ void CFishermanHooking::Initialize(CFisherman& _Actor)
 	iRand = 20;
 
 	_Actor.Get_Fish()->Set_FishImg(FishImgState::LEFT);
+	_Actor.Get_Fish()->Set_Flag(false);
 
 }
 

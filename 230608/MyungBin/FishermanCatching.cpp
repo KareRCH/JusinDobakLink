@@ -21,7 +21,7 @@ void CFishermanCatching::Initialize(CFisherman& _Actor)
 	_Actor.Get_Fish()->Set_Pos(_Actor.Get_BobberPos());
 	iRand = rand() % 20 + 3;
 
-	//_Actor.Get_Fish()->Set_RenderMode(1);
+	_Actor.Get_Fish()->Set_RenderMode(1);
 	_Actor.Get_Fish()->Set_FishImg(FishImgState::UP);
 }
 

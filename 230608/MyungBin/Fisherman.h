@@ -122,9 +122,9 @@ public:
 	{
 		Render_SelectDir(hDC);
 
-		Rectangle(hDC, WINCX - 225, 125, WINCX - 125, WINCY - 125);
+		Rectangle(hDC, WINCX - 175, 125, WINCX - 125, WINCY - 125);
 
-		MoveToEx(hDC, WINCX - 225, WINCY - Get_Gauge(), nullptr);
+		MoveToEx(hDC, WINCX - 175, WINCY - Get_Gauge(), nullptr);
 		LineTo(hDC, WINCX - 125, WINCY - Get_Gauge());
 	};
 

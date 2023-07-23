@@ -75,8 +75,8 @@ public:
 
 
 
-		fishImg.vSize.x = 0.15f;
-		fishImg.vSize.y = 0.15f;
+		fishImg.vSize.x = 0.2f;
+		fishImg.vSize.y = 0.2f;
 
 		switch (eState)
 		{
@@ -91,6 +91,8 @@ public:
 
 			break;
 		case FishImgState::UP:
+			//fishImg.vSize.x = 0.3f;
+			//fishImg.vSize.y = 0.3f;
 			fishImg.tFrameTSet.sFrameKey = L"TegoFish2";
 			break;
 		default:

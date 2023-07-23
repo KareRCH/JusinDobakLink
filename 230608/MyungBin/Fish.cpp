@@ -50,8 +50,8 @@ void CFish::Late_Update()
 
 void CFish::Render(HDC hDC)
 {
-    fishImg.vPos.x = m_tInfo.vPos.x - m_tInfo.fCX * 3 / 4;
-    fishImg.vPos.y = m_tInfo.vPos.y - m_tInfo.fCY * 3 / 4;
+    fishImg.vPos.x = m_tInfo.vPos.x - m_tInfo.fCX;
+    fishImg.vPos.y = m_tInfo.vPos.y - m_tInfo.fCY;
 
     if (m_iRendMode == 0) 
     {
