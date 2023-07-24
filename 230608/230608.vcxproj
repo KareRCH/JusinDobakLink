@@ -152,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="230608.h" />
+    <ClInclude Include="ENDING.h" />
     <ClInclude Include="HakJun\Broly.h" />
     <ClInclude Include="HakJun\Bowl.h" />
     <ClInclude Include="Core\CollisionMgr.h" />
@@ -223,6 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="230608.cpp" />
+    <ClCompile Include="ENDING.cpp" />
     <ClCompile Include="HakJun\Broly.cpp" />
     <ClCompile Include="HakJun\Bowl.cpp" />
     <ClCompile Include="Core\CollisionMgr.cpp" />

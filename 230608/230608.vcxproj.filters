@@ -365,9 +365,18 @@
     </ClInclude>
     <ClInclude Include="HakJun\Broly.h">
       <Filter>05. HakJun</Filter>
-     </ClInclude>
+    </ClInclude>
     <ClInclude Include="MyungBin\MB_Player.h">
       <Filter>04. MyungBin\MiniGame\MB_Player</Filter>
+    </ClInclude>
+    <ClInclude Include="YCoin.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="YWall.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="ENDING.h">
+      <Filter>03. Scene\02. Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -526,6 +535,15 @@
     </ClCompile>
     <ClCompile Include="MyungBin\MB_Player.cpp">
       <Filter>04. MyungBin\MiniGame\MB_Player</Filter>
+    </ClCompile>
+    <ClCompile Include="YCoin.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="YWall.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ENDING.cpp">
+      <Filter>03. Scene\02. Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

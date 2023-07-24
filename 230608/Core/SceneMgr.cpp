@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SceneMgr.h"
-
+#include "ENDING.h"
 #include "Scene_HakStage.h"
 #include "YScene_Serving.h"
 #include "Stage.h"
@@ -56,6 +56,9 @@ void CSceneMgr::Scene_Change(SCENEID eScene)
 
 		case SCENEID::SC_STAGE3:
 			m_pScene = new CYScene_Serving;
+			break;
+		case SCENEID::SC_STAGE_BOSS:
+			m_pScene = new CENDING;
 			break;
 		}
 		m_pScene->Initialize();
