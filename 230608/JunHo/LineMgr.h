@@ -10,7 +10,7 @@ private:
 	~CLineMgr();
 
 public:
-	bool		Collision_Line(INFO& m_tInfo, float* pY);
+	bool		Collision_Line(INFO& m_tInfo, CLine** pLine, float* pY, float* pfGradient);
 	void		Save_Line();
 	void		Load_Line();	// 유정 0622 추가 : 에디터에서 그린 라인 불러오기(Initialize에서 호출)
 	bool		DashCheck(float fX, int nDrection);
@@ -44,7 +44,7 @@ private:
 	LINEPOINT				m_tLintPoint[2];	// 유정 0622 추가
 
 	static CLineMgr* m_pInstance;
-
+	int				m_LineChange = 0;
 private:
 	bool m_bIsDraw; // 0622 유청 추가
 };
