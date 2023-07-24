@@ -29,7 +29,7 @@ int CHitCircle::Update()
     else if (CKeyMgr::Get_Instance()->Key_Down('S'))
     {
         CCollisionMgr::Collision_Sphere(CObjMgr::Get_Instance()->Get_Objects(UNIT), this);
-        m_iHitCate = 0;
+        m_iHitCate = 1;
     }
         
 

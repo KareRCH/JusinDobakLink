@@ -102,7 +102,7 @@ int CYTimeGauge::Update()
 	//	m_tInfo.vSize.x *= 0.8f;
 	//}
 
-	if (m_dwTime + 3000 < GetTickCount())
+	if (m_dwTime + 400 < GetTickCount())
 	{
 		if (0 <= m_tInfo.vSize.x)
 		{
@@ -113,7 +113,8 @@ int CYTimeGauge::Update()
 		}
 		if (0 >= m_tInfo.vSize.x)
 		{
-			dynamic_cast<CYScene_Serving*>(m_ServingScene)->Set_IsEnd(true);
+			//dynamic_cast<CYScene_Serving*>(m_ServingScene)->Set_IsEnd(true);
+
 		}
 	}
 
@@ -132,18 +133,19 @@ void CYTimeGauge::Render(HDC hDC)
 {
 	//Draw_Rectangle(hDC);
 
-	if (dynamic_cast<CYScene_Serving*>(m_ServingScene)->Get_IsEnd())
-	{
-		m_tInfo.vSize.x = 1.f;
-		FRAME tFrame = {};
-		tFrame.iOffsetX = 180; tFrame.iOffsetY = -80;
-		CBmpMgr::Get_Instance()->Draw_PNG(hDC, L"YEnd", m_tInfo, tFrame, 0, 0, 400, 300, false);
-	}
-	else
-	{
-		CBmpMgr::Get_Instance()->Draw_PNG(hDC, m_tInfo, false);
+	// ÁÖ¼® Ç®¾î¾ßÁö ·»´õµÊ
+	//if (dynamic_cast<CYScene_Serving*>(m_ServingScene)->Get_IsEnd())
+	//{
+	//	m_tInfo.vSize.x = 1.f;
+	//	FRAME tFrame = {};
+	//	tFrame.iOffsetX = 180; tFrame.iOffsetY = -80;
+	//	CBmpMgr::Get_Instance()->Draw_PNG(hDC, L"YEnd", m_tInfo, tFrame, 0, 0, 400, 300, false);
+	//}
+	//else
+	//{
+	//	CBmpMgr::Get_Instance()->Draw_PNG(hDC, m_tInfo, false);
 
-	}
+	//}
 
 }
 

@@ -46,7 +46,7 @@ private:
 public:
 	STATE_SET< ESTATE, void(CFood_Cookie*)>* Get_State() { return &m_tState; }
 
-	D3DXVECTOR3 m_vTargetPos = { 400.f, 300.f, 0.f };	// 목표 지점
+	D3DXVECTOR3 m_vTargetPos = { 400.f, 500.f, 0.f };	// 목표 지점
 	float		m_fMaxHeight = 300.f;					// 최대 높이
 	float			m_fTime = 0.f;
 

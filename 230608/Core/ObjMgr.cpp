@@ -61,7 +61,7 @@ int CObjMgr::Update()
 		{
 			int iResult = (*iter)->Update();
 
-			if (OBJ_DEAD == iResult)
+			if (OBJ_DEAD == (*iter)->Get_Dead())
 			{
 				Safe_Delete<CObj*>(*iter);
 				iter = m_ObjList[i].erase(iter);
@@ -91,9 +91,9 @@ void CObjMgr::Late_Update()
 
 	}
 
-	CCollisionMgr::Collision_Rect(m_ObjList[PLAYER], m_ObjList[TILE]);
-	CCollisionMgr::Collision_Rect(m_ObjList[PLAYER], m_ObjList[MONSTER]);
-	CCollisionMgr::Collision_Rect(m_ObjList[PLAYER], m_ObjList[BULLET]);
+	CCollisionMgr::Collision_Rect(m_ObjList[PLAYER3], m_ObjList[TILE]);
+	CCollisionMgr::Collision_Rect(m_ObjList[PLAYER3], m_ObjList[MONSTER]);
+	CCollisionMgr::Collision_Rect(m_ObjList[PLAYER3], m_ObjList[BULLET]);
 	CCollisionMgr::Collision_Rect(m_ObjList[MONSTER], m_ObjList[BULLET]);
 }
 
@@ -130,4 +130,12 @@ void CObjMgr::Delete_ID(OBJID eID)
 		Safe_Delete(iter);
 
 	m_ObjList[(int)eID].clear();
+}
+
+void CObjMgr::Delete_ID_Dead(OBJID eID)
+{
+	for (auto& iter : m_ObjList[(int)eID])
+		(*iter).Set_Dead();
+
+	//m_ObjList[(int)eID].clear();
 }

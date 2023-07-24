@@ -2,10 +2,10 @@
 #include "Obj.h"
 
 class CYPlayer :
-    public CObj
+	public CObj
 {
 public:
-    CYPlayer();
+	CYPlayer();
 	virtual ~CYPlayer();
 
 public:
@@ -56,8 +56,8 @@ private:
 	int			m_iDishCount;
 
 public:
-	void	Set_Money(int _iMoney)	{ m_iMoney += _iMoney; }
-	int		Get_Money()				{ return m_iMoney; }
+	void	Set_Money(int _iMoney) { m_iMoney += _iMoney; }
+	int		Get_Money() { return m_iMoney; }
 
 	void	Set_DishCount(int _iDishCount) { m_iDishCount += _iDishCount; }
 	int		Get_DishCount() { return m_iDishCount; }

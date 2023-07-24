@@ -2,6 +2,7 @@
 #include "StageMyungBin.h"
 #include "Lobby.h"
 #include "FishingStart.h"
+#include "SceneMgr.h"
 
 CStageMyungBin::CStageMyungBin()
 	:m_eState(MyungBinStageState::MyungBinStageState_End)
@@ -39,6 +40,14 @@ void CStageMyungBin::Update()
 		m_eState = nowState;
 		m_eMiniGames[(int)m_eState]->Initialize();
 	}
+
+	if (CKeyMgr::Get_Instance()->Key_Down('W'))
+	{
+		//Release();
+		CSceneMgr::Get_Instance()->Scene_Change(SC_STAGE2);
+		return;
+	}
+
 }
 
 void CStageMyungBin::Late_Update()

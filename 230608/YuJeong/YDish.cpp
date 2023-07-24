@@ -18,7 +18,7 @@
 
 CYDish::CYDish()
 	: m_bActive(false)
-	, m_pPlayer(nullptr)
+	, m_pPlayer3(nullptr)
 	, m_pCustomer(nullptr)
 	, m_vOffset{}
 	, m_vPointScale{}
@@ -39,7 +39,7 @@ void CYDish::Initialize()
 	m_eRender = RENDER_EFFECT;
 	m_eID = BULLET;
 
-	m_pPlayer = CObjMgr::Get_Instance()->Get_Player();
+	m_pPlayer3 = CObjMgr::Get_Instance()->Get_Player3();
 
 	m_tInfo.fCX = 50.f;
 	m_tInfo.fCY = 50.f;
@@ -102,10 +102,10 @@ int CYDish::Update()
 		if (m_bIsPlayerColl)
 		{
 			// 플레이어를 바라보는 방향 구하기 (수정필요)
-			m_tInfo.vDir = CObjMgr::Get_Instance()->Get_Player()->Get_Info().vPos - m_tInfo.vPos;
+			m_tInfo.vDir = CObjMgr::Get_Instance()->Get_Player3()->Get_Info().vPos - m_tInfo.vPos;
 
 			// 플레이어의 각도가 변하면 플레이어의 각도로 같이 변하게
-			m_tInfo.fAngle = CObjMgr::Get_Instance()->Get_Player()->Get_Info().fAngle;
+			m_tInfo.fAngle = CObjMgr::Get_Instance()->Get_Player3()->Get_Info().fAngle;
 
 			// D3DXVec3Normalize(결과 값을 저장할 벡터 주소, 단위 벡터로 만들 벡터 주소) : 단위 벡터를 만들어주는 함수
 			D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
@@ -136,15 +136,15 @@ int CYDish::Update()
 		if (m_bIsCustomerColl)
 		{
 			//m_tInfo.vPos = { m_vCenter.x, m_vCenter.y, m_vCenter.z };
-			dynamic_cast<CYPlayer*>(m_pPlayer)->Set_DishCount(-1);
-			dynamic_cast<CYScene_Serving*>(m_ServingScene)->Set_CurDish(-1);
+			//dynamic_cast<CYPlayer*>(m_pPlayer3)->Set_DishCount(-1);
+			//dynamic_cast<CYScene_Serving*>(m_ServingScene)->Set_CurDish(-1);
 
 			//dynamic_cast<CYPlayer*>(m_pPlayer)->Set_Money(100);
 
 			if (m_dwTime + 5000 < GetTickCount())
 			{
 				CSoundMgr::Get_Instance()->PlaySound(L"PickUpItem.mp3", SOUND_EFFECT, 1.f);
-				dynamic_cast<CYPlayer*>(m_pPlayer)->Set_Money(100);
+				//dynamic_cast<CYPlayer*>(m_pPlayer3)->Set_Money(100);
 				m_bIsCustomerColl = false;
 				return OBJ_DEAD;
 
@@ -243,12 +243,12 @@ void CYDish::Collide(CObj* _pDst)
 	{
 		if (dynamic_cast<CYPlayer*>(_pDst) != nullptr)
 		{
-			if (1 > dynamic_cast<CYPlayer*>(m_pPlayer)->Get_DishCount())
+			if (1 > dynamic_cast<CYPlayer*>(m_pPlayer3)->Get_DishCount())
 			{
 				// 플레이어는 한번에 한개씩만 서빙할 수 있다.
-				dynamic_cast<CYPlayer*>(m_pPlayer)->Set_DishCount(1);
+				dynamic_cast<CYPlayer*>(m_pPlayer3)->Set_DishCount(1);
 				m_bIsPlayerColl = true;
-			}		
+			}
 		}
 		else if (dynamic_cast<CYCustomer*>(_pDst) != nullptr)
 		{
