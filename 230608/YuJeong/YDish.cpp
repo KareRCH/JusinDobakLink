@@ -4,6 +4,7 @@
 #// MGR 매니저
 #include "KeyMgr.h"
 #include "BmpMgr.h"
+#include "SoundMgr.h"
 #include "ObjMgr.h"
 #include "AnimationTable.h"
 
@@ -24,6 +25,7 @@ CYDish::CYDish()
 	, m_vCenter{}
 	, m_bIsPlayerColl(false)
 	, m_bIsCustomerColl(false)
+	, m_iRand(2)
 {
 }
 
@@ -50,7 +52,8 @@ void CYDish::Initialize()
 	//m_vCenter = {m_pCustomer->Get_Info().vPos.x, m_pCustomer->Get_Info().vPos.y, 0.f };
 	//m_vCenter = { 0.f, 0.f, 0.f };
 
-	m_vOffset = { 40.f, 12.f, 0.f };								// 플레이어로부터 얼마나 떨어져 있을지
+	//m_vOffset = { 40.f, 12.f, 0.f };								// 플레이어로부터 얼마나 떨어져 있을지
+	m_vOffset = { 0.f, 0.f, 0.f };								// 플레이어로부터 얼마나 떨어져 있을지
 	m_tInfo.vPos = { m_vCenter.x - m_vOffset.x, m_vCenter.y - m_vOffset.y, m_vCenter.z };
 	m_tInfo.vDir = { 1.f, 0.f, 0.f };							//방향
 	m_tInfo.vLook = { 0.f, -1.f, 0.f };							// 바라보는 방향
@@ -71,15 +74,24 @@ void CYDish::Initialize()
 	// 이미지 관련 Init
 	// ================
 	CBmpMgr::Get_Instance()->Insert_PNG(L"../230608/YuJeong/Image_Yu/03_서빙스테이지_음식_가재.png", L"YDish_lobster");
-	CAnimationTable::Get_Instance()->Create_Animation(
-		L"YDish_lobster", L"1",
-		0, 0, 1, 0.f,
-		0, 35, 50, 50
-	);
+	CBmpMgr::Get_Instance()->Insert_PNG(L"../230608/YuJeong/Image_Yu/03_서빙스테이지_음식_새우튀김.png", L"YDish_shrimp");
+	CBmpMgr::Get_Instance()->Insert_PNG(L"../230608/YuJeong/Image_Yu/03_서빙스테이지_음식_초밥.png", L"YDish_sushi");
 
-	// 애니메이션, 이미지 설정 초기화
-	m_tInfo.tFrameTSet.Set_Keys(L"YDish_lobster", L"1");
-	CAnimationTable::Get_Instance()->Load_AnimData(m_tInfo.tFrameTSet);
+	m_pKey[0] = L"YDish_lobster";
+	m_pKey[1] = L"YDish_shrimp";
+	m_pKey[2] = L"YDish_sushi";
+
+
+	//CBmpMgr::Get_Instance()->Insert_PNG(L"../230608/YuJeong/Image_Yu/03_서빙스테이지_음식_가재.png", L"YDish_lobster");
+	//CAnimationTable::Get_Instance()->Create_Animation(
+	//	L"YDish_lobster", L"1",
+	//	0, 0, 1, 0.f,
+	//	0, 35, 50, 50
+	//);
+
+	//// 애니메이션, 이미지 설정 초기화
+	//m_tInfo.tFrameTSet.Set_Keys(L"YDish_lobster", L"1");
+	//CAnimationTable::Get_Instance()->Load_AnimData(m_tInfo.tFrameTSet);
 
 }
 
@@ -126,8 +138,18 @@ int CYDish::Update()
 			//m_tInfo.vPos = { m_vCenter.x, m_vCenter.y, m_vCenter.z };
 			dynamic_cast<CYPlayer*>(m_pPlayer)->Set_DishCount(-1);
 			dynamic_cast<CYScene_Serving*>(m_ServingScene)->Set_CurDish(-1);
-			m_bIsCustomerColl = false;
-			return OBJ_DEAD;			
+
+			//dynamic_cast<CYPlayer*>(m_pPlayer)->Set_Money(100);
+
+			if (m_dwTime + 5000 < GetTickCount())
+			{
+				CSoundMgr::Get_Instance()->PlaySound(L"PickUpItem.mp3", SOUND_EFFECT, 1.f);
+				dynamic_cast<CYPlayer*>(m_pPlayer)->Set_Money(100);
+				m_bIsCustomerColl = false;
+				return OBJ_DEAD;
+
+				m_dwTime = GetTickCount();
+			}
 		}
 
 		//Key_Input();
@@ -178,7 +200,31 @@ void CYDish::Render(HDC hDC)
 		SelectObject(hDC, hOldBrush);
 		DeleteObject(hNewBrush);
 
-		CBmpMgr::Get_Instance()->Draw_PNG(hDC, m_tInfo, false);
+		//CBmpMgr::Get_Instance()->Draw_PNG(hDC, m_tInfo, false);
+
+		FRAME tFrame = {};
+
+		if (m_bIsPlayerColl)
+		{
+			tFrame.iOffsetX = 0.f; tFrame.iOffsetY = 30.f;
+		}
+		else if (m_bIsCustomerColl)
+		{
+			tFrame.iOffsetX = 32.f; tFrame.iOffsetY = 20.f;
+		}
+		else
+		{
+			tFrame.iOffsetX = 32.f; tFrame.iOffsetY = 30.f;
+		}
+
+
+		for (int i = 0; i < 3; ++i)
+		{
+			if (i == m_iRand)
+			{
+				CBmpMgr::Get_Instance()->Draw_PNG(hDC, m_pKey[i], m_tInfo, tFrame, 0, 0, 50, 50, false);
+			}
+		}
 	}
 }
 
@@ -202,14 +248,43 @@ void CYDish::Collide(CObj* _pDst)
 				// 플레이어는 한번에 한개씩만 서빙할 수 있다.
 				dynamic_cast<CYPlayer*>(m_pPlayer)->Set_DishCount(1);
 				m_bIsPlayerColl = true;
-			}
-			
+			}		
 		}
 		else if (dynamic_cast<CYCustomer*>(_pDst) != nullptr)
 		{
 			m_bIsCustomerColl = true;
 			m_bIsPlayerColl = false;
-			dynamic_cast<CYPlayer*>(m_pPlayer)->Set_Money(100);
+
+
+			// 손님을 바라보는 방향 구하기
+			m_tInfo.vDir = _pDst->Get_Info().vPos - m_tInfo.vPos;
+
+			// 플레이어의 각도가 변하면 손님의 각도로 같이 변하게
+			m_tInfo.fAngle = _pDst->Get_Info().fAngle;
+
+			// D3DXVec3Normalize(결과 값을 저장할 벡터 주소, 단위 벡터로 만들 벡터 주소) : 단위 벡터를 만들어주는 함수
+			D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
+			D3DXVec3Normalize(&m_tInfo.vLook, &m_tInfo.vLook);
+			D3DXMatrixIdentity(&m_tInfo.matWorld);	// 항등행렬로 만들기
+
+			// 회전행렬을 만들고, 이를 벡터에 곱해서 회전된 벡터를 얻어야 한다.
+			D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);					// 크기
+			D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_tInfo.fAngle));	// 회전
+			D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);	// 이동
+
+			// 크기x자전x이동
+			m_tInfo.matWorld = matScale * matRotZ * matTrans;
+
+			// 사각형 점들을 회전행렬로 변환
+			for (int i = 0; i < 4; ++i)
+			{
+				m_vPoint[i] = m_vOriginPoint[i];
+				m_vPoint[i] -= { m_vCenter.x - m_vOffset.x, m_vCenter.y - m_vOffset.y, m_vCenter.z};
+
+				D3DXVec3TransformCoord(&m_vPoint[i], &m_vPoint[i], &m_tInfo.matWorld);
+			}
+
+			m_tInfo.vPos += m_tInfo.vDir * (int)m_fSpeed;	// 이동
 		}
 	}
 }

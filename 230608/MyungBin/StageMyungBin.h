@@ -22,6 +22,4 @@ private:
 	MyungBinStageState	m_eState;
 	CMiniGame*			m_eMiniGames[(int)MyungBinStageState::MyungBinStageState_End];
 
-
-
 };

@@ -19,7 +19,10 @@ void CFishermanCatching::Initialize(CFisherman& _Actor)
 	targetVec3 = { 400, 450, 0 };
 	_Actor.Get_Fish()->Set_AngleDegree(0.f);
 	_Actor.Get_Fish()->Set_Pos(_Actor.Get_BobberPos());
-	iRand = rand() % 10 + 3;
+	iRand = rand() % 20 + 3;
+
+	_Actor.Get_Fish()->Set_RenderMode(1);
+	_Actor.Get_Fish()->Set_FishImg(FishImgState::UP);
 }
 
 FishermanState CFishermanCatching::Update(CFisherman& _Actor)
@@ -35,12 +38,12 @@ FishermanState CFishermanCatching::Update(CFisherman& _Actor)
 
 	if (sqrt(tempVec3.x * tempVec3.x + tempVec3.y * tempVec3.y) < _Actor.Get_Fish()->Get_Speed() * 2)
 	{
-		return FishermanState::SELECT_DIR;
+		return FishermanState::SUCCESS;
 	}
 
 	if (_Actor.Get_Fish()->Get_TargetPos().y <= 100) 
 	{
- 		return FishermanState::SELECT_DIR;
+ 		return FishermanState::FAIL;
 	}
 
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_SPACE))

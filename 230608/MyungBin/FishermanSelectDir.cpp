@@ -27,6 +27,7 @@ void CFishermanSelectDir::Initialize(CFisherman& _Actor)
 	_Actor.Set_TargetOriginPos(startTargetOriginPos);
 
 	_Actor.Update_TargetPos();
+
 }
 
 FishermanState CFishermanSelectDir::Update(CFisherman& _Actor)

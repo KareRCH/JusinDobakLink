@@ -2,6 +2,7 @@
 #include "Actor.h"
 #include "FishingBobber.h"
 #include "Fish.h"
+#include "BmpMgr.h"
 
 enum class FishermanState 
 {
@@ -10,7 +11,8 @@ enum class FishermanState
 	THROWING,
 	HOOKING,
 	CATCHING,
-	//FINISHING,
+	SUCCESS,
+	FAIL,
 	FishermanState_End,
 };
 
@@ -92,17 +94,38 @@ public:
 
 	void	Render_SelectDir(HDC hDC)
 	{
-		MoveToEx(hDC, Get_Info().vPos.x, Get_Info().vPos.y, nullptr);
-		LineTo(hDC, Get_TargetPos().x, Get_TargetPos().y);
+		//MoveToEx(hDC, Get_Info().vPos.x, Get_Info().vPos.y, nullptr);
+		//LineTo(hDC, Get_TargetPos().x, Get_TargetPos().y);
+
+		float x = (Get_Info().vPos.x + Get_TargetPos().x) / 2;
+		float y = (Get_Info().vPos.y + Get_TargetPos().y) / 2;
+
+
+		INFO	fishingbar;
+		fishingbar.vPos.x = x;
+		fishingbar.vPos.y = y;
+
+		fishingbar.vSize.x = 0.1;
+		fishingbar.vSize.y = 0.1;
+		fishingbar.tFrameTSet.sFrameKey = L"fishingbar";
+
+
+		fishingbar.fAngle = Get_AngleDegree();
+
+		CBmpMgr::Get_Instance()->Insert_PNG(L"../Image/fishingbar-removebg.png", L"fishingbar");
+		CBmpMgr::Get_Instance()->Draw_PNG(hDC, fishingbar, false);
+
+
+
 	};
 
 	void	Render_SelectPower(HDC hDC) 
 	{
 		Render_SelectDir(hDC);
 
-		Rectangle(hDC, WINCX - 225, 125, WINCX - 125, WINCY - 125);
+		Rectangle(hDC, WINCX - 175, 125, WINCX - 125, WINCY - 125);
 
-		MoveToEx(hDC, WINCX - 225, WINCY - Get_Gauge(), nullptr);
+		MoveToEx(hDC, WINCX - 175, WINCY - Get_Gauge(), nullptr);
 		LineTo(hDC, WINCX - 125, WINCY - Get_Gauge());
 	};
 

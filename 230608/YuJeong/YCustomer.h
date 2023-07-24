@@ -62,4 +62,16 @@ public:
 	void		Set_Scene(CScene* _ServingScene) { m_ServingScene = _ServingScene; }
 	CScene*		Get_Scene() { return m_ServingScene; }
 
+private:
+	int			m_iRand;			// 난수 생성
+	int			m_iDishRand;
+	TCHAR*		m_pKey[6];
+
+public:
+	void		Set_Rand(int _iRand) { m_iRand = _iRand; }
+	int			Get_Rand() { return m_iRand; }
+
+private:
+	DWORD		m_dwTime = GetTickCount();		//GetTickCount() 타이머용
+	int			m_iCount;						// 딜레이 타이머용
 };

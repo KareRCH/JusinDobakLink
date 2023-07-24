@@ -1,5 +1,8 @@
 #pragma once
 #include "Obj.h"
+
+class CScene;	// Àü¹æ¼±¾ð
+
 class CYTimeGauge :
     public CObj
 {
@@ -35,5 +38,13 @@ private:
 
 	float			m_fmaxTime;
 	float			m_fCurTime;
+
+// ¾À...¤Ð
+private:
+	CScene*		m_ServingScene;
+
+public:
+	void		Set_Scene(CScene* _ServingScene) { m_ServingScene = _ServingScene; }
+	CScene*		Get_Scene() { return m_ServingScene; }
 };
 

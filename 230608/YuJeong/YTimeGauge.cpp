@@ -4,6 +4,9 @@
 #include "BmpMgr.h"
 #include "AnimationTable.h"
 
+// 씬..ㅠ
+#include "YScene_Serving.h"
+
 CYTimeGauge::CYTimeGauge()
 	: m_iCount(0)
 	, m_fmaxTime(60.f)
@@ -52,6 +55,8 @@ void CYTimeGauge::Initialize()
 		0, 0, 191, 11
 	);
 
+	CBmpMgr::Get_Instance()->Insert_PNG(L"../230608/YuJeong/Image_Yu/결과창.png", L"YEnd");
+
 	// 애니메이션, 이미지 설정 초기화
 	m_tInfo.tFrameTSet.Set_Keys(L"YTimeGauge", L"1");
 	CAnimationTable::Get_Instance()->Load_AnimData(m_tInfo.tFrameTSet);
@@ -97,25 +102,22 @@ int CYTimeGauge::Update()
 	//	m_tInfo.vSize.x *= 0.8f;
 	//}
 
-	if (m_dwTime + 1000 < GetTickCount())
+	if (m_dwTime + 3000 < GetTickCount())
 	{
 		if (0 <= m_tInfo.vSize.x)
 		{
 			//m_iHpGauge = (int)(((float)m_tData.iHp / (float)m_tData.iMaxHp) * 171.f);
-			m_tInfo.vSize.x *= 0.8f;
+			m_tInfo.vSize.x -= 0.1f;
 
 			m_dwTime = GetTickCount();
 		}
-		else
+		if (0 >= m_tInfo.vSize.x)
 		{
-
+			dynamic_cast<CYScene_Serving*>(m_ServingScene)->Set_IsEnd(true);
 		}
 	}
 
-	if (0 >= m_tInfo.vSize.x)
-	{
 
-	}
 
 	__super::Update_Rect();
 
@@ -130,7 +132,19 @@ void CYTimeGauge::Render(HDC hDC)
 {
 	//Draw_Rectangle(hDC);
 
-	CBmpMgr::Get_Instance()->Draw_PNG(hDC, m_tInfo, false);
+	if (dynamic_cast<CYScene_Serving*>(m_ServingScene)->Get_IsEnd())
+	{
+		m_tInfo.vSize.x = 1.f;
+		FRAME tFrame = {};
+		tFrame.iOffsetX = 180; tFrame.iOffsetY = -80;
+		CBmpMgr::Get_Instance()->Draw_PNG(hDC, L"YEnd", m_tInfo, tFrame, 0, 0, 400, 300, false);
+	}
+	else
+	{
+		CBmpMgr::Get_Instance()->Draw_PNG(hDC, m_tInfo, false);
+
+	}
+
 }
 
 void CYTimeGauge::Release()

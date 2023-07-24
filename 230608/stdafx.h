@@ -18,6 +18,7 @@
 #include <tchar.h>
 
 #include <list>
+#include <unordered_map>
 #include <map>
 #include <vector>
 #include <set>

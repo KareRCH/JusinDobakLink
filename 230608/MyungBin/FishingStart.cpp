@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "FishingStart.h"
 #include "KeyMgr.h"
+#include "BmpMgr.h"
 
 CFishingStart::CFishingStart()
 {
@@ -35,6 +36,25 @@ void CFishingStart::Render(HDC hDC)
 {
 	int iSize = 100;
 	Rectangle(hDC, iSize, iSize, WINCX - iSize, WINCY - iSize);
+	
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/bg-generic-water.bmp", L"fish-background");
+	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(L"fish-background");
+
+	FRAME f;
+	f.iWidth = WINCX - iSize * 2;
+	f.iHeight = WINCY - iSize * 2;
+	f.iFrameStart = 0;
+	f.iFrameCur = 0;
+
+	INFO background;
+	background.vPos.x = iSize;
+	background.vPos.y = iSize;
+
+	CBmpMgr::Get_Instance()->Draw_BMP(hDC, L"fish-background", background, f, 0, 0, 360, 228, false);
+	
+	//BitBlt(hDC, iSize, iSize, WINCX - iSize, WINCY - iSize, hMemDC, 0, 0, SRCCOPY);
+
+
 
 	m_cFisherman.Render(hDC);
 }

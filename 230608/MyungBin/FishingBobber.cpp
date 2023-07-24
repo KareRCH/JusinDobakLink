@@ -34,6 +34,8 @@ void CFishingBobber::Late_Update()
 
 void CFishingBobber::Render(HDC hDC)
 {
+
+
     Ellipse(hDC
         , m_tInfo.vPos.x - m_tInfo.fCX / 2
         , m_tInfo.vPos.y - m_tInfo.fCY / 2

@@ -3,7 +3,7 @@
   <ItemGroup>
     <Filter Include="소스 파일">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <Extensions>c;cc;cpp;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="리소스 파일">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
@@ -107,6 +107,8 @@
     </Filter>
     <Filter Include="04. MyungBin">
       <UniqueIdentifier>{408965b1-6126-446f-a4ea-b92c2708cda5}</UniqueIdentifier>
+      <Extensions>
+      </Extensions>
     </Filter>
     <Filter Include="02. Design\00. General\Math %28번외%29">
       <UniqueIdentifier>{2b080d57-52d4-4a0c-9518-42dad44cbf1c}</UniqueIdentifier>
@@ -143,6 +145,7 @@
     </Filter>
     <Filter Include="05. HakJun">
       <UniqueIdentifier>{ba606346-5104-45bb-89c9-76526894032e}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;h</Extensions>
     </Filter>
     <Filter Include="05. YuJeong">
       <UniqueIdentifier>{a62620af-58c4-4ec5-9c94-ea7bb9bf04bc}</UniqueIdentifier>
@@ -150,6 +153,12 @@
     <Filter Include="헤더 파일">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="04. MyungBin\FishermanState\Success">
+      <UniqueIdentifier>{036d7bf4-411e-4fa4-ac05-b60fbdb8ad94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. MyungBin\FishermanState\Fail">
+      <UniqueIdentifier>{7fe09ed9-abfc-4be1-9363-52ee838c06d5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -333,8 +342,26 @@
     <ClInclude Include="JunHo\CJPlayer.h">
       <Filter>01. Obj\01.Player</Filter>
     </ClInclude>
+    <ClInclude Include="FishermanSuccess.h">
+      <Filter>04. MyungBin\FishermanState\Success</Filter>
+    </ClInclude>
+    <ClInclude Include="FishermanFail.h">
+      <Filter>04. MyungBin\FishermanState\Fail</Filter>
+     </ClInclude>
     <ClInclude Include="MoveBg.h">
       <Filter>03. Scene\02. Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="YTeacher.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="HakJun\Bowl.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="HakJun\HitCircle.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="HakJun\Broly.h">
+      <Filter>05. HakJun</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -470,8 +497,26 @@
     <ClCompile Include="JunHo\CJPlayer.cpp">
       <Filter>01. Obj\01.Player</Filter>
     </ClCompile>
+    <ClCompile Include="FishermanSuccess.cpp">
+      <Filter>04. MyungBin\FishermanState\Success</Filter>
+    </ClCompile>
+    <ClCompile Include="FishermanFail.cpp">
+      <Filter>04. MyungBin\FishermanState\Fail</Filter>
+    </ClCompile>
     <ClCompile Include="MoveBg.cpp">
       <Filter>03. Scene\02. Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="YTeacher.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="HakJun\Bowl.cpp">
+      <Filter>05. HakJun</Filter>
+    </ClCompile>
+    <ClCompile Include="HakJun\HitCircle.cpp">
+      <Filter>05. HakJun</Filter>
+    </ClCompile>
+    <ClCompile Include="HakJun\Broly.cpp">
+      <Filter>05. HakJun</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
