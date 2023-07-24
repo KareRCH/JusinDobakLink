@@ -37,7 +37,7 @@ void CMainGame::Initialize()
 	CSoundMgr::Get_Instance()->Initialize();
 
 
-	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_STAGE3);
+	CSceneMgr::Get_Instance()->Scene_Change(SCENEID::SC_WORLD1);
 
 
 	CAnimationTable::Get_Instance();
