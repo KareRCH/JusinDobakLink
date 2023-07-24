@@ -26,6 +26,8 @@ public:
 
 	void		Delete_ID(OBJID eID);
 
+	void Delete_ID_Dead(OBJID eID);
+
 public:
 	static CObjMgr* Get_Instance()
 	{

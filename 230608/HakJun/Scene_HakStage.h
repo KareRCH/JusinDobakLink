@@ -19,13 +19,14 @@ private:
 	INFO m_tInfo;
 
 private:
-	enum class ESTATE { READY, START, PLAYING, END };
+	enum class ESTATE { READY, START, PLAYING, END, NEXT };
 	STATE_SET<ESTATE, void(CScene_HakStage*)> m_tState;
 
 	void Ready();
 	void Start();
 	void Playing();
 	void End();
+	void Next();
 
 private:
 	GAUGE<float> m_fGameTime = GAUGE<float>(84.f);

@@ -61,7 +61,7 @@ int CObjMgr::Update()
 		{
 			int iResult = (*iter)->Update();
 
-			if (OBJ_DEAD == iResult)
+			if (OBJ_DEAD == (*iter)->Get_Dead())
 			{
 				Safe_Delete<CObj*>(*iter);
 				iter = m_ObjList[i].erase(iter);
@@ -128,6 +128,14 @@ void CObjMgr::Delete_ID(OBJID eID)
 {
 	for (auto& iter : m_ObjList[(int)eID])
 		Safe_Delete(iter);
+
+	m_ObjList[(int)eID].clear();
+}
+
+void CObjMgr::Delete_ID_Dead(OBJID eID)
+{
+	for (auto& iter : m_ObjList[(int)eID])
+		(*iter).Set_Dead();
 
 	m_ObjList[(int)eID].clear();
 }

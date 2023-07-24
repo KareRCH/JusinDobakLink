@@ -8,6 +8,8 @@
 #include "Food_Cookie.h"
 #include "HitCircle.h"
 #include <Core/KeyMgr.h>
+#include <HakJun/Bowl.h>
+#include <Core/SceneMgr.h>
 
 void CScene_HakStage::Initialize()
 {
@@ -30,11 +32,16 @@ void CScene_HakStage::Initialize()
 	tInfo.vPos = { 200.f, fStartHeight, 0.f };
 	CObjFactory<CHitCircle>::Create(UI, tInfo);
 
+	tInfo = INFO();
+	tInfo.vPos = { 400.f, 500.f, 0.f };
+	CObjFactory<CBowl>::Create(UNIT, tInfo);
+
 	m_tState.Set_State(ESTATE::READY);
 	m_tState.Add_Func(ESTATE::READY, &CScene_HakStage::Ready);
 	m_tState.Add_Func(ESTATE::START, &CScene_HakStage::Start);
 	m_tState.Add_Func(ESTATE::PLAYING, &CScene_HakStage::Playing);
 	m_tState.Add_Func(ESTATE::END, &CScene_HakStage::End);
+	m_tState.Add_Func(ESTATE::NEXT, &CScene_HakStage::Next);
 }
 
 void CScene_HakStage::Update()
@@ -137,8 +144,13 @@ void CScene_HakStage::Playing()
 				m_listFood.pop_front();
 			}
 		}
-		else
+		if (m_fGameTime.IsMax())
 			m_tState.Set_State(ESTATE::END);
+
+		if (CKeyMgr::Get_Instance()->Key_Down(VK_SPACE))
+		{
+			m_tState.Set_State(ESTATE::END);
+		}
 	}
 
 	if (m_tState.IsState_Exit())
@@ -151,7 +163,28 @@ void CScene_HakStage::End()
 {
 	if (m_tState.IsState_Entered())
 	{
+		m_fGameTime.Reset();
+	}
 
+	if (m_tState.Can_Update())
+	{
+		if (m_fGameTime.Update(g_fDeltaTime, 2.f))
+		{
+			m_tState.Set_State(ESTATE::NEXT);
+		}
+	}
+
+	if (m_tState.IsState_Exit())
+	{
+
+	}
+}
+
+void CScene_HakStage::Next()
+{
+	if (m_tState.IsState_Entered())
+	{
+ 		CSceneMgr::Get_Instance()->Scene_Change(SC_STAGE3);
 	}
 
 	if (m_tState.Can_Update())

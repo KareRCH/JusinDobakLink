@@ -13,6 +13,8 @@ public:
 	const INFO&		Get_Info() const { return m_tInfo; }
 	INFO&			Get_Info() { return m_tInfo; }
 	RENDERID		Get_RenderID() { return m_eRender; }
+	void			Set_Dead() { m_bIsDead = true; }
+	bool			Get_Dead() { return m_bIsDead; }
 
 public:
 	public:
@@ -26,6 +28,7 @@ public:
 protected:
 	INFO		m_tInfo;
 	RECT		m_tRect;
+	bool		m_bIsDead = false;
 
 	float		m_fSpeed;
 	RENDERID	m_eRender;
