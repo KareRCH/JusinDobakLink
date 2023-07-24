@@ -22,7 +22,7 @@ void CStage::Initialize()
 	CLineMgr::Get_Instance()->Load_Line();
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CJPlayer>::Create());
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/BackGround2.bmp", L"BackGround");
-	CObjMgr::Get_Instance()->Add_Object(PANEL, CAbstractFactory<CMoveBg>::Create());
+	//CObjMgr::Get_Instance()->Add_Object(PANEL, CAbstractFactory<CMoveBg>::Create());
 	CCamera::Get_Instance()->Set_Target(CObjMgr::Get_Instance()->Get_Player());
 
 }
