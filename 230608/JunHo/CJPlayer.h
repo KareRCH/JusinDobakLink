@@ -37,5 +37,6 @@ private:
 	float				m_fPower;
 	float				m_fTime;
 	bool				m_bIsDrop = false;
+	bool				m_bDead = false;
 };
 

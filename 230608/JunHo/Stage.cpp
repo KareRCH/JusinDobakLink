@@ -9,6 +9,8 @@
 #include "Camera.h"
 #include "MoveBg.h"
 #include "KeyMgr.h"
+#include "ENDING.h"
+#include "SceneMgr.h"
 CStage::CStage() : fuckingx(1200),fuckingy(0), m_bMapEdit(false)
 {
 
@@ -22,7 +24,6 @@ void CStage::Initialize()
 	CLineMgr::Get_Instance()->Load_Line();
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CJPlayer>::Create());
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/BackGround2.bmp", L"BackGround");
-	//CObjMgr::Get_Instance()->Add_Object(PANEL, CAbstractFactory<CMoveBg>::Create());
 	CCamera::Get_Instance()->Set_Target(CObjMgr::Get_Instance()->Get_Player());
 
 }
@@ -31,7 +32,14 @@ void CStage::Update()
 {
 	CCamera::Get_Instance()->Update();
 	CObjMgr::Get_Instance()->Update();
+	if (GetAsyncKeyState('D'))
+	{
+		if (CSceneMgr::Get_Instance()->Get_PreScene() == SC_STAGE)
+		{
+			CSceneMgr::Get_Instance()->Set_CurScene(SC_STAGE_BOSS);
 
+		}
+	}
 
 	if (CKeyMgr::Get_Instance()->Key_Pressing(0x72))
 	{

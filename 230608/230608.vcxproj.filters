@@ -362,18 +362,21 @@
     </ClInclude>
     <ClInclude Include="HakJun\Broly.h">
       <Filter>05. HakJun</Filter>
-     </ClInclude>
+    </ClInclude>
     <ClInclude Include="MyungBin\MB_Player.h">
       <Filter>04. MyungBin\MiniGame\MB_Player</Filter>
+    </ClInclude>
+    <ClInclude Include="JunHo\ENDING.h">
+      <Filter>03. Scene\02. Stage</Filter>
     </ClInclude>
     <ClInclude Include="YuJeong\YCoin.h">
       <Filter>05. HakJun</Filter>
     </ClInclude>
-    <ClInclude Include="YuJeong\YWall.h">
+    <ClInclude Include="YuJeong\YTeacher.h">
       <Filter>05. HakJun</Filter>
     </ClInclude>
-    <ClInclude Include="YuJeong\YTeacher.h">
-      <Filter>05. YuJeong</Filter>
+    <ClInclude Include="YuJeong\YWall.h">
+      <Filter>05. HakJun</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -527,17 +530,20 @@
     <ClCompile Include="HakJun\Broly.cpp">
       <Filter>05. HakJun</Filter>
     </ClCompile>
-    <ClCompile Include="YuJeong\YWall.cpp">
-      <Filter>05. YuJeong</Filter>
-    </ClCompile>
-    <ClCompile Include="YuJeong\YTeacher.cpp">
-      <Filter>05. YuJeong</Filter>
-    </ClCompile>
-    <ClCompile Include="YuJeong\YCoin.cpp">
-      <Filter>05. YuJeong</Filter>
-    </ClCompile>
     <ClCompile Include="MyungBin\MB_Player.cpp">
       <Filter>04. MyungBin\MiniGame\MB_Player</Filter>
+    </ClCompile>
+    <ClCompile Include="JunHo\ENDING.cpp">
+      <Filter>03. Scene\02. Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YCoin.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YTeacher.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YWall.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
