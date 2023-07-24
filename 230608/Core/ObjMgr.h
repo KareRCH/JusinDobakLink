@@ -11,6 +11,7 @@ private:
 
 public:
 	CObj*		Get_Player() { return m_ObjList[(int)OBJID::PLAYER].front(); }
+	CObj*		Get_Player3() { return m_ObjList[(int)OBJID::PLAYER3].front(); }
 	CObj*		Get_Mouse() { return m_ObjList[(int)OBJID::MOUSE].front(); }
 
 	list<CObj*>	Get_Objects(OBJID eId) { return m_ObjList[(int)eId]; }
@@ -25,6 +26,8 @@ public:
 	void		Release();
 
 	void		Delete_ID(OBJID eID);
+
+	void Delete_ID_Dead(OBJID eID);
 
 public:
 	static CObjMgr* Get_Instance()

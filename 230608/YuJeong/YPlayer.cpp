@@ -36,7 +36,7 @@ CYPlayer::~CYPlayer()
 void CYPlayer::Initialize()
 {
 	m_eRender = RENDER_GAMEOBJECT;
-	m_eID = PLAYER;
+	m_eID = PLAYER3;
 
 	m_tInfo.fCX = 35.f;
 	m_tInfo.fCY = 45.f;
@@ -45,7 +45,7 @@ void CYPlayer::Initialize()
 	// D3DXVECTOR3 Init
 	// ================
 	m_vCenter = { (WINCX / 2 + 60), (WINCY / 2 - 70), 0.f };	// 원점, 플레이어 생성위치?
-	m_tInfo.vPos = { m_vCenter.x, m_vCenter.y, m_vCenter.z };	
+	m_tInfo.vPos = { m_vCenter.x, m_vCenter.y, m_vCenter.z };
 	m_tInfo.vDir = { 1.f, 0.f, 0.f };							//방향
 	m_tInfo.vLook = { 0.f, 1.f, 0.f };							// 바라보는 방향
 	m_tInfo.vSize = { 1.f, 1.f, 0.f };							// 크기(배율)
@@ -107,7 +107,7 @@ int CYPlayer::Update()
 
 	if (m_bIsWallColl)
 	{
-	
+
 	}
 
 
@@ -120,7 +120,7 @@ int CYPlayer::Update()
 	//	m_iPreMoney = m_iMoney;
 	//}
 
-	
+
 
 	__super::Update_Rect();
 
@@ -211,7 +211,7 @@ void CYPlayer::Render(HDC hDC)
 	// ===================
 	TCHAR szBuffer[128];
 	_stprintf_s(szBuffer, L"Player.x : %f \t Player.y : %f", m_tInfo.vPos.x, m_tInfo.vPos.y);
-	TextOutW(hDC, 0,580, szBuffer, lstrlen(szBuffer));
+	TextOutW(hDC, 0, 580, szBuffer, lstrlen(szBuffer));
 }
 
 void CYPlayer::Release()
@@ -224,7 +224,7 @@ void CYPlayer::Collide(CObj* _pDst)
 	{
 		m_bIsDishColl = true;
 	}
-	
+
 	if (dynamic_cast<CYWall*>(_pDst) != nullptr)
 	{
 		//m_bIsWallColl = true;

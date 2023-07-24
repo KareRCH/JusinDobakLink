@@ -49,7 +49,7 @@ void CYCustomer::Initialize()
 	// D3DXVECTOR3 Init
 	// ================
 	//m_vCenter = { 566.1, 248, 0.f };	// 원점, 손님 생성위치?
-	m_tInfo.vPos = { m_vCenter.x, m_vCenter.y, m_vCenter.z };	
+	m_tInfo.vPos = { m_vCenter.x, m_vCenter.y, m_vCenter.z };
 	m_tInfo.vDir = { 1.f, 0.f, 0.f };							//방향
 	m_tInfo.vLook = { 0.f, 1.f, 0.f };							// 바라보는 방향
 	m_tInfo.vSize = { 1.f, 1.f, 0.f };							// 이미지 크기(배율)
@@ -174,7 +174,7 @@ int CYCustomer::Update()
 		}
 		return OBJ_NOEVENT;
 	}
-	
+
 }
 
 void CYCustomer::Late_Update()
@@ -230,7 +230,7 @@ void CYCustomer::Render(HDC hDC)
 		}
 
 	}
-	
+
 }
 
 void CYCustomer::Release()

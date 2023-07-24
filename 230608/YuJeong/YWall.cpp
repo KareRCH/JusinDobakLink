@@ -53,51 +53,51 @@ void CYWall::Late_Update()
 
 void CYWall::Render(HDC hDC)
 {
-	HBRUSH hNewBrush = NULL;
-	HBRUSH hOldBrush = NULL;
+	//HBRUSH hNewBrush = NULL;
+	//HBRUSH hOldBrush = NULL;
 
-	HPEN hNewPen = NULL;
-	HPEN hOldPen = NULL;
+	//HPEN hNewPen = NULL;
+	//HPEN hOldPen = NULL;
 
-	// 브러쉬 설정
-	//hNewBrush = CreateSolidBrush(RGB(240, 128, 128));
-	hNewBrush = CreateSolidBrush(RGB(0, 255, 0));
-	hOldBrush = (HBRUSH)SelectObject(hDC, hNewBrush);
+	//// 브러쉬 설정
+	////hNewBrush = CreateSolidBrush(RGB(240, 128, 128));
+	//hNewBrush = CreateSolidBrush(RGB(0, 255, 0));
+	//hOldBrush = (HBRUSH)SelectObject(hDC, hNewBrush);
 
-	// 펜 설정 + 해제
-	hNewPen = CreatePen(PS_SOLID, 3, RGB(0, 255, 0));
-	hOldPen = (HPEN)SelectObject(hDC, hNewPen);
+	//// 펜 설정 + 해제
+	//hNewPen = CreatePen(PS_SOLID, 3, RGB(0, 255, 0));
+	//hOldPen = (HPEN)SelectObject(hDC, hNewPen);
 
-	//Ellipse(hDC,
-	//	m_vPoint[2].x - 5.f,
-	//	m_vPoint[2].y - 5.f,
-	//	m_vPoint[2].x + 5.f,
-	//	m_vPoint[2].y + 5.f);
+	////Ellipse(hDC,
+	////	m_vPoint[2].x - 5.f,
+	////	m_vPoint[2].y - 5.f,
+	////	m_vPoint[2].x + 5.f,
+	////	m_vPoint[2].y + 5.f);
 
-	//Ellipse(hDC,
-	//	m_vPoint[3].x - 5.f,
-	//	m_vPoint[3].y - 5.f,
-	//	m_vPoint[3].x + 5.f,
-	//	m_vPoint[3].y + 5.f);
-
-
-	//Rectangle(hDC,
-	//	m_tRect.left,
-	//	m_tRect.top,
-	//	m_tRect.right,
-	//	m_tRect.bottom);
+	////Ellipse(hDC,
+	////	m_vPoint[3].x - 5.f,
+	////	m_vPoint[3].y - 5.f,
+	////	m_vPoint[3].x + 5.f,
+	////	m_vPoint[3].y + 5.f);
 
 
-	Draw_Rectangle(hDC);
+	////Rectangle(hDC,
+	////	m_tRect.left,
+	////	m_tRect.top,
+	////	m_tRect.right,
+	////	m_tRect.bottom);
 
 
-	// 펜 해제
-	SelectObject(hDC, hOldPen);
-	DeleteObject(hNewPen);
+	//Draw_Rectangle(hDC);
 
-	// 브러쉬 해제
-	SelectObject(hDC, hOldBrush);
-	DeleteObject(hNewBrush);
+
+	//// 펜 해제
+	//SelectObject(hDC, hOldPen);
+	//DeleteObject(hNewPen);
+
+	//// 브러쉬 해제
+	//SelectObject(hDC, hOldBrush);
+	//DeleteObject(hNewBrush);
 }
 
 void CYWall::Release()

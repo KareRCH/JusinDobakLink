@@ -90,7 +90,7 @@ void CYScene_Serving::Initialize()
 	// ============
 	// 플레이어 생성
 	// ============
-	CObjMgr::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CYPlayer>::Create());
+	CObjMgr::Get_Instance()->Add_Object(PLAYER3, CAbstractFactory<CYPlayer>::Create());
 
 
 	// 손님 위치
@@ -164,7 +164,7 @@ void CYScene_Serving::Late_Update()
 	
 	CObjMgr::Get_Instance()->Late_Update();
 
-	if (m_bIsEnd)
+	//if (m_bIsEnd)
 	{
 		if (CKeyMgr::Get_Instance()->Key_Down(VK_RETURN))
 		{
@@ -194,7 +194,7 @@ void CYScene_Serving::Render(HDC hDC)
 	if (m_bIsEnd)
 	{
 		TCHAR szEndMoney[128];
-		_stprintf_s(szEndMoney, L"%d 원", dynamic_cast<CYPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Get_Money());
+		_stprintf_s(szEndMoney, L"%d 원", dynamic_cast<CYPlayer*>(CObjMgr::Get_Instance()->Get_Player3())->Get_Money());
 		TextOutW(hDC, 350, 245, szEndMoney, lstrlen(szEndMoney));
 	}
 }
@@ -203,6 +203,10 @@ void CYScene_Serving::Release()
 {
 	CSoundMgr::Get_Instance()->StopAll();
 
+	CObjMgr::Get_Instance()->Delete_ID_Dead(PLAYER3);
+	CObjMgr::Get_Instance()->Delete_ID_Dead(MONSTER);
+	CObjMgr::Get_Instance()->Delete_ID_Dead(BULLET);
+	CObjMgr::Get_Instance()->Delete_ID_Dead(UI);
 	//Safe_Delete(m_pTimeGauge);
 
 }

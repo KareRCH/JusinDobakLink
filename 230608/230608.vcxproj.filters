@@ -347,12 +347,9 @@
     </ClInclude>
     <ClInclude Include="FishermanFail.h">
       <Filter>04. MyungBin\FishermanState\Fail</Filter>
-     </ClInclude>
+    </ClInclude>
     <ClInclude Include="MoveBg.h">
       <Filter>03. Scene\02. Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="YTeacher.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="HakJun\Bowl.h">
       <Filter>05. HakJun</Filter>
@@ -362,6 +359,15 @@
     </ClInclude>
     <ClInclude Include="HakJun\Broly.h">
       <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YCoin.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YWall.h">
+      <Filter>05. HakJun</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YTeacher.h">
+      <Filter>05. YuJeong</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -506,9 +512,6 @@
     <ClCompile Include="MoveBg.cpp">
       <Filter>03. Scene\02. Stage</Filter>
     </ClCompile>
-    <ClCompile Include="YTeacher.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="HakJun\Bowl.cpp">
       <Filter>05. HakJun</Filter>
     </ClCompile>
@@ -517,6 +520,15 @@
     </ClCompile>
     <ClCompile Include="HakJun\Broly.cpp">
       <Filter>05. HakJun</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YWall.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YTeacher.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YCoin.cpp">
+      <Filter>05. YuJeong</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
