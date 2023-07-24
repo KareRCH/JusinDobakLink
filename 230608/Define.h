@@ -34,6 +34,8 @@
 #define		STAGE3_MAPCY	1584
 #define		BOSS_MAPCX		1216
 #define		BOSS_MAPCY		896
+//#define		STAGE_LOBBY_X	
+//#define		STAGE_LOBBY_Y	
 
 #pragma region 전역 변수
 extern HWND g_hWnd;					// 윈도우 핸들
