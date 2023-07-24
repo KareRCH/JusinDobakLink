@@ -49,7 +49,7 @@ FishermanState CFishermanCatching::Update(CFisherman& _Actor)
 	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
 	{
 		D3DXVec3Normalize(&tempVec3, &tempVec3);
-		_Actor.Get_Fish()->Add_Pos((-tempVec3) * _Actor.Get_Fish()->Get_Speed() * 1.0f);
+		_Actor.Get_Fish()->Add_Pos((-tempVec3) * _Actor.Get_Fish()->Get_Speed() * 4.0f);
 
 		float	fDot = D3DXVec3Dot(&tempVec3, &_Actor.Get_Fish()->Get_Info().vDir);
 

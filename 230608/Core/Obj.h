@@ -28,6 +28,7 @@ public:
 protected:
 	INFO		m_tInfo;
 	RECT		m_tRect;
+	bool		m_bIsDead = false;
 
 	float		m_fSpeed;
 	RENDERID	m_eRender;

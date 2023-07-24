@@ -5,6 +5,8 @@
 #include "BmpMgr.h"
 #include "AnimationTable.h"
 #include <HakJun/HitCircle.h>
+#include <HakJun/Bowl.h>
+#include <Core/CollisionMgr.h>
 
 void CFood_Cookie::Initialize()
 {
@@ -20,10 +22,16 @@ void CFood_Cookie::Initialize()
 		0, 0, 1, 0.f,
 		16, 7, 32, 15
 	);
+	CBmpMgr::Get_Instance()->Insert_PNG(L"../Image/Hak/boong.png", L"Boong");
+	CAnimationTable::Get_Instance()->Create_Animation(
+		L"Boong", L"1",
+		0, 0, 1, 0.f,
+		19, 12, 39, 25
+	);
 #pragma endregion
 
 	// 애니메이션, 이미지 설정 초기화
-	m_tInfo.tFrameTSet.Set_Keys(L"Cookie", L"1");
+	m_tInfo.tFrameTSet.Set_Keys(L"Boong", L"1");
 	CAnimationTable::Get_Instance()->Load_AnimData(m_tInfo.tFrameTSet);
 
 	m_tState.Set_State(ESTATE::MOVE);
@@ -85,7 +93,7 @@ void CFood_Cookie::Render(HDC hDC)
 {
 	CBmpMgr::Get_Instance()->Draw_PNG(hDC, m_tInfo, false);
 
-	D3DXMATRIX matTrans, matRot, matScale;
+	/*D3DXMATRIX matTrans, matRot, matScale;
 	D3DXMatrixIdentity(&matTrans);
 	D3DXMatrixIdentity(&matRot);
 	D3DXMatrixIdentity(&matScale);
@@ -110,7 +118,7 @@ void CFood_Cookie::Render(HDC hDC)
 		LineTo(hDC, (int)m_points[i].x, (int)m_points[i].y);
 	}
 	
-	CBmpMgr::Get_Instance()->Draw_Text_Circle_Vec3(hDC, m_tInfo.vPos, 3, false);
+	CBmpMgr::Get_Instance()->Draw_Text_Circle_Vec3(hDC, m_tInfo.vPos, 3, false);*/
 }
 
 void CFood_Cookie::Release()
@@ -121,9 +129,15 @@ void CFood_Cookie::Release()
 void CFood_Cookie::Collide(CObj* _pDst)
 {
 	CHitCircle* pCircle = dynamic_cast<CHitCircle*>(_pDst);
-	if (_pDst)
+	if (pCircle)
 	{
 		m_tState.Set_State(ESTATE::HIT);
+	}
+
+	CBowl* pObj = dynamic_cast<CBowl*>(_pDst);
+	if (pObj)
+	{
+		Set_Dead();
 	}
 }
 
@@ -194,6 +208,9 @@ void CFood_Cookie::Hit()
 
 		if (m_tInfo.vPos.x < m_vTargetPos.x)
 			m_fTime = m_fTime;
+
+
+		CCollisionMgr::Collision_Sphere(CObjMgr::Get_Instance()->Get_Objects(UNIT), this);
 	}
 
 	if (m_tState.IsState_Exit())
