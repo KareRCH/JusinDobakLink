@@ -7,6 +7,7 @@
 #include "SoundMgr.h"
 #include "ObjMgr.h"
 #include "AnimationTable.h"
+#include "SceneMgr.h"
 
 // Obj
 #include "YPlayer.h"
@@ -132,19 +133,21 @@ int CYDish::Update()
 			m_tInfo.vPos += m_tInfo.vDir * m_fSpeed;	// 이동
 		}
 
+
 		// 손님과 충돌하면 삭제
-		if (m_bIsCustomerColl)
+		if (m_bIsCustomerColl && CSceneMgr::Get_Instance()->Get_CurScene() == SC_STAGE3)
+		//if (m_bIsCustomerColl )
 		{
 			//m_tInfo.vPos = { m_vCenter.x, m_vCenter.y, m_vCenter.z };
-			//dynamic_cast<CYPlayer*>(m_pPlayer3)->Set_DishCount(-1);
-			//dynamic_cast<CYScene_Serving*>(m_ServingScene)->Set_CurDish(-1);
+			dynamic_cast<CYPlayer*>(m_pPlayer3)->Set_DishCount(-1);
+			dynamic_cast<CYScene_Serving*>(m_ServingScene)->Set_CurDish(-1);
 
-			//dynamic_cast<CYPlayer*>(m_pPlayer)->Set_Money(100);
+			//dynamic_cast<CYPlayer*>(m_pPlayer3)->Set_Money(100);
 
 			if (m_dwTime + 5000 < GetTickCount())
 			{
 				CSoundMgr::Get_Instance()->PlaySound(L"PickUpItem.mp3", SOUND_EFFECT, 1.f);
-				//dynamic_cast<CYPlayer*>(m_pPlayer3)->Set_Money(100);
+				dynamic_cast<CYPlayer*>(m_pPlayer3)->Set_Money(100);
 				m_bIsCustomerColl = false;
 				return OBJ_DEAD;
 

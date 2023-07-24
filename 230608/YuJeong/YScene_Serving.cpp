@@ -203,10 +203,11 @@ void CYScene_Serving::Release()
 {
 	CSoundMgr::Get_Instance()->StopAll();
 
-	CObjMgr::Get_Instance()->Delete_ID_Dead(PLAYER3);
 	CObjMgr::Get_Instance()->Delete_ID_Dead(MONSTER);
 	CObjMgr::Get_Instance()->Delete_ID_Dead(BULLET);
 	CObjMgr::Get_Instance()->Delete_ID_Dead(UI);
+	CObjMgr::Get_Instance()->Delete_ID_Dead(PLAYER3);
+
 	//Safe_Delete(m_pTimeGauge);
 
 }

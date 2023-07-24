@@ -3,6 +3,7 @@
 
 #include "BmpMgr.h"
 #include "AnimationTable.h"
+#include "SCeneMgr.h"
 
 // ¾À..¤Ð
 #include "YScene_Serving.h"
@@ -102,21 +103,25 @@ int CYTimeGauge::Update()
 	//	m_tInfo.vSize.x *= 0.8f;
 	//}
 
-	if (m_dwTime + 400 < GetTickCount())
-	{
-		if (0 <= m_tInfo.vSize.x)
+	//if (CSceneMgr::Get_Instance()->Get_CurScene() == SC_STAGE3)
+	//{
+		if (m_dwTime + 400 < GetTickCount())
 		{
-			//m_iHpGauge = (int)(((float)m_tData.iHp / (float)m_tData.iMaxHp) * 171.f);
-			m_tInfo.vSize.x -= 0.1f;
+			if (0 <= m_tInfo.vSize.x)
+			{
+				//m_iHpGauge = (int)(((float)m_tData.iHp / (float)m_tData.iMaxHp) * 171.f);
+				m_tInfo.vSize.x -= 0.1f;
 
-			m_dwTime = GetTickCount();
-		}
-		if (0 >= m_tInfo.vSize.x)
-		{
-			//dynamic_cast<CYScene_Serving*>(m_ServingScene)->Set_IsEnd(true);
+				m_dwTime = GetTickCount();
+			}
+			if (0 >= m_tInfo.vSize.x)
+			{
+				//dynamic_cast<CYScene_Serving*>(m_ServingScene)->Set_IsEnd(true);
 
+			}
 		}
-	}
+	//}
+
 
 
 
@@ -134,7 +139,8 @@ void CYTimeGauge::Render(HDC hDC)
 	//Draw_Rectangle(hDC);
 
 	// ÁÖ¼® Ç®¾î¾ßÁö ·»´õµÊ
-	//if (dynamic_cast<CYScene_Serving*>(m_ServingScene)->Get_IsEnd())
+
+	//if (dynamic_cast<CYScene_Serving*>(m_ServingScene)->Get_IsEnd() && CSceneMgr::Get_Instance()->Get_CurScene() == SC_STAGE3)
 	//{
 	//	m_tInfo.vSize.x = 1.f;
 	//	FRAME tFrame = {};
