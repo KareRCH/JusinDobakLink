@@ -201,6 +201,7 @@
     <ClInclude Include="MyungBin\FishingBobber.h" />
     <ClInclude Include="MyungBin\FishingStart.h" />
     <ClInclude Include="MyungBin\Lobby.h" />
+    <ClInclude Include="MyungBin\MB_Player.h" />
     <ClInclude Include="MyungBin\MiniGame.h" />
     <ClInclude Include="MyungBin\StageMyungBin.h" />
     <ClInclude Include="Resource.h" />
@@ -255,6 +256,7 @@
     <ClCompile Include="MyungBin\FishingBobber.cpp" />
     <ClCompile Include="MyungBin\FishingStart.cpp" />
     <ClCompile Include="MyungBin\Lobby.cpp" />
+    <ClCompile Include="MyungBin\MB_Player.cpp" />
     <ClCompile Include="MyungBin\StageMyungBin.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

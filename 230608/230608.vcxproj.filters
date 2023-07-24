@@ -157,6 +157,9 @@
     <Filter Include="04. MyungBin\FishermanState\Fail">
       <UniqueIdentifier>{7fe09ed9-abfc-4be1-9363-52ee838c06d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. MyungBin\MiniGame\MB_Player">
+      <UniqueIdentifier>{28eff670-742e-4b04-9aeb-4ec298123abb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -344,9 +347,15 @@
     </ClInclude>
     <ClInclude Include="FishermanFail.h">
       <Filter>04. MyungBin\FishermanState\Fail</Filter>
-     </ClInclude>
+    </ClInclude>
     <ClInclude Include="MoveBg.h">
       <Filter>03. Scene\02. Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="YTeacher.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MyungBin\MB_Player.h">
+      <Filter>04. MyungBin\MiniGame\MB_Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -490,6 +499,12 @@
     </ClCompile>
     <ClCompile Include="MoveBg.cpp">
       <Filter>03. Scene\02. Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="YTeacher.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MyungBin\MB_Player.cpp">
+      <Filter>04. MyungBin\MiniGame\MB_Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
