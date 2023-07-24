@@ -51,7 +51,10 @@ void CLobby::Render(HDC hDC)
 	background.vPos.x = 0;// +CCamera::Get_Instance()->Get_RenderPos;
 	background.vPos.y = 0;
 
-	CBmpMgr::Get_Instance()->Draw_BMP(hDC, L"StartArea", background, f, m_cPlayer.Get_Info().vPos.x, m_cPlayer.Get_Info().vPos.y, WINCX, WINCY, false);
+	CBmpMgr::Get_Instance()->Draw_BMP(hDC, L"StartArea", background, f, 
+		m_cPlayer.Get_Info().vPos.x,// + CCamera::Get_Instance()->Get_WindowPos().x, 
+		m_cPlayer.Get_Info().vPos.y,// + CCamera::Get_Instance()->Get_WindowPos().y,
+		WINCX, WINCY, false);
 
 
 	m_cPlayer.Render(hDC);
