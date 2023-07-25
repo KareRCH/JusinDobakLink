@@ -88,7 +88,6 @@ void CObjMgr::Late_Update()
 			RENDERID eRender = iter->Get_RenderID();
 			m_RenderList[(int)eRender].push_back(iter);
 		}
-
 	}
 
 	CCollisionMgr::Collision_Rect(m_ObjList[PLAYER3], m_ObjList[TILE]);

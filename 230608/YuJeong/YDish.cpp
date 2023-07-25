@@ -149,18 +149,14 @@ int CYDish::Update()
 				CSoundMgr::Get_Instance()->PlaySound(L"PickUpItem.mp3", SOUND_EFFECT, 1.f);
 				dynamic_cast<CYPlayer*>(m_pPlayer3)->Set_Money(100);
 				m_bIsCustomerColl = false;
+				m_bIsDead = true;
 				return OBJ_DEAD;
 
 				m_dwTime = GetTickCount();
 			}
 		}
-
-		//Key_Input();
-
 		__super::Update_Rect();
-
 	}
-
 	return OBJ_NOEVENT;
 }
 
@@ -172,36 +168,36 @@ void CYDish::Render(HDC hDC)
 {
 	if (m_bActive)
 	{
-		HBRUSH hNewBrush = NULL;
-		HBRUSH hOldBrush = NULL;
+		//HBRUSH hNewBrush = NULL;
+		//HBRUSH hOldBrush = NULL;
 
-		HPEN hNewPen = NULL;
-		HPEN hOldPen = NULL;
+		//HPEN hNewPen = NULL;
+		//HPEN hOldPen = NULL;
 
-		// 브러쉬 설정
-		//hNewBrush = CreateSolidBrush(RGB(240, 128, 128));
-		hNewBrush = CreateSolidBrush(RGB(0, 255, 0));
-		hOldBrush = (HBRUSH)SelectObject(hDC, hNewBrush);
+		//// 브러쉬 설정
+		////hNewBrush = CreateSolidBrush(RGB(240, 128, 128));
+		//hNewBrush = CreateSolidBrush(RGB(0, 255, 0));
+		//hOldBrush = (HBRUSH)SelectObject(hDC, hNewBrush);
 
-		// 펜 설정 + 해제
-		hNewPen = CreatePen(PS_SOLID, 3, RGB(0, 255, 0));
-		hOldPen = (HPEN)SelectObject(hDC, hNewPen);
+		//// 펜 설정 + 해제
+		//hNewPen = CreatePen(PS_SOLID, 3, RGB(0, 255, 0));
+		//hOldPen = (HPEN)SelectObject(hDC, hNewPen);
 
-		//Rectangle(hDC,
-		//	m_tRect.left,
-		//	m_tRect.top,
-		//	m_tRect.right,
-		//	m_tRect.bottom);
+		////Rectangle(hDC,
+		////	m_tRect.left,
+		////	m_tRect.top,
+		////	m_tRect.right,
+		////	m_tRect.bottom);
 
-		Draw_Rectangle(hDC);
+		//Draw_Rectangle(hDC);
 
-		// 펜 해제
-		SelectObject(hDC, hOldPen);
-		DeleteObject(hNewPen);
+		//// 펜 해제
+		//SelectObject(hDC, hOldPen);
+		//DeleteObject(hNewPen);
 
-		// 브러쉬 해제
-		SelectObject(hDC, hOldBrush);
-		DeleteObject(hNewBrush);
+		//// 브러쉬 해제
+		//SelectObject(hDC, hOldBrush);
+		//DeleteObject(hNewBrush);
 
 		//CBmpMgr::Get_Instance()->Draw_PNG(hDC, m_tInfo, false);
 
@@ -237,11 +233,6 @@ void CYDish::Release()
 
 void CYDish::Collide(CObj* _pDst)
 {
-	//if (PLAYER == dynamic_cast<CYPlayer*>(_pDst)->Get_Id());
-	//{
-	//	m_bIsPlayerColl = true;
-	//}
-
 	if (m_bActive)
 	{
 		if (dynamic_cast<CYPlayer*>(_pDst) != nullptr)
@@ -257,7 +248,6 @@ void CYDish::Collide(CObj* _pDst)
 		{
 			m_bIsCustomerColl = true;
 			m_bIsPlayerColl = false;
-
 
 			// 손님을 바라보는 방향 구하기
 			m_tInfo.vDir = _pDst->Get_Info().vPos - m_tInfo.vPos;

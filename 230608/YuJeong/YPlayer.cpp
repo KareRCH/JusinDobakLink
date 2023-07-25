@@ -163,11 +163,11 @@ void CYPlayer::Render(HDC hDC)
 	//	m_vPoint[3].y + 5.f);
 
 
-	Rectangle(hDC,
-		m_tRect.left,
-		m_tRect.top,
-		m_tRect.right,
-		m_tRect.bottom);
+	//Rectangle(hDC,
+	//	m_tRect.left,
+	//	m_tRect.top,
+	//	m_tRect.right,
+	//	m_tRect.bottom);
 
 
 	//Draw_Rectangle(hDC);
@@ -209,9 +209,9 @@ void CYPlayer::Render(HDC hDC)
 	// ===================
 	// 좌표 확인 텍스트 표시
 	// ===================
-	TCHAR szBuffer[128];
-	_stprintf_s(szBuffer, L"Player.x : %f \t Player.y : %f", m_tInfo.vPos.x, m_tInfo.vPos.y);
-	TextOutW(hDC, 0, 580, szBuffer, lstrlen(szBuffer));
+	//TCHAR szBuffer[128];
+	//_stprintf_s(szBuffer, L"Player.x : %f \t Player.y : %f", m_tInfo.vPos.x, m_tInfo.vPos.y);
+	//TextOutW(hDC, 0, 580, szBuffer, lstrlen(szBuffer));
 }
 
 void CYPlayer::Release()
@@ -323,13 +323,13 @@ void CYPlayer::Key_Input()
 	}
 
 
-	if (GetAsyncKeyState(VK_UP))
-	{
-		D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
-		m_tInfo.vPos -= m_tInfo.vDir * m_fSpeed;
+	//if (GetAsyncKeyState(VK_UP))
+	//{
+	//	D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
+	//	m_tInfo.vPos -= m_tInfo.vDir * m_fSpeed;
 
-		//D3DXVec3TransformCoord(&)
-	}
+	//	//D3DXVec3TransformCoord(&)
+	//}
 
 	if (GetAsyncKeyState(VK_DOWN))
 	{
