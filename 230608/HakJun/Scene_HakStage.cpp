@@ -11,6 +11,8 @@
 #include <HakJun/Bowl.h>
 #include <Core/SceneMgr.h>
 
+#include "SceneMgr.h"
+
 void CScene_HakStage::Initialize()
 {
 #pragma region 이미지 추가
@@ -54,6 +56,12 @@ void CScene_HakStage::Update()
 void CScene_HakStage::Late_Update()
 {
 	CObjMgr::Get_Instance()->Late_Update();
+
+	if (CKeyMgr::Get_Instance()->Key_Down('E'))
+	{
+		CSceneMgr::Get_Instance()->Scene_Change(SC_STAGE3);
+		return;
+	}
 }
 
 void CScene_HakStage::Render(HDC hDC)
@@ -73,6 +81,8 @@ void CScene_HakStage::Release()
 		m_listFood.pop_front();
 		iter = m_listFood.begin();
 	}
+
+	CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
 }
 
 void CScene_HakStage::Ready()

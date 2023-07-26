@@ -60,9 +60,6 @@
     <Filter Include="02. Design\08. TileMgr\Tile">
       <UniqueIdentifier>{e0b44839-7895-43b5-9054-818c054d4d5e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03. Scene\03. Edit">
-      <UniqueIdentifier>{7fc20183-ba73-442b-86bb-4bf01dc7fecf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01. Obj\03. Mouse">
       <UniqueIdentifier>{4dab4d2f-e72e-4697-98b6-055d6fca6bbc}</UniqueIdentifier>
     </Filter>
@@ -162,6 +159,9 @@
     </Filter>
     <Filter Include="04. MyungBin\MiniGame\MB_Player">
       <UniqueIdentifier>{28eff670-742e-4b04-9aeb-4ec298123abb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\02. Stage\03. Edit">
+      <UniqueIdentifier>{7fc20183-ba73-442b-86bb-4bf01dc7fecf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -354,9 +354,6 @@
     <ClInclude Include="MoveBg.h">
       <Filter>03. Scene\02. Stage</Filter>
     </ClInclude>
-    <ClInclude Include="YTeacher.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="HakJun\Bowl.h">
       <Filter>05. HakJun</Filter>
     </ClInclude>
@@ -365,9 +362,21 @@
     </ClInclude>
     <ClInclude Include="HakJun\Broly.h">
       <Filter>05. HakJun</Filter>
-     </ClInclude>
+    </ClInclude>
     <ClInclude Include="MyungBin\MB_Player.h">
       <Filter>04. MyungBin\MiniGame\MB_Player</Filter>
+    </ClInclude>
+    <ClInclude Include="JunHo\ENDING.h">
+      <Filter>03. Scene\02. Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YWall.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YTeacher.h">
+      <Filter>05. YuJeong</Filter>
+    </ClInclude>
+    <ClInclude Include="YuJeong\YCoin.h">
+      <Filter>05. YuJeong</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -512,9 +521,6 @@
     <ClCompile Include="MoveBg.cpp">
       <Filter>03. Scene\02. Stage</Filter>
     </ClCompile>
-    <ClCompile Include="YTeacher.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="HakJun\Bowl.cpp">
       <Filter>05. HakJun</Filter>
     </ClCompile>
@@ -526,6 +532,18 @@
     </ClCompile>
     <ClCompile Include="MyungBin\MB_Player.cpp">
       <Filter>04. MyungBin\MiniGame\MB_Player</Filter>
+    </ClCompile>
+    <ClCompile Include="JunHo\ENDING.cpp">
+      <Filter>03. Scene\02. Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YWall.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YCoin.cpp">
+      <Filter>05. YuJeong</Filter>
+    </ClCompile>
+    <ClCompile Include="YuJeong\YTeacher.cpp">
+      <Filter>05. YuJeong</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

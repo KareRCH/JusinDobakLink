@@ -7,6 +7,7 @@
 #include "SoundMgr.h"
 #include "ObjMgr.h"
 #include "AnimationTable.h"
+#include "SceneMgr.h"
 
 // Obj
 #include "YPlayer.h"
@@ -18,7 +19,7 @@
 
 CYDish::CYDish()
 	: m_bActive(false)
-	, m_pPlayer(nullptr)
+	, m_pPlayer3(nullptr)
 	, m_pCustomer(nullptr)
 	, m_vOffset{}
 	, m_vPointScale{}
@@ -39,7 +40,7 @@ void CYDish::Initialize()
 	m_eRender = RENDER_EFFECT;
 	m_eID = BULLET;
 
-	m_pPlayer = CObjMgr::Get_Instance()->Get_Player();
+	m_pPlayer3 = CObjMgr::Get_Instance()->Get_Player3();
 
 	m_tInfo.fCX = 50.f;
 	m_tInfo.fCY = 50.f;
@@ -102,10 +103,10 @@ int CYDish::Update()
 		if (m_bIsPlayerColl)
 		{
 			// 플레이어를 바라보는 방향 구하기 (수정필요)
-			m_tInfo.vDir = CObjMgr::Get_Instance()->Get_Player()->Get_Info().vPos - m_tInfo.vPos;
+			m_tInfo.vDir = CObjMgr::Get_Instance()->Get_Player3()->Get_Info().vPos - m_tInfo.vPos;
 
 			// 플레이어의 각도가 변하면 플레이어의 각도로 같이 변하게
-			m_tInfo.fAngle = CObjMgr::Get_Instance()->Get_Player()->Get_Info().fAngle;
+			m_tInfo.fAngle = CObjMgr::Get_Instance()->Get_Player3()->Get_Info().fAngle;
 
 			// D3DXVec3Normalize(결과 값을 저장할 벡터 주소, 단위 벡터로 만들 벡터 주소) : 단위 벡터를 만들어주는 함수
 			D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
@@ -132,32 +133,30 @@ int CYDish::Update()
 			m_tInfo.vPos += m_tInfo.vDir * m_fSpeed;	// 이동
 		}
 
+
 		// 손님과 충돌하면 삭제
-		if (m_bIsCustomerColl)
+		if (m_bIsCustomerColl && CSceneMgr::Get_Instance()->Get_CurScene() == SC_STAGE3)
+		//if (m_bIsCustomerColl )
 		{
 			//m_tInfo.vPos = { m_vCenter.x, m_vCenter.y, m_vCenter.z };
-			dynamic_cast<CYPlayer*>(m_pPlayer)->Set_DishCount(-1);
+			dynamic_cast<CYPlayer*>(m_pPlayer3)->Set_DishCount(-1);
 			dynamic_cast<CYScene_Serving*>(m_ServingScene)->Set_CurDish(-1);
 
-			//dynamic_cast<CYPlayer*>(m_pPlayer)->Set_Money(100);
+			//dynamic_cast<CYPlayer*>(m_pPlayer3)->Set_Money(100);
 
 			if (m_dwTime + 5000 < GetTickCount())
 			{
 				CSoundMgr::Get_Instance()->PlaySound(L"PickUpItem.mp3", SOUND_EFFECT, 1.f);
-				dynamic_cast<CYPlayer*>(m_pPlayer)->Set_Money(100);
+				dynamic_cast<CYPlayer*>(m_pPlayer3)->Set_Money(100);
 				m_bIsCustomerColl = false;
+				m_bIsDead = true;
 				return OBJ_DEAD;
 
 				m_dwTime = GetTickCount();
 			}
 		}
-
-		//Key_Input();
-
 		__super::Update_Rect();
-
 	}
-
 	return OBJ_NOEVENT;
 }
 
@@ -169,36 +168,36 @@ void CYDish::Render(HDC hDC)
 {
 	if (m_bActive)
 	{
-		HBRUSH hNewBrush = NULL;
-		HBRUSH hOldBrush = NULL;
+		//HBRUSH hNewBrush = NULL;
+		//HBRUSH hOldBrush = NULL;
 
-		HPEN hNewPen = NULL;
-		HPEN hOldPen = NULL;
+		//HPEN hNewPen = NULL;
+		//HPEN hOldPen = NULL;
 
-		// 브러쉬 설정
-		//hNewBrush = CreateSolidBrush(RGB(240, 128, 128));
-		hNewBrush = CreateSolidBrush(RGB(0, 255, 0));
-		hOldBrush = (HBRUSH)SelectObject(hDC, hNewBrush);
+		//// 브러쉬 설정
+		////hNewBrush = CreateSolidBrush(RGB(240, 128, 128));
+		//hNewBrush = CreateSolidBrush(RGB(0, 255, 0));
+		//hOldBrush = (HBRUSH)SelectObject(hDC, hNewBrush);
 
-		// 펜 설정 + 해제
-		hNewPen = CreatePen(PS_SOLID, 3, RGB(0, 255, 0));
-		hOldPen = (HPEN)SelectObject(hDC, hNewPen);
+		//// 펜 설정 + 해제
+		//hNewPen = CreatePen(PS_SOLID, 3, RGB(0, 255, 0));
+		//hOldPen = (HPEN)SelectObject(hDC, hNewPen);
 
-		//Rectangle(hDC,
-		//	m_tRect.left,
-		//	m_tRect.top,
-		//	m_tRect.right,
-		//	m_tRect.bottom);
+		////Rectangle(hDC,
+		////	m_tRect.left,
+		////	m_tRect.top,
+		////	m_tRect.right,
+		////	m_tRect.bottom);
 
-		Draw_Rectangle(hDC);
+		//Draw_Rectangle(hDC);
 
-		// 펜 해제
-		SelectObject(hDC, hOldPen);
-		DeleteObject(hNewPen);
+		//// 펜 해제
+		//SelectObject(hDC, hOldPen);
+		//DeleteObject(hNewPen);
 
-		// 브러쉬 해제
-		SelectObject(hDC, hOldBrush);
-		DeleteObject(hNewBrush);
+		//// 브러쉬 해제
+		//SelectObject(hDC, hOldBrush);
+		//DeleteObject(hNewBrush);
 
 		//CBmpMgr::Get_Instance()->Draw_PNG(hDC, m_tInfo, false);
 
@@ -234,27 +233,21 @@ void CYDish::Release()
 
 void CYDish::Collide(CObj* _pDst)
 {
-	//if (PLAYER == dynamic_cast<CYPlayer*>(_pDst)->Get_Id());
-	//{
-	//	m_bIsPlayerColl = true;
-	//}
-
 	if (m_bActive)
 	{
 		if (dynamic_cast<CYPlayer*>(_pDst) != nullptr)
 		{
-			if (1 > dynamic_cast<CYPlayer*>(m_pPlayer)->Get_DishCount())
+			if (1 > dynamic_cast<CYPlayer*>(m_pPlayer3)->Get_DishCount())
 			{
 				// 플레이어는 한번에 한개씩만 서빙할 수 있다.
-				dynamic_cast<CYPlayer*>(m_pPlayer)->Set_DishCount(1);
+				dynamic_cast<CYPlayer*>(m_pPlayer3)->Set_DishCount(1);
 				m_bIsPlayerColl = true;
-			}		
+			}
 		}
 		else if (dynamic_cast<CYCustomer*>(_pDst) != nullptr)
 		{
 			m_bIsCustomerColl = true;
 			m_bIsPlayerColl = false;
-
 
 			// 손님을 바라보는 방향 구하기
 			m_tInfo.vDir = _pDst->Get_Info().vPos - m_tInfo.vPos;

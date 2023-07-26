@@ -79,7 +79,7 @@ FishermanState CFishermanHooking::Update(CFisherman& _Actor)
 	{
 		if (_Actor.Get_Bobber()->Get_Info().vPos.y < WINCY - 150) 
 		{
-			_Actor.Get_Bobber()->Move(0.4f);
+			_Actor.Get_Bobber()->Move(1.f);
 		}
 		
 	}
@@ -87,7 +87,7 @@ FishermanState CFishermanHooking::Update(CFisherman& _Actor)
 	{
 		if (_Actor.Get_Bobber()->Get_Info().vPos.y > 150)
 		{
-			_Actor.Get_Bobber()->Move_Back(0.4f);
+			_Actor.Get_Bobber()->Move_Back(1.f);
 		}
 		
 	}

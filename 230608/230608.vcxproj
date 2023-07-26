@@ -152,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="230608.h" />
+    <ClInclude Include="JunHo\ENDING.h" />
     <ClInclude Include="HakJun\Broly.h" />
     <ClInclude Include="HakJun\Bowl.h" />
     <ClInclude Include="Core\CollisionMgr.h" />
@@ -212,17 +213,18 @@
     <ClInclude Include="JunHo\Stage.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="YCoin.h" />
-    <ClInclude Include="YTeacher.h" />
+    <ClInclude Include="YuJeong\YCoin.h" />
     <ClInclude Include="YuJeong\YCustomer.h" />
     <ClInclude Include="YuJeong\YDish.h" />
     <ClInclude Include="YuJeong\YPlayer.h" />
     <ClInclude Include="YuJeong\YScene_Serving.h" />
+    <ClInclude Include="YuJeong\YTeacher.h" />
     <ClInclude Include="YuJeong\YTimeGauge.h" />
-    <ClInclude Include="YWall.h" />
+    <ClInclude Include="YuJeong\YWall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="230608.cpp" />
+    <ClCompile Include="JunHo\ENDING.cpp" />
     <ClCompile Include="HakJun\Broly.cpp" />
     <ClCompile Include="HakJun\Bowl.cpp" />
     <ClCompile Include="Core\CollisionMgr.cpp" />
@@ -273,14 +275,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="YCoin.cpp" />
-    <ClCompile Include="YTeacher.cpp" />
+    <ClCompile Include="YuJeong\YCoin.cpp" />
     <ClCompile Include="YuJeong\YCustomer.cpp" />
     <ClCompile Include="YuJeong\YDish.cpp" />
     <ClCompile Include="YuJeong\YPlayer.cpp" />
     <ClCompile Include="YuJeong\YScene_Serving.cpp" />
+    <ClCompile Include="YuJeong\YTeacher.cpp" />
     <ClCompile Include="YuJeong\YTimeGauge.cpp" />
-    <ClCompile Include="YWall.cpp" />
+    <ClCompile Include="YuJeong\YWall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="230608.rc" />

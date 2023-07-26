@@ -4,7 +4,7 @@
 class CScene;	// 전방선언
 
 class CYCustomer :
-    public CObj
+	public CObj
 {
 public:
 	CYCustomer();
@@ -32,7 +32,7 @@ public:
 	void			Set_Center(D3DXVECTOR3 _vCenter) { m_vCenter = _vCenter; }
 	D3DXVECTOR3		Get_Center() { return m_vCenter; }
 
-// 객체 활성화 여부 판단
+	// 객체 활성화 여부 판단
 private:
 	bool	m_bActive;
 
@@ -41,22 +41,22 @@ public:
 	bool	Get_Active() { return m_bActive; }
 
 
-// 서빙 접시(요리) 생성
+	// 서빙 접시(요리) 생성
 public:
 	void	Create_Dish();
 
-// 생성될 위치
+	// 생성될 위치
 private:
 	D3DXVECTOR3 m_vCustomerPos[6];
 
-// 무엇과 충돌했는지 판단
+	// 무엇과 충돌했는지 판단
 private:
 	bool		m_bIsPlayerColl;
 	bool		m_bIsDishColl;
 
-// 씬...ㅠ
+	// 씬...ㅠ
 private:
-	CScene*		m_ServingScene;
+	CScene* m_ServingScene;
 
 public:
 	void		Set_Scene(CScene* _ServingScene) { m_ServingScene = _ServingScene; }

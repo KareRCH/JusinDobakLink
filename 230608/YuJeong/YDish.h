@@ -4,7 +4,7 @@
 class CScene;	// 전방선언
 
 class CYDish :
-    public CObj
+	public CObj
 {
 public:
 	CYDish();
@@ -39,7 +39,7 @@ private:
 	D3DXMATRIX		matTrans;
 
 
-// 객체 활성화 여부 판단
+	// 객체 활성화 여부 판단
 private:
 	bool	m_bActive;
 
@@ -49,13 +49,13 @@ public:
 
 
 private:
-	CObj*			m_pPlayer;
-	CObj*			m_pCustomer;
+	CObj* m_pPlayer3;
+	CObj* m_pCustomer;
 
 
 public:
-	void			Set_Player(CObj* _pPlayer) { m_pPlayer = _pPlayer; }
-	CObj*			Get_Player() { return m_pPlayer; }
+	void			Set_Player3(CObj* _pPlayer) { m_pPlayer3 = _pPlayer; }
+	CObj*			Get_Player3() { return m_pPlayer3; }
 
 	void			Set_Customer(CObj* _pCustomer) { m_pCustomer = _pCustomer; }
 	CObj*			Get_Customer() { return m_pCustomer; }
@@ -64,23 +64,23 @@ public:
 public:
 	OBJID   Get_Id() { return m_eID; };
 
-// 무엇과 충돌했는지 판단
+	// 무엇과 충돌했는지 판단
 private:
 	bool		m_bIsPlayerColl;
 	bool		m_bIsCustomerColl;
 
 
-// 씬...ㅠ
+	// 씬...ㅠ
 private:
 	CScene* m_ServingScene;
 
 public:
 	void		Set_Scene(CScene* _ServingScene) { m_ServingScene = _ServingScene; }
-	CScene*		Get_Scene() { return m_ServingScene; }
+	CScene* Get_Scene() { return m_ServingScene; }
 
 private:
 	int			m_iRand;			// 난수 생성
-	TCHAR*		m_pKey[5];
+	TCHAR* m_pKey[5];
 
 public:
 	void		Set_Rand(int _iRand) { m_iRand = _iRand; }

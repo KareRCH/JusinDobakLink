@@ -46,7 +46,7 @@ FishermanState CFishermanCatching::Update(CFisherman& _Actor)
  		return FishermanState::FAIL;
 	}
 
-	if (CKeyMgr::Get_Instance()->Key_Down(VK_SPACE))
+	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
 	{
 		D3DXVec3Normalize(&tempVec3, &tempVec3);
 		_Actor.Get_Fish()->Add_Pos((-tempVec3) * _Actor.Get_Fish()->Get_Speed() * 4.0f);

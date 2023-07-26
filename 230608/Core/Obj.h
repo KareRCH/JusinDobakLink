@@ -33,6 +33,7 @@ protected:
 	float		m_fSpeed;
 	RENDERID	m_eRender;
 	OBJID		m_eID;
+	//bool		m_bIsDead = false;
 
 public: 
 	void			Update_Rect();

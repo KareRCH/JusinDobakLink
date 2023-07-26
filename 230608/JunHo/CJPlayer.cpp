@@ -3,7 +3,7 @@
 #include "Camera.h"
 #include "BmpMgr.h"
 #include "LineMgr.h"
-
+#include "SceneMgr.h"
 CJPlayer::CJPlayer()
 {
 }
@@ -57,6 +57,11 @@ void CJPlayer::Initialize()
 
 int CJPlayer::Update()
 {
+	if (CKeyMgr::Get_Instance()->Key_Down('D'))
+	{
+		CSceneMgr::Get_Instance()->Scene_Change(SC_STAGE_BOSS);
+		return OBJ_NOEVENT;
+	}
 	Key_Input();
 	Jump();
 
@@ -120,6 +125,7 @@ void CJPlayer::Render(HDC hDC)
 
 void CJPlayer::Release()
 {
+
 }
 void CJPlayer::Collide(CObj* _pDst)
 {
@@ -154,6 +160,10 @@ void CJPlayer::Key_Input(void)
 		m_tInfo.vPos += m_fSpeed * vLook;
 		fuckingswitch = true;
 	}
+	//if (GetAsyncKeyState('D'))
+	//{
+	//	m_bDead = true;
+	//}
 }
 
 void CJPlayer::Jump()

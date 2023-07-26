@@ -41,17 +41,12 @@ CYScene_Serving::~CYScene_Serving()
 
 void CYScene_Serving::Initialize()
 {
-	CSoundMgr::Get_Instance()->PlayBGM(L"와르루루 꺄르루루.mp3", 0.05f);
+	CSoundMgr::Get_Instance()->PlayBGM(L"와르루루 꺄르루루.mp3", 0.3f);
 
 	// 배경 이미지
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../230608/YuJeong/Image_Yu/00_서빙스테이지_BG.bmp", L"Serving_BG");
 
 	// 시간 게이지 UI
-	//CObj* pTimeGauge = new CYTimeGauge;
-	//dynamic_cast<CYTimeGauge*>(pTimeGauge)->Set_Scene(this);
-	//pTimeGauge->Initialize();
-	//CObjMgr::Get_Instance()->Add_Object(UI, pTimeGauge);
-
 	CObj* m_pTimeGauge = new CYTimeGauge;
 	dynamic_cast<CYTimeGauge*>(m_pTimeGauge)->Set_Scene(this);
 	m_pTimeGauge->Initialize();
@@ -67,6 +62,7 @@ void CYScene_Serving::Initialize()
 	m_vWallPos[5] = { 135.f, 495.f, 0.f };
 	m_vWallPos[6] = { WINCX/2, 68.5f, 0.f };
 	m_vWallPos[7] = { (float)WINCX - 22.5f, WINCY / 2, 0.f };
+
 
 	// 벽 생성
 	for (int i = 0; i < 8; ++i)
@@ -86,11 +82,10 @@ void CYScene_Serving::Initialize()
 
 	}
 
-
 	// ============
 	// 플레이어 생성
 	// ============
-	CObjMgr::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CYPlayer>::Create());
+	CObjMgr::Get_Instance()->Add_Object(PLAYER3, CAbstractFactory<CYPlayer>::Create());
 
 
 	// 손님 위치
@@ -108,7 +103,6 @@ void CYScene_Serving::Initialize()
 		m_pCustomer[i] = Create_Customer(m_vCustomerPos[i]);
 	}
 
-
 	m_dwTime = GetTickCount();
 }
 
@@ -122,46 +116,33 @@ void CYScene_Serving::Update()
 			{
 				m_iRand = rand() % 6;		// 0부터 6까지
 
-				if (true == dynamic_cast<CYCustomer*>(m_pCustomer[m_iRand])->Get_Active())
+				if (dynamic_cast<CYCustomer*>(m_pCustomer[m_iRand])->Get_Active())
 				{
 					// 이미 활성화 된 손님이면 다시 뽑기
 					m_iRand = rand() % 6;
 				}
 				else
 				{
-					++m_iCurCustomer;
-					++m_iCurDish;
-					m_iCustomerRand = rand() % 5;		// 0부터 5까지
-					dynamic_cast<CYCustomer*>(m_pCustomer[m_iRand])->Set_Rand(m_iCustomerRand);
-					dynamic_cast<CYCustomer*>(m_pCustomer[m_iRand])->Set_Active(true);
-					dynamic_cast<CYCustomer*>(m_pCustomer[m_iRand])->Create_Dish();
+					if (m_dwTime + 4000 < GetTickCount())
+					{
+						++m_iCurCustomer;
+						++m_iCurDish;
+						m_iCustomerRand = rand() % 5;		// 0부터 5까지
+						dynamic_cast<CYCustomer*>(m_pCustomer[m_iRand])->Set_Rand(m_iCustomerRand);
+						dynamic_cast<CYCustomer*>(m_pCustomer[m_iRand])->Set_Active(true);
+						dynamic_cast<CYCustomer*>(m_pCustomer[m_iRand])->Create_Dish();
 
-					m_dwTime = GetTickCount();
+						m_dwTime = GetTickCount();
+					}
 				}
 			}
 		}
 		CObjMgr::Get_Instance()->Update();
 	}
-
-
-	if (nullptr != m_pTimeGauge)
-	{
-		m_pTimeGauge->Update();
-	}
 }
 
 void CYScene_Serving::Late_Update()
-{
-	//if (nullptr != m_pTimeGauge)
-	//{
-	//	m_pTimeGauge->Late_Update();
-	//}
-
-	//if (!m_bIsEnd)
-	//{
-	//	CObjMgr::Get_Instance()->Late_Update();
-	//}
-	
+{	
 	CObjMgr::Get_Instance()->Late_Update();
 
 	if (m_bIsEnd)
@@ -183,18 +164,20 @@ void CYScene_Serving::Render(HDC hDC)
 	//CObjMgr::Get_Instance()->Get_Player()->Render(hDC);
 
 
-	TCHAR szCustomerCount[128];
-	_stprintf_s(szCustomerCount, L"현재 손님 수 : %d", m_iCurCustomer);
-	TextOutW(hDC, 0, 520, szCustomerCount, lstrlen(szCustomerCount));
+	//TCHAR szCustomerCount[128];
+	//_stprintf_s(szCustomerCount, L"현재 손님 수 : %d", m_iCurCustomer);
+	//TextOutW(hDC, 0, 560, szCustomerCount, lstrlen(szCustomerCount));
 
-	TCHAR szEnd[128];
-	_stprintf_s(szEnd, L"게임종료? : %d", m_bIsEnd);
-	TextOutW(hDC, 0, 500, szEnd, lstrlen(szEnd));
+	//TCHAR szEnd[128];
+	//_stprintf_s(szEnd, L"게임종료? : %d", m_bIsEnd);
+	//TextOutW(hDC, 0, 580, szEnd, lstrlen(szEnd));
 
 	if (m_bIsEnd)
 	{
+		SetBkMode(hDC, TRANSPARENT);
+		SetTextColor(hDC, 0xffffff);
 		TCHAR szEndMoney[128];
-		_stprintf_s(szEndMoney, L"%d 원", dynamic_cast<CYPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Get_Money());
+		_stprintf_s(szEndMoney, L"%d 원", dynamic_cast<CYPlayer*>(CObjMgr::Get_Instance()->Get_Player3())->Get_Money());
 		TextOutW(hDC, 350, 245, szEndMoney, lstrlen(szEndMoney));
 	}
 }
@@ -203,18 +186,17 @@ void CYScene_Serving::Release()
 {
 	CSoundMgr::Get_Instance()->StopAll();
 
-	//Safe_Delete(m_pTimeGauge);
+	CObjMgr::Get_Instance()->Delete_ID_Dead(BULLET);
+	CObjMgr::Get_Instance()->Delete_ID_Dead(MONSTER);	
+	CObjMgr::Get_Instance()->Delete_ID_Dead(UI);
+	CObjMgr::Get_Instance()->Delete_ID_Dead(PLAYER3);
 
+	//Safe_Delete(m_pTimeGauge);
 }
 
 
 CObj* CYScene_Serving::Create_Customer(D3DXVECTOR3 _vCenterPos)
 {
-	// 손님 생성 테스트
-	//CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CYCustomer>::Create());
-
-	//++m_iCurCustomer;
-
 	CObj* pCustomer = new CYCustomer;
 	dynamic_cast<CYCustomer*>(pCustomer)->Set_Center(_vCenterPos);
 	dynamic_cast<CYCustomer*>(pCustomer)->Set_Scene(this);
@@ -251,7 +233,6 @@ CObj* CYScene_Serving::Create_Wall(D3DXVECTOR3 _vCenterPos, int _iType)
 	}
 
 	pWall->Initialize();
-
 	CObjMgr::Get_Instance()->Add_Object(TILE, pWall);
 
 	return pWall;

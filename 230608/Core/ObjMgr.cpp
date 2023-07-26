@@ -88,12 +88,11 @@ void CObjMgr::Late_Update()
 			RENDERID eRender = iter->Get_RenderID();
 			m_RenderList[(int)eRender].push_back(iter);
 		}
-
 	}
 
-	CCollisionMgr::Collision_Rect(m_ObjList[PLAYER], m_ObjList[TILE]);
-	CCollisionMgr::Collision_Rect(m_ObjList[PLAYER], m_ObjList[MONSTER]);
-	CCollisionMgr::Collision_Rect(m_ObjList[PLAYER], m_ObjList[BULLET]);
+	CCollisionMgr::Collision_Rect(m_ObjList[PLAYER3], m_ObjList[TILE]);
+	CCollisionMgr::Collision_Rect(m_ObjList[PLAYER3], m_ObjList[MONSTER]);
+	CCollisionMgr::Collision_Rect(m_ObjList[PLAYER3], m_ObjList[BULLET]);
 	CCollisionMgr::Collision_Rect(m_ObjList[MONSTER], m_ObjList[BULLET]);
 }
 
@@ -137,5 +136,5 @@ void CObjMgr::Delete_ID_Dead(OBJID eID)
 	for (auto& iter : m_ObjList[(int)eID])
 		(*iter).Set_Dead();
 
-	m_ObjList[(int)eID].clear();
+	//m_ObjList[(int)eID].clear();
 }

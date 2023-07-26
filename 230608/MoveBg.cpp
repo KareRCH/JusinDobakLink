@@ -6,8 +6,7 @@
 
 
 
-CMoveBg::CMoveBg()
-	
+CMoveBg::CMoveBg()	
 {
 }
 

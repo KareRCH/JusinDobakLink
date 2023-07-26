@@ -49,7 +49,7 @@ void CYCustomer::Initialize()
 	// D3DXVECTOR3 Init
 	// ================
 	//m_vCenter = { 566.1, 248, 0.f };	// 원점, 손님 생성위치?
-	m_tInfo.vPos = { m_vCenter.x, m_vCenter.y, m_vCenter.z };	
+	m_tInfo.vPos = { m_vCenter.x, m_vCenter.y, m_vCenter.z };
 	m_tInfo.vDir = { 1.f, 0.f, 0.f };							//방향
 	m_tInfo.vLook = { 0.f, 1.f, 0.f };							// 바라보는 방향
 	m_tInfo.vSize = { 1.f, 1.f, 0.f };							// 이미지 크기(배율)
@@ -150,31 +150,21 @@ int CYCustomer::Update()
 
 			if (m_bIsDishColl)
 			{
-				m_bIsDishColl = false;
-
 				if (m_dwTime + 3000 < GetTickCount())
 				{
-					//CSoundMgr::Get_Instance()->StopSound(SOUND_EFFECT);
-
-
 					m_bIsPlayerColl = false;
-
 					dynamic_cast<CYScene_Serving*>(m_ServingScene)->Set_CurCustomer(-1);
-
-					m_bActive = false;
+					m_bActive = false;		
+					m_bIsDishColl = false;
 					//return OBJ_DEAD;
 
 					m_dwTime = GetTickCount();
 				}
-
 			}
-
 			__super::Update_Rect();
-
 		}
 		return OBJ_NOEVENT;
 	}
-	
 }
 
 void CYCustomer::Late_Update()
@@ -185,36 +175,36 @@ void CYCustomer::Render(HDC hDC)
 {
 	if (m_bActive)
 	{
-		HBRUSH hNewBrush = NULL;
-		HBRUSH hOldBrush = NULL;
+		//HBRUSH hNewBrush = NULL;
+		//HBRUSH hOldBrush = NULL;
 
-		HPEN hNewPen = NULL;
-		HPEN hOldPen = NULL;
+		//HPEN hNewPen = NULL;
+		//HPEN hOldPen = NULL;
 
-		// 브러쉬 설정
-		//hNewBrush = CreateSolidBrush(RGB(240, 128, 128));
-		hNewBrush = CreateSolidBrush(RGB(0, 255, 0));
-		hOldBrush = (HBRUSH)SelectObject(hDC, hNewBrush);
+		//// 브러쉬 설정
+		////hNewBrush = CreateSolidBrush(RGB(240, 128, 128));
+		//hNewBrush = CreateSolidBrush(RGB(0, 255, 0));
+		//hOldBrush = (HBRUSH)SelectObject(hDC, hNewBrush);
 
-		// 펜 설정 + 해제
-		hNewPen = CreatePen(PS_SOLID, 3, RGB(0, 255, 0));
-		hOldPen = (HPEN)SelectObject(hDC, hNewPen);
+		//// 펜 설정 + 해제
+		//hNewPen = CreatePen(PS_SOLID, 3, RGB(0, 255, 0));
+		//hOldPen = (HPEN)SelectObject(hDC, hNewPen);
 
-		//Rectangle(hDC,
-		//	m_tRect.left,
-		//	m_tRect.top,
-		//	m_tRect.right,
-		//	m_tRect.bottom);
+		////Rectangle(hDC,
+		////	m_tRect.left,
+		////	m_tRect.top,
+		////	m_tRect.right,
+		////	m_tRect.bottom);
 
-		Draw_Rectangle(hDC);
+		//Draw_Rectangle(hDC);
 
-		// 펜 해제
-		SelectObject(hDC, hOldPen);
-		DeleteObject(hNewPen);
+		//// 펜 해제
+		//SelectObject(hDC, hOldPen);
+		//DeleteObject(hNewPen);
 
-		// 브러쉬 해제
-		SelectObject(hDC, hOldBrush);
-		DeleteObject(hNewBrush);
+		//// 브러쉬 해제
+		//SelectObject(hDC, hOldBrush);
+		//DeleteObject(hNewBrush);
 
 		//CBmpMgr::Get_Instance()->Draw_PNG(hDC, m_tInfo, false);
 
@@ -230,7 +220,7 @@ void CYCustomer::Render(HDC hDC)
 		}
 
 	}
-	
+
 }
 
 void CYCustomer::Release()
@@ -264,12 +254,8 @@ void CYCustomer::Create_Dish()
 
 	if (m_bActive)
 	{
-		// 음식 생성 테스트
-		//CObjMgr::Get_Instance()->Add_Object(BULLET, CAbstractFactory<CYDish>::Create());
-
 		CObj* pDish = new CYDish;
 		dynamic_cast<CYDish*>(pDish)->Set_Customer(this);
-
 
 		if (290.f == m_vCenter.y)
 		{

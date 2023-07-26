@@ -3,6 +3,7 @@
 
 #include "BmpMgr.h"
 #include "AnimationTable.h"
+#include "SCeneMgr.h"
 
 // 씬..ㅠ
 #include "YScene_Serving.h"
@@ -66,58 +67,23 @@ void CYTimeGauge::Initialize()
 
 int CYTimeGauge::Update()
 {
-	//// D3DXVec3Normalize(결과 값을 저장할 벡터 주소, 단위 벡터로 만들 벡터 주소) : 단위 벡터를 만들어주는 함수
-	//D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
-	//D3DXVec3Normalize(&m_tInfo.vLook, &m_tInfo.vLook);
-	//D3DXMatrixIdentity(&m_tInfo.matWorld);	// 항등행렬로 만들기
-
-	//// 회전행렬을 만들고, 이를 벡터에 곱해서 회전된 벡터를 얻어야 한다.
-	//D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);					// 크기
-	//D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_tInfo.fAngle));	// 회전
-	//D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);	// 이동
-
-	//// 크기x자전x이동
-	//m_tInfo.matWorld = matScale * matRotZ * matTrans;
-
-	//// 사각형 점들을 회전행렬로 변환
-	//for (int i = 0; i < 4; ++i)
-	//{
-	//	m_vPoint[i] = m_vOriginPoint[i];
-	//	m_vPoint[i] -= { m_vCenter.x, m_vCenter.y, m_vCenter.z };
-
-	//	D3DXVec3TransformCoord(&m_vPoint[i], &m_vPoint[i], &m_tInfo.matWorld);
-	//}
-
-	//if (m_dwTime + 1000 < GetTickCount())
-	//{
-	//	m_fCurTime += 1.f;
-
-	//	m_dwTime = GetTickCount();
-	//}
-
-
-	//if (0 <= m_tInfo.vSize.x)
-	//{
-	//	//m_iHpGauge = (int)(((float)m_tData.iHp / (float)m_tData.iMaxHp) * 171.f);
-	//	m_tInfo.vSize.x *= 0.8f;
-	//}
-
-	if (m_dwTime + 3000 < GetTickCount())
+	// 현재 씬이 서빙씬일 때만 업데이트 한다.
+	if (CSceneMgr::Get_Instance()->Get_CurScene() == SC_STAGE3)
 	{
-		if (0 <= m_tInfo.vSize.x)
+		if (m_dwTime + 2000 < GetTickCount())
 		{
-			//m_iHpGauge = (int)(((float)m_tData.iHp / (float)m_tData.iMaxHp) * 171.f);
-			m_tInfo.vSize.x -= 0.1f;
+			if (0 <= m_tInfo.vSize.x)
+			{
+				m_tInfo.vSize.x -= 0.1f;
 
-			m_dwTime = GetTickCount();
-		}
-		if (0 >= m_tInfo.vSize.x)
-		{
-			dynamic_cast<CYScene_Serving*>(m_ServingScene)->Set_IsEnd(true);
+				m_dwTime = GetTickCount();
+			}
+			if (0 >= m_tInfo.vSize.x)
+			{
+				dynamic_cast<CYScene_Serving*>(m_ServingScene)->Set_IsEnd(true);			
+			}
 		}
 	}
-
-
 
 	__super::Update_Rect();
 
@@ -132,17 +98,24 @@ void CYTimeGauge::Render(HDC hDC)
 {
 	//Draw_Rectangle(hDC);
 
-	if (dynamic_cast<CYScene_Serving*>(m_ServingScene)->Get_IsEnd())
-	{
-		m_tInfo.vSize.x = 1.f;
-		FRAME tFrame = {};
-		tFrame.iOffsetX = 180; tFrame.iOffsetY = -80;
-		CBmpMgr::Get_Instance()->Draw_PNG(hDC, L"YEnd", m_tInfo, tFrame, 0, 0, 400, 300, false);
-	}
-	else
-	{
-		CBmpMgr::Get_Instance()->Draw_PNG(hDC, m_tInfo, false);
 
+	// 주석 풀어야지 렌더됨
+	//현재 씬(서빙씬)일때만 렌더링 하기
+	if (CSceneMgr::Get_Instance()->Get_CurScene() == SC_STAGE3)
+	{
+		if (dynamic_cast<CYScene_Serving*>(m_ServingScene)->Get_IsEnd())
+		{
+			// 게임이 종료되면 결과창을 렌더링 한다.
+			m_tInfo.vSize.x = 1.f;
+			FRAME tFrame = {};
+			tFrame.iOffsetX = 180; tFrame.iOffsetY = -80;
+			CBmpMgr::Get_Instance()->Draw_PNG(hDC, L"YEnd", m_tInfo, tFrame, 0, 0, 400, 300, false);
+		}
+		else
+		{
+			// 아니면 타임 게이지 렌더링
+			CBmpMgr::Get_Instance()->Draw_PNG(hDC, m_tInfo, false);
+		}
 	}
 
 }
