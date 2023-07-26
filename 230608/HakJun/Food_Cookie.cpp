@@ -78,6 +78,7 @@ int CFood_Cookie::Update()
 	{
 		m_tInfo.vSize *= 0.9f;
 	}*/
+	
 
 	m_tState.Get_StateFunc()(this);
 

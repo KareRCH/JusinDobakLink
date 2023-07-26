@@ -14,5 +14,15 @@ public:
 	virtual void Render(HDC hDC) override;
 	virtual void Release() override;
 	virtual void Collide(CObj* _pDst) override;
+
+private:
+	enum class ESTATE { MOVE, IDLE, HIT };
+	STATE_SET< ESTATE, void(CBroly*)> m_tState;
+
+	void Move();
+	void Idle();
+	void Hit();
+public:
+	STATE_SET< ESTATE, void(CBroly*)>* Get_State() { return &m_tState; }
 };
 
